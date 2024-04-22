@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="overflow-hidden draggable slider d-flex flex-nowrap">
+                    <div class="draggable slider d-flex flex-nowrap">
                         <!--                        buton-->
                         <button class="btn btn-secondary rounded-circle" id="btn-move-left"><</button>
                         <ul class="nav ms-3 nav-pills overflow-hidden d-flex flex-nowrap" id="brand-list"
@@ -83,7 +83,7 @@
                         <!--                        button-->
                         <button class="btn btn-secondary rounded-circle me-2" id="btn-move-right"> ></button>
                     </div>
-                    <div class="tab-content">
+                    <div class="tab-content overflow-y-scroll" style="height: 80vh">
                         <div class="row row-cols-1 row-cols-md-4 row-cols-sm-6 flex-wrap me-2"
                              id="product-content"></div>
                     </div>
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                        <section class="mt-1 overflow-y-scroll" style="height: 280px">
+                        <section class="mt-1 overflow-y-scroll" style="height: 400px">
                             <div class="border mt-1 rounded-4">
                                 <div class="d-flex">
                                     <img src="../../assets/images/shoe-2.jpg" style="width: 80px;height: 80px">
@@ -192,9 +192,26 @@
                                 </div>
                             </div>
 
+                            <div class="border mt-1 mt-1 rounded-4">
+                                <div class="d-flex">
+                                    <img src="../../assets/images/shoe-2.jpg" style="width: 80px;height: 80px">
+                                    <div class="d-flex flex-column ms-3 p-2">
+                                        <small class="text-dark">Nike Air Max</small>
+                                        <small class="text-dark">Rs. 4200</small>
+                                        <small class="text-dark">Large</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end rounded-4">
+                                    <div class="d-flex gap-3 bg-secondary rounded-4">
+                                        <button class="btn btn-secondary rounded-4 btn-sm">-</button>
+                                        <small class="text-dark mt-1 text-white">1</small>
+                                        <button class="btn btn-secondary rounded-4 btn-sm">+</button>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
 
-                        <section class="bg-info-subtle mt-1 rounded-2 p-2">
+                        <section class="bg-info-subtle rounded-2 p-2">
                             <div class="d-flex justify-content-between">
                                 <h6>Subtotal</h6>
                                 <small>$ 100.00</small>
