@@ -1,8 +1,10 @@
 :root {
-    --main-color: #FC6B04;
+    --main-color: #3e72ca;
+    --info-color: #0a4772;
 }
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 img{

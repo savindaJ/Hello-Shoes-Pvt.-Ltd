@@ -1,20 +1,37 @@
-/*#login-slider{*/
-/*    animation: login-sliders 10s infinite;*/
-/*    animation-timing-function: linear;*/
-/*    animation-direction: alternate;*/
-/*    animation-play-state: running;*/
-/*    animation-fill-mode: forwards;*/
-/*    animation-iteration-count: infinite;*/
-/*    animation-delay: 0s;*/
-/*    animation-duration: 10s;*/
-/*    animation-name: login-sliders;*/
-/*}*/
+body{
+    background-color: var(--main-color);
+}
 
-/*@keyframes login-sliders {*/
-/*    0% {*/
-/*        transform: translateX(0);*/
-/*    }*/
-/*    100% {*/
-/*        transform: translateX(-100%);*/
-/*    }*/
-/*}*/
+#login-img{
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#login-form{
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login-header{
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.77);
+    padding: 20px;
+    border-radius: 10px;
+}
