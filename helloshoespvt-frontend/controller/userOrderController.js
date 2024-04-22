@@ -1,5 +1,5 @@
 
-const brandList = ['All','DSI','Adidas','Nike','Puma','Reebok','NewBalance','UnderArmour','Converse','Vans','Fila','Skechers','ASICS','Crocs','Timberland','Clarks'];
+const brandList = ['All','DSI','Adidas','Nike','Puma','Reebok','NewBalance','UnderArmour','Converse','Vans','Fila','Skechers','ASICS','Crocs','Timberland','Clarks','Bata','Liberty','HushPuppies','Woodland','RedTape','LeeCooper','Sparx','Power','Action','Paragon','Relaxo','Lakhani','Khadims','Metro','Mochi','Catwalk','Inc5','CarltonLondon','SteveMadden','Aldo','Charles&Keith','NineWest','Zara','H&M','Forever21','Mango','Gucci','Prada','LouisVuitton','Chanel','Burberry','Hermes','Dior','Balenciaga','Versace','Fendi','Givenchy','Valentino','YSL','JimmyChoo','ChristianLouboutin','SalvatoreFerragamo','ToryBurch','Coach','MichaelKors','KateSpade','MarcJacobs','TommyHilfiger','CalvinKlein','RalphLauren','Lacoste','HugoBoss','Armani','GAP','Levis','Diesel','Wrangler','PepeJeans','Lee','TommyJeans','Superdry','Jack&Jones','Only','VeroModa','ZaraMan','H&MMan','Forever21'];
 
 for (const brand of brandList) {
 
@@ -52,13 +52,13 @@ $('#brand-list').on('click', 'button', function () {
 
 $('#btn-move-right').on('click', function () {
     $('#brand-list').animate({
-        scrollLeft: '+=200px'
+        scrollLeft: '+=500px'
     }, 500, 'linear');
 });
 
 $('#btn-move-left').on('click', function () {
     $('#brand-list').animate({
-        scrollLeft: '-=200px'
+        scrollLeft: '-=500px'
     }, 500, 'linear');
 });
 
