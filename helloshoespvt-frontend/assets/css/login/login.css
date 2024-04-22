@@ -1,8 +1,8 @@
-body{
+body {
     background-color: var(--main-color);
 }
 
-#login-img{
+#login-img {
     height: 100%;
     object-fit: cover;
     position: absolute;
@@ -11,7 +11,7 @@ body{
     z-index: -1;
 }
 
-#login-form{
+#login-form {
     width: 500px;
     background-color: rgba(255, 255, 255, 0.85);
     padding: 20px;
@@ -20,7 +20,7 @@ body{
     margin-top: 100px;
 }
 
-input{
+input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -28,10 +28,23 @@ input{
     border-radius: 5px;
 }
 
-#login-header{
+#login-header {
     text-align: center;
     margin-bottom: 20px;
     background-color: rgba(255, 255, 255, 0.77);
     padding: 20px;
     border-radius: 10px;
+}
+
+.login-card {
+    width: 170px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    width: 80PX;
+    height: 80px;
 }
