@@ -1,0 +1,14 @@
+i {
+    color: white;
+}
+
+i:hover {
+    color: black;
+}
+::-webkit-scrollbar {
+    width: 0.7vw;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
