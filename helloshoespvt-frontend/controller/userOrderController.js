@@ -50,15 +50,6 @@ $('#brand-list').on('click', 'button', function () {
     `);
 });
 
-// $('#product-content').append(`
-//         <div class="tab-pane mt-3 active fade show active"
-//             id="pills-home"
-//             role="tabpanel"
-//             aria-labelledby="pills-home-tab"
-//             tabindex="0">All</div>
-//     `);
-
-
 $('#btn-move-right').on('click', function () {
     $('#brand-list').animate({
         scrollLeft: '+=200px'
@@ -73,7 +64,7 @@ $('#btn-move-left').on('click', function () {
 
 for (let i = 0; i < 10; i++) {
     $('#product-content').append(`
-        <div class="col mt-3">
+        <div class="col mt-3 z-1">
             <div class="card h-100">
                  <img src="../../assets/images/shoe-1.jpg" class="card-img-top" alt="...">
                  <div class="card-body">

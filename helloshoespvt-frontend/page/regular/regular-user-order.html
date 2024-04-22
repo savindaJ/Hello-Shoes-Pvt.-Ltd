@@ -15,7 +15,7 @@
 <body>
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto px-0 position-fixed" style="background-color: var(--main-color)">
+        <div class="col-auto px-0 position-fixed z-3" style="background-color: var(--main-color)">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
                 <a href="regular-user-order.html"
                    class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
@@ -23,7 +23,7 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
+                        <a href="regular-user-order.html" class="nav-link align-middle px-0">
                             <i class="bi bi-layout-text-sidebar fs-4 text-dark"></i>
                         </a>
                     </li>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="draggable slider d-flex flex-nowrap">
+                    <div class="draggable slider d-flex flex-nowrap z-n1">
                         <!--                        buton-->
                         <button class="btn btn-secondary rounded-circle" id="btn-move-left"><</button>
                         <ul class="nav ms-3 nav-pills overflow-hidden d-flex flex-nowrap" id="brand-list"
@@ -210,6 +210,21 @@
                                 </div>
                             </div>
                         </section>
+
+                        <div class="d-flex justify-content-sm-around">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Cash
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Card
+                                </label>
+                            </div>
+                        </div>
 
                         <section class="bg-info-subtle rounded-2 p-2">
                             <div class="d-flex justify-content-between">
