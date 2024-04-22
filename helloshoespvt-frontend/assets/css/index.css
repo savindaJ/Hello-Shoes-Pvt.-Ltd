@@ -1,0 +1,10 @@
+:root {
+    --main-color: #FC6B04;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+img{
+    max-width: 100%;
+}

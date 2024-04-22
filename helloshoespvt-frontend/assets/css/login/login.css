@@ -1,0 +1,20 @@
+#login-slider{
+    animation: login-sliders 10s infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    animation-duration: 10s;
+    animation-name: login-sliders;
+}
+
+@keyframes login-sliders {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
