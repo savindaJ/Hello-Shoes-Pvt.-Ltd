@@ -76,6 +76,11 @@ for (let i = 0; i < 10; i++) {
                          <small>Size: 7 / 8 / 9 / 10</small>
                          <small>1k Sold</small>
                      </div>
+                      <div class="d-flex justify-content-sm-between">
+                         <small class="text-danger">Discount :</small>
+                         <small class="text-danger">4%</small>
+                     </div>
+                     
                      <h5 class="card-title m-2 text-center">Rs. 4200</h5>
                      <button class="btn btn-primary w-100">Add to cart</button>
                 </div>
