@@ -5,5 +5,5 @@ $('#btn-login').on('click', function () {
         username: username,
         password: password
     };
-    window.location.href = '../page/regular/regular-user-order.html';
+    window.location.href = '../page/admin/';
 });
