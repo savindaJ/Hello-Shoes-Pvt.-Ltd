@@ -1,158 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hello Shoe | Employee</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="../../assets/images/Logo.png">
-  <link href="../../assets/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/index.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="../../assets/css/admin/adminSlideBar.css">
-  <style>
+    <meta charset="UTF-8">
+    <title>Hello Shoe | Employee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../assets/images/Logo.png">
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/admin/adminSlideBar.css">
+    <style>
 
-    ::-webkit-scrollbar {
-      width: 0.4vw;
-    }
+        ::-webkit-scrollbar {
+            width: 0.4vw;
+        }
 
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--main-color);
-      border-radius: 10px;
-    }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--main-color);
+            border-radius: 10px;
+        }
 
-    #bg-admin {
-      z-index: 100;
-      background-color: rgba(0, 0, 0, 0.2);
-    }
+        #bg-admin {
+            z-index: 100;
+            background-color: rgba(29, 30, 30, 0.32);
+        }
 
-    .bg-image-change {
-      background-image: url('../../assets/images/admin-bg.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      height: 100vh;
-      width: 100%;
-      position: fixed;
-      z-index: -1;
-    }
+        .bg-image-change {
+            background-image: url('../../assets/images/admin-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: -1;
+        }
 
-    @keyframes changeImage {
-      0% {
-        background-image: url('../../assets/images/admin-bg.jpg');
-      }
-      25% {
-        /*background-image: url('../../assets/images/admin-bg-2.jpg');*/
-      }
-      50% {
-        /*background-image: url('../../assets/images/admin-bg-3.jpg');*/
-      }
-      75% {
-        /*background-image: url('../../assets/images/admin-bg-4.jpg');*/
-      }
-      100% {
-        /*background-image: url('../../assets/images/admin-bg.jpg');*/
-      }
-    }
-  </style>
+        @keyframes changeImage {
+            0% {
+                background-image: url('../../assets/images/admin-bg.jpg');
+            }
+            25% {
+                /*background-image: url('../../assets/images/admin-bg-2.jpg');*/
+            }
+            50% {
+                /*background-image: url('../../assets/images/admin-bg-3.jpg');*/
+            }
+            75% {
+                /*background-image: url('../../assets/images/admin-bg-4.jpg');*/
+            }
+            100% {
+                /*background-image: url('../../assets/images/admin-bg.jpg');*/
+            }
+        }
+
+        .employee-header{
+            background-color: var(--main-color);
+            height: 80px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
 
 <div id="bg-admin">
-  <div class="bg-image-change"></div>
+    <div class="bg-image-change"></div>
 
 
-  <div class="wrapper">
-    <!-- Sidebar  -->
-    <nav id="sidebar">
-      <div class="sidebar-header">
-        <div class="d-flex justify-content-center">
-          <img class="rounded-circle bg-dark" src="https://github.com/mdo.png" width="60" height="60">
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" style="height: 100vh">
+            <div class="sidebar-header">
+                <div class="d-flex justify-content-center">
+                    <img class="rounded-circle bg-dark" src="https://github.com/mdo.png" width="60" height="60">
+                </div>
+                <h6 class="ms-2 text-secondary text-center mt-2">savinda jayasekara</h6>
+                <hr class="text-dark">
+            </div>
+            <ul class="nav nav-pills flex-column mb-auto slider p-2">
+                <li class="nav-item nav-btn">
+                    <a href="index.html" class="nav-link nv-btn" aria-current="page">
+                        <svg class="bi me-2" width="16" height="20">
+                            <i class="bi bi-house-door-fill text-white bg-primary p-2 rounded-2"></i>
+                        </svg>
+                        <small class="text-secondary ms-3">Dashboard</small>
+                    </a>
+                </li>
+                <li class="mt-3 nav-btn">
+                    <a href="inventory.html" class="nav-link ">
+                        <svg class="bi me-2" width="16" height="16">
+                            <i class="bi bi-table text-white bg-primary p-2 rounded-2"></i>
+                        </svg>
+                        <small class="text-secondary ms-3">Inventory</small>
+                    </a>
+                </li>
+                <li class="mt-3">
+                    <a href="sales.html" class="nav-link ">
+                        <svg class="bi me-2" width="16" height="16">
+                            <i class="bi bi-border-width text-white bg-primary p-2 rounded-2"></i>
+                        </svg>
+                        <small class="text-secondary ms-3">Sales</small>
+                    </a>
+                </li>
+                <li class="mt-3">
+                    <a href="supplier.html" class="nav-link ">
+                        <svg class="bi me-2" width="16" height="16">
+                            <i class="bi bi-diagram-3-fill text-white bg-primary p-2 rounded-2"></i>
+                        </svg>
+                        <small class="text-secondary ms-3">Supplier</small>
+                    </a>
+                </li>
+                <li class="mt-3">
+                    <a href="customers.html" class="nav-link ">
+                        <svg class="bi me-2" width="16" height="16">
+                            <i class="bi bi-diagram-3-fill text-white bg-primary p-2 rounded-2"></i>
+                        </svg>
+                        <small class="text-secondary ms-3">Customers</small>
+                    </a>
+                </li>
+                <li class="mt-3">
+                    <a href="employee.html" class="nav-link ">
+                        <svg class="bi me-2" width="16" height="16">
+                            <i class="bi bi-person-lines-fill text-white bg-primary p-2 rounded-2"></i>
+                        </svg>
+                        <small class="text-secondary ms-3">Employee</small>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        <div id="" class="w-100">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid d-flex justify-content-sm-between">
+                    <div class="d-flex align-items-center gap-5">
+                        <button type="button" id="sidebarCollapse" class="btn bg-transparent">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <h6 class="text-secondary ms-3 mt-2">Employee</h6>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-sm btn-outline-primary me-2">Logout</button>
+                        <button class="btn btn-sm btn-outline-primary">Profile</button>
+                    </div>
+                </div>
+            </nav>
+            <section class="container-fluid">
+                <section class="d-flex justify-content-sm-between" style="height: 50px">
+                    <input type="text" class="form-control mt-3 w-50" placeholder="Search Employee">
+                    <button class="btn btn-sm btn-primary mt-3">Add Employee</button>
+                </section>
+                <section class="row row-cols-md-3">
+
+                    <div class="col position-relative">
+                        <div class="card mt-3 p-2">
+                            <div class="employee-header"></div>
+                            <img src="https://github.com/mdo.png" width="100" class="rounded-circle m-auto z-3">
+                            <small class="text-center">$EMP-07878</small>
+                            <h6 class="text-center">Savinda Jayasekara</h6>
+                            <small class="text-center">User</small>
+                            <div class="d-flex gap-5 justify-content-sm-between px-4">
+                                <small>Branch</small>
+                                <small>Matara</small>
+                            </div>
+                            <div class="d-flex gap-5 justify-content-sm-between px-4">
+                                <small>Date of Birth</small>
+                                <small>25/08/2002</small>
+                            </div>
+                            <div class="d-flex gap-5 justify-content-sm-between px-4">
+                                <small>Gender</small>
+                                <small>Male</small>
+                            </div>
+                            <div class="d-flex gap-5 justify-content-sm-between px-4">
+                                <small>Email</small>
+                                <small>thantrige32@gmail.com</small>
+                            </div>
+                            <div class="d-flex gap-5 justify-content-sm-between px-4">
+                                <small>Contact No</small>
+                                <small>07145826398</small>
+                            </div>
+                            <small class="text-center mt-2 text-dark">27/2 , 'savinda' Sirisumana MW ,<br>Dickwall</small>
+                            <small class="text-danger">Emergency</small>
+                            <div class="d-flex gap-5 mt-2 justify-content-sm-between px-4">
+                                <small>Ajith Prasanna</small>
+                                <small>0715682429</small>
+                            </div>
+                            <hr>
+                            <div class="d-flex mt-2 justify-content-end px-4">
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </section>
         </div>
-        <h6 class="ms-2 text-secondary text-center mt-2">savinda jayasekara</h6>
-        <hr class="text-dark">
-      </div>
-      <ul class="nav nav-pills flex-column mb-auto slider p-2">
-        <li class="nav-item nav-btn">
-          <a href="index.html" class="nav-link nv-btn" aria-current="page">
-            <svg class="bi me-2" width="16" height="20">
-              <i class="bi bi-house-door-fill text-white bg-primary p-2 rounded-2"></i>
-            </svg>
-            <small class="text-secondary ms-3">Dashboard</small>
-          </a>
-        </li>
-        <li class="mt-3 nav-btn">
-          <a href="inventory.html" class="nav-link ">
-            <svg class="bi me-2" width="16" height="16">
-              <i class="bi bi-table text-white bg-primary p-2 rounded-2"></i>
-            </svg>
-            <small class="text-secondary ms-3">Inventory</small>
-          </a>
-        </li>
-        <li class="mt-3">
-          <a href="sales.html" class="nav-link ">
-            <svg class="bi me-2" width="16" height="16">
-              <i class="bi bi-border-width text-white bg-primary p-2 rounded-2"></i>
-            </svg>
-            <small class="text-secondary ms-3">Sales</small>
-          </a>
-        </li>
-        <li class="mt-3">
-          <a href="supplier.html" class="nav-link ">
-            <svg class="bi me-2" width="16" height="16">
-              <i class="bi bi-diagram-3-fill text-white bg-primary p-2 rounded-2"></i>
-            </svg>
-            <small class="text-secondary ms-3">Supplier</small>
-          </a>
-        </li>
-        <li class="mt-3">
-          <a href="customers.html" class="nav-link ">
-            <svg class="bi me-2" width="16" height="16">
-              <i class="bi bi-diagram-3-fill text-white bg-primary p-2 rounded-2"></i>
-            </svg>
-            <small class="text-secondary ms-3">Customers</small>
-          </a>
-        </li>
-        <li class="mt-3">
-          <a href="employee.html" class="nav-link ">
-            <svg class="bi me-2" width="16" height="16">
-              <i class="bi bi-person-lines-fill text-white bg-primary p-2 rounded-2"></i>
-            </svg>
-            <small class="text-secondary ms-3">Employee</small>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Page Content  -->
-    <div id="" class="w-100">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid d-flex justify-content-sm-between">
-          <button type="button" id="sidebarCollapse" class="btn bg-transparent">
-            <i class="bi bi-list fs-5"></i>
-          </button>
-          <div class="d-flex">
-            <button class="btn btn-sm btn-outline-primary me-2">Logout</button>
-            <button class="btn btn-sm btn-outline-primary">Profile</button>
-          </div>
-        </div>
-      </nav>
-      <section class="p-3">
-
-      </section>
     </div>
-  </div>
 
 </div>
-
-</body>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
-<link rel="stylesheet" href="../../assets/css/admin/adminSlideBar.css">
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <script>
-  $(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
     });
-  });
 </script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "language": {
+                "search": "Search Records:",
+                "lengthMenu": "Display count _MENU_",
+                "info": "Showing _START_ to _END_ of _TOTAL_ records",
+                "infoEmpty": "Showing 0 to 0 of 0 records",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+            }
+        });
+    });
+
+</script>
+</body>
 </html>
