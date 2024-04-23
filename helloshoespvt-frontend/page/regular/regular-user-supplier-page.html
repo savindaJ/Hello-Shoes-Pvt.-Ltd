@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hello shoe pvt customer</title>
+    <title>Hello shoe pvt supplier</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../assets/images/Logo.png">
@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../assets/css/regular-user-sidebar/index.css">
-
 </head>
 <body>
+
 <main class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto px-0 position-fixed z-3" style="background-color: var(--main-color)">
@@ -28,20 +28,21 @@
                         </a>
                     </li>
 <!--                    <li>-->
-<!--                        <a href="sample.html" class="nav-link px-0 align-middle">-->
+<!--                        <a href="#submenu1" class="nav-link px-0 align-middle">-->
 <!--                            <i class="bi bi-file-person fs-4"></i></a>-->
 <!--                    </li>-->
 <!--                    <li>-->
-<!--                        <a href="sample.html" class="nav-link px-0 align-middle">-->
-<!--                            <i class="bi bi-archive-fill fs-4"></i></i></a>-->
+<!--                        <a href="#" class="nav-link px-0 align-middle">-->
+<!--                            <i class="bi bi-archive-fill fs-4"></i></a>-->
 <!--                    </li>-->
                     <li>
-                        <a href="regular-user-supplier-page.html" class="nav-link px-0 align-middle">
-                            <i class="bi bi-truck fs-4"></i></i></a>
+                        <a href="regular-user-supplier-page.html"
+                           class="nav-link px-0 align-middle">
+                            <i class="bi bi-truck fs-4 text-dark"></i></a>
                     </li>
                     <li>
                         <a href="regular-user-customer-page.html" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people text-dark"></i></a>
+                            <i class="fs-4 bi-people"></i></a>
                     </li>
                 </ul>
                 <hr>
@@ -65,38 +66,42 @@
 
         <section class="col overflow-hidden" style="margin-left: 70px">
             <div class="d-flex justify-content-sm-between p-4">
-                <h4>Customer&nbsp;<i class="fs-4 bi-people text-dark"></i></h4>
-                <button class="btn btn-sm btn-primary" style="height: 35px" type="button">Add loyalty Customer
+                <h4>Supliers&nbsp;<i class="bi bi-truck text-dark fs-4"></i></h4>
+                <button class="btn btn-sm btn-primary" style="height: 35px" type="button">Add new Supplier
                 </button>
             </div>
-<!--            <hr>-->
+            <!--            <hr>-->
             <section class="container">
                 <table id="example" class="table table-hover table-striped" style="width:100%">
                     <thead class="bg-primary mb-2">
                     <tr class="bg-primary rounded-2">
                         <th class="text-center bg-primary text-white">Name</th>
-                        <th class="text-center bg-primary text-white">Gender</th>
-                        <th class="text-center bg-primary text-white">Join date</th>
-                        <th class="text-center bg-primary text-white">Total Points</th>
-                        <th class="text-center bg-primary text-white">Contact Number</th>
-                        <th class="text-center bg-primary text-white">Level</th>
+                        <th class="text-center bg-primary text-white">Category</th>
                         <th class="text-center bg-primary text-white">Email</th>
-                        <th class="text-center bg-primary text-white">Recent Perches</th>
-                        <th class="text-center bg-primary text-white">Recent Perches</th>
+                        <th class="text-center bg-primary text-white">Contact 1</th>
+                        <th class="text-center bg-primary text-white">Contact 2</th>
+                        <th class="text-center bg-primary text-white">Address 1</th>
+                        <th class="text-center bg-primary text-white">Address 2</th>
+                        <th class="text-center bg-primary text-white">Address 3</th>
+                        <th class="text-center bg-primary text-white">Address 4</th>
+                        <th class="text-center bg-primary text-white">Address 5</th>
+                        <th class="text-center bg-primary text-white">Address 6</th>
                     </tr>
                     </thead>
                     <tbody class="mt-5" id="tbl-customer-body"></tbody>
                     <tfoot>
                     <tr>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Gender</th>
-                        <th class="text-center">Join date</th>
-                        <th class="text-center">Total Points</th>
-                        <th class="text-center">Contact Number</th>
-                        <th class="text-center">Level</th>
+                        <th class="text-center">Category</th>
                         <th class="text-center">Email</th>
-                        <th class="text-center">Recent Perches</th>
-                        <th class="text-center">Recent Perches</th>
+                        <th class="text-center">Contact 1</th>
+                        <th class="text-center">Contact 2</th>
+                        <th class="text-center">Address 1</th>
+                        <th class="text-center">Address 2</th>
+                        <th class="text-center">Address 3</th>
+                        <th class="text-center">Address 4</th>
+                        <th class="text-center">Address 5</th>
+                        <th class="text-center">Address 6</th>
                     </tr>
                     </tfoot>
                 </table>
@@ -104,13 +109,14 @@
         </section>
     </div>
 </main>
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../../assets/js/jquery.js"></script>
-<script src="../../assets/js/bootstrap.bundle.js"></script>
-<script src="../../controller/userCustomerController.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+<script src="../../controller/userSupplierController.js"></script>
 <script>
     new DataTable('#example');
 </script>
+
 </body>
 </html>
