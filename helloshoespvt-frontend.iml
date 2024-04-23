@@ -4,5 +4,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/helloshoespvt-frontend" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mdb-ui-kit" level="application" />
   </component>
 </module>
