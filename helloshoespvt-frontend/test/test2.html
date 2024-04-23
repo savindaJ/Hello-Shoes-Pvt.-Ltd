@@ -1,58 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-  <!-- MDB -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css" rel="stylesheet"/>
-</head>
+  <title>Table 06</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.css">
+  <script nonce="fb15f819-6e5a-406a-99f9-b22c9b11e8cf">try{(function(w,d){!function(j,k,l,m){j[l]=j[l]||{};j[l].executed=[];j.zaraz={deferred:[],listeners:[]};j.zaraz._v="5592";j.zaraz.q=[];j.zaraz._f=function(n){return async function(){var o=Array.prototype.slice.call(arguments);j.zaraz.q.push({m:n,a:o})}};for(const p of["track","set","debug"])j.zaraz[p]=j.zaraz._f(p);j.zaraz.init=()=>{var q=k.getElementsByTagName(m)[0],r=k.createElement(m),s=k.getElementsByTagName("title")[0];s&&(j[l].t=k.getElementsByTagName("title")[0].text);j[l].x=Math.random();j[l].w=j.screen.width;j[l].h=j.screen.height;j[l].j=j.innerHeight;j[l].e=j.innerWidth;j[l].l=j.location.href;j[l].r=k.referrer;j[l].k=j.screen.colorDepth;j[l].n=k.characterSet;j[l].o=(new Date).getTimezoneOffset();if(j.dataLayer)for(const w of Object.entries(Object.entries(dataLayer).reduce(((x,y)=>({...x[1],...y[1]})),{})))zaraz.set(w[0],w[1],{scope:"page"});j[l].q=[];for(;j.zaraz.q.length;){const z=j.zaraz.q.shift();j[l].q.push(z)}r.defer=!0;for(const A of[localStorage,sessionStorage])Object.keys(A||{}).filter((C=>C.startsWith("_zaraz_"))).forEach((B=>{try{j[l]["z_"+B.slice(7)]=JSON.parse(A.getItem(B))}catch{j[l]["z_"+B.slice(7)]=A.getItem(B)}}));r.referrerPolicy="origin";r.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(j[l])));q.parentNode.insertBefore(r,q)};["complete","interactive"].includes(k.readyState)?zaraz.init():j.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script></head>
 <body>
-<div data-mdb-input-init class="form-outline mb-4">
-  <input type="text" class="form-control" id="datatable-search-input" />
-  <label class="form-label" for="datatable-search-input">Search</label>
-</div>
-<div id="datatable">
-</div>
-<!-- MDB -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
-<script>const data = {
-  columns: [
-    {
-      label: 'Name',
-      field: 'name'
-    },
-    'Position',
-    'Office',
-    'Age',
-    'Start date',
-    'Salary',
-  ],
-  rows: [
-    ["Tiger Nixon", "System Architect", "Edinburgh", "61", "2011/04/25", "$320,800"],
-    ["Garrett Winters", "Accountant", "Tokyo", "63", "2011/07/25", "$170,750"],
-    ["Ashton Cox", "Junior Technical Author", "San Francisco", "66", "2009/01/12", "$86,000"],
-    ["Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "22", "2012/03/29", "$433,060"],
-    ["Airi Satou", "Accountant", "Tokyo", "33", "2008/11/28", "$162,700"],
-    ["Brielle Williamson", "Integration Specialist", "New York", "61", "2012/12/02", "$372,000"],
-    ["Herrod Chandler", "Sales Assistant", "San Francisco", "59", "2012/08/06", "$137,500"],
-    ["Rhona Davidson", "Integration Specialist", "Tokyo", "55", "2010/10/14", "$327,900"],
-    ["Colleen Hurst", "Javascript Developer", "San Francisco", "39", "2009/09/15", "$205,500"],
-    ["Sonya Frost", "Software Engineer", "Edinburgh", "23", "2008/12/13", "$103,600"],
-    ["Jena Gaines", "Office Manager", "London", "30", "2008/12/19", "$90,560"],
-    ["Quinn Flynn", "Support Lead", "Edinburgh", "22", "2013/03/03", "$342,000"],
-    ["Charde Marshall", "Regional Director", "San Francisco", "36", "2008/10/16", "$470,600"],
-    ["Haley Kennedy", "Senior Marketing Designer", "London", "43", "2012/12/18", "$313,500"]
-  ],
-};
-
-const instance = new mdb.Datatable(document.getElementById('datatable'), data)
-document.getElementById('datatable-search-input').addEventListener('input', (e) => {
-  instance.search(e.target.value);
-});</script>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-4">
+        <h2 class="heading-section">Table #06</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="h5 mb-4 text-center">Table Accordion</h3>
+        <div class="table-wrap">
+          <table class="table">
+            <thead class="thead-primary">
+            <tr>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>total</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="alert" role="alert">
+              <td>
+                <label class="checkbox-wrap checkbox-primary">
+                  <input type="checkbox" checked>
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>
+                <div class="img" style="background-image: url(assets/images/shoe-1.jpg);"></div>
+              </td>
+              <td>
+                <div class="email">
+                  <span>Sneakers Shoes 2020 For Men </span>
+                  <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>
+                </div>
+              </td>
+              <td>$44.99</td>
+              <td class="quantity">
+                <div class="input-group">
+                  <input type="text" name="quantity" class="quantity form-control input-number" value="2" min="1" max="100">
+                </div>
+              </td>
+              <td>$89.98</td>
+              <td>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+              </td>
+            </tr>
+            <tr class="alert" role="alert">
+              <td>
+                <label class="checkbox-wrap checkbox-primary">
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>
+                <div class="img" style="background-image: url(assets/images/shoe-1.jpg);"></div>
+              </td>
+              <td>
+                <div class="email">
+                  <span>Sneakers Shoes 2020 For Men </span>
+                  <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>
+                </div>
+              </td>
+              <td>$30.99</td>
+              <td class="quantity">
+                <div class="input-group">
+                  <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                </div>
+              </td>
+              <td>$30.99</td>
+              <td>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+              </td>
+            </tr>
+            <tr class="alert" role="alert">
+              <td>
+                <label class="checkbox-wrap checkbox-primary">
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>
+                <div class="img" style="background-image: url(assets/images/shoe-1.jpg);"></div>
+              </td>
+              <td>
+                <div class="email">
+                  <span>Sneakers Shoes 2020 For Men </span>
+                  <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>
+                </div>
+              </td>
+              <td>$35.50</td>
+              <td class="quantity">
+                <div class="input-group">
+                  <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                </div>
+              </td>
+              <td>$35.50</td>
+              <td>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+              </td>
+            </tr>
+            <tr class="alert" role="alert">
+              <td>
+                <label class="checkbox-wrap checkbox-primary">
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td>
+                <div class="img" style="background-image: url(assets/images/shoe-1.jpg);"></div>
+              </td>
+              <td>
+                <div class="email">
+                  <span>Sneakers Shoes 2020 For Men </span>
+                  <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>
+                </div>
+              </td>
+              <td>$76.99</td>
+              <td class="quantity">
+                <div class="input-group">
+                  <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                </div>
+              </td>
+              <td>$76.99</td>
+              <td>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+              </td>
+            </tr>
+            <tr class="alert" role="alert">
+              <td class="border-bottom-0">
+                <label class="checkbox-wrap checkbox-primary">
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </td>
+              <td class="border-bottom-0">
+                <div class="img" style="background-image: url(assets/images/shoe-1.jpg);"></div>
+              </td>
+              <td class="border-bottom-0">
+                <div class="email">
+                  <span>Sneakers Shoes 2020 For Men </span>
+                  <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>
+                </div>
+              </td>
+              <td class="border-bottom-0">$40.00</td>
+              <td class="quantity border-bottom-0">
+                <div class="input-group">
+                  <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                </div>
+              </td>
+              <td class="border-bottom-0">$40.00</td>
+              <td class="border-bottom-0">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="../assets/js/jquery.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v55bfa2fee65d44688e90c00735ed189a1713218998793" integrity="sha512-FIKRFRxgD20moAo96hkZQy/5QojZDAbyx0mQ17jEGHCJc/vi0G2HXLtofwD7Q3NmivvP9at5EVgbRqOaOQb+Rg==" data-cf-beacon='{"rayId":"878e0f8d4fa092f5","version":"2024.3.0","token":"cd0b4b3a733644fc843ef0b185f98241"}' crossorigin="anonymous"></script>
 </body>
 </html>
