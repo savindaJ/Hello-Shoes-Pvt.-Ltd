@@ -137,7 +137,39 @@
         </div>
       </nav>
       <section class="p-3">
-
+        <section class="mt-2 container-fluid d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary" style="height: 35px" type="button">Add Supplier
+          </button>
+        </section>
+        <section class="p-3">
+          <table id="example" class="table table-hover table-striped" style="width:100%">
+            <thead class="bg-primary mb-2">
+            <tr class="bg-primary rounded-2" style="font-size: 14px">
+              <th class="text-center bg-primary text-white">Supplier Code</th>
+              <th class="text-center bg-primary text-white">Name</th>
+              <th class="text-center bg-primary text-white">Category</th>
+              <th class="text-center bg-primary text-white">Contact 1</th>
+              <th class="text-center bg-primary text-white">Contact 2</th>
+                <th class="text-center bg-primary text-white">Email</th>
+              <th class="text-center bg-primary text-white">Address L 1</th>
+              <th class="text-center bg-primary text-white">Action</th>
+            </tr>
+            </thead>
+            <tbody class="mt-5" id="tbl-customer-body" style="font-size: 14px"></tbody>
+            <tfoot>
+            <tr style="font-size: 14px">
+              <th class="text-center">Supplier Code</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Category</th>
+              <th class="text-center">Contact 1</th>
+              <th class="text-center">Contact 2</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Address L 1</th>
+              <th class="text-center">Action</th>
+            </tr>
+            </tfoot>
+          </table>
+        </section>
       </section>
     </div>
   </div>
@@ -147,12 +179,37 @@
 </body>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
-<link rel="stylesheet" href="../../assets/css/admin/adminSlideBar.css">
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+<script>
+  for (let i = 0; i < 10; i++) {
+    $('#tbl-customer-body').append(`
+        <tr>
+             <td class="text-center">${i}</td>
+             <td class="text-center">System Architect</td>
+             <td class="text-center">Edinburgh</td>
+             <td class="text-center">61</td>
+             <td class="text-center">2011-04-25</td>
+             <td class="text-center">$320,800</td>
+             <td class="text-center">savinda , sirisumana mw dickwalla</td>
+                <td class="text-center">
+                    <div class="d-flex">
+                    <button class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></button>
+                    <button class="btn btn-sm btn-danger ms-2"><i class="bi bi-person-x-fill"></i></button>
+                    </div>
+                </td>
+        </tr>
+    `)
+  }
+  new DataTable('#example');
+
+</script>
 <script>
   $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
     });
   });
+
 </script>
 </html>
