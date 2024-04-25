@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloshoespvtApiApplication {
+public class HelloShoeApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloshoespvtApiApplication.class, args);
+		SpringApplication.run(HelloShoeApiApplication.class, args);
 	}
 }
