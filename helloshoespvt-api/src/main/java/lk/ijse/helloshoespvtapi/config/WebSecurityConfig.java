@@ -26,25 +26,40 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-
     private final UserDetailsService userDetailsService;
-
     private final JwtRequestFilter jwtRequestFilter;
 
+    /**
+     * @param userDetailsService userDetailsService
+     * @param jwtRequestFilter  jwtRequestFilter
+     */
     public WebSecurityConfig(UserDetailsService userDetailsService, JwtRequestFilter jwtRequestFilter) {
         this.userDetailsService = userDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
     }
 
+    /**
+     * @param auth auth
+     * @throws Exception Exception
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
+    /**
+     * @return PasswordEncoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    /**
+     * @param http http
+     * @return SecurityFilterChain
+     * @throws Exception Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -60,12 +75,15 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+    /**
+     * @return AuthenticationProvider
+     */
     @Bean
     public AuthenticationProvider authenticationManager() {
         var authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder()); // use inter bean dependency
         return authenticationProvider;
-}
+    }
 
 }
