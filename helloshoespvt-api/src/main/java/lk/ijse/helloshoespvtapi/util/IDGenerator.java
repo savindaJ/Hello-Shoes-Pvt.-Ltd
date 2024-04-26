@@ -13,4 +13,14 @@ public class IDGenerator {
         String uuid = UUID.randomUUID().toString();
         return "BRAC-"+uuid.substring(0, 8);
     }
+
+    public static String generateSupplierId() {
+        String uuid = UUID.randomUUID().toString();
+        return "SUP-"+uuid.substring(0, 8);
+    }
+
+    public static String generateEmployeeId() {
+        String uuid = UUID.randomUUID().toString();
+        return "EMP-"+uuid.substring(0, 8);
+    }
 }

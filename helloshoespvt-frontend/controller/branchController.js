@@ -29,6 +29,7 @@ $('#btn-add-branch').on('click', function () {
             data: JSON.stringify(branch),
             success: function (res) {
                 getAllBranches();
+                clearInputFields();
                 $('#branch-modal').modal('hide');
                 const Toast = Swal.mixin({
                     toast: true,
@@ -63,7 +64,7 @@ $('#btn-add-branch').on('click', function () {
                 });
             }
         });
-    }else {
+    } else {
         $.ajax({
             url: BASE_URL + 'api/v1/branch',
             headers: {
@@ -111,8 +112,8 @@ $('#btn-add-branch').on('click', function () {
     }
 });
 
-function setEvent(){
-    $('#tbl-branch').on('click', '.btn-edit-branch', function(){
+function setEvent() {
+    $('#tbl-branch').on('click', '.btn-edit-branch', function () {
         $('#btn-add-branch').text('Update Branch')
         $('#branch-modal').modal('show');
         let branchId = $(this).closest('tr');
@@ -126,7 +127,7 @@ function setEvent(){
         $('#branch-address-code').val(branchId.find('td:eq(5)').text().split(',')[3]);
     });
 
-    $('#tbl-branch').on('click', '.btn-branch-delete', function(){
+    $('#tbl-branch').on('click', '.btn-branch-delete', function () {
         let branchId = $(this).closest('tr');
         let id = branchId.find('td:eq(0)').text();
         Swal.fire({
@@ -203,8 +204,8 @@ function getAllBranches() {
                    <td scope="row">${branch.branchId}</td>
                    <td>${branch.branchName}</td>
                    <td>${branch.branchContact}</td>
-                   <td>${branch.branchManager===null ? 'not assign' : branch.branchManager}</td>
-                   <td>${branch.noOfEmployees ===null ? 'not assign' : branch.noOfEmployees}</td>
+                   <td>${branch.branchManager === null ? 'not assign' : branch.branchManager}</td>
+                   <td>${branch.noOfEmployees === null ? 'not assign' : branch.noOfEmployees}</td>
                    <td>${branch.address.lane}, ${branch.address.mainCity}, ${branch.address.mainState}, ${branch.address.postalCode},${branch.address.mainCountry}</td>
                    <td>${branch.createdDate}</td>
                    <td class="d-flex h-100">
