@@ -15,4 +15,6 @@ public interface BranchService {
     List<BranchDTO> getAllBranches();
 
     boolean updateBranch(BranchDTO branchDTO);
+
+    boolean deleteBranch(String branchId);
 }

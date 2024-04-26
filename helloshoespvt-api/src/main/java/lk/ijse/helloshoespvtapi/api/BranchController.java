@@ -35,4 +35,9 @@ public class BranchController {
         boolean isUpdated = branchService.updateBranch(branchDTO);
         return isUpdated ? ResponseEntity.ok("Branch Updated !") : ResponseEntity.badRequest().body("Failed to update the branch");
     }
+    @DeleteMapping("/{branchId}")
+    public ResponseEntity<?> deleteBranch(@PathVariable("branchId") String branchId){
+        boolean isDeleted = branchService.deleteBranch(branchId);
+        return isDeleted ? ResponseEntity.ok("Branch Deleted !") : ResponseEntity.badRequest().body("Failed to delete the branch");
+    }
 }

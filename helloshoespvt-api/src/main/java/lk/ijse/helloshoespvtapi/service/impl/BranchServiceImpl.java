@@ -53,4 +53,10 @@ public class BranchServiceImpl implements BranchService {
         }
         return false;
     }
+
+    @Override
+    public boolean deleteBranch(String branchId) {
+        branchRepo.deleteById(branchId);
+        return true;
+    }
 }

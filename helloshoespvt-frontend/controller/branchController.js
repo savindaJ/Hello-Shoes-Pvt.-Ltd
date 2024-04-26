@@ -28,6 +28,7 @@ $('#btn-add-branch').on('click', function () {
             contentType: 'application/json',
             data: JSON.stringify(branch),
             success: function (res) {
+                getAllBranches();
                 $('#branch-modal').modal('hide');
                 const Toast = Swal.mixin({
                     toast: true,
@@ -72,6 +73,7 @@ $('#btn-add-branch').on('click', function () {
             contentType: 'application/json',
             data: JSON.stringify(branch),
             success: function (res) {
+                getAllBranches();
                 $('#branch-modal').modal('hide');
                 const Toast = Swal.mixin({
                     toast: true,
@@ -122,9 +124,66 @@ function setEvent(){
         $('#branch-address-city').val(branchId.find('td:eq(5)').text().split(',')[1]);
         $('#branch-address-state').val(branchId.find('td:eq(5)').text().split(',')[2]);
         $('#branch-address-code').val(branchId.find('td:eq(5)').text().split(',')[3]);
-
     });
 
+    $('#tbl-branch').on('click', '.btn-branch-delete', function(){
+        let branchId = $(this).closest('tr');
+        let id = branchId.find('td:eq(0)').text();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: BASE_URL + 'api/v1/branch/' + id,
+                    headers: {
+                        "Authorization": "Bearer " + user.jwt
+                    },
+                    method: 'DELETE',
+                    success: function (res) {
+                        console.log(res)
+                        getAllBranches();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "success",
+                            title: res
+                        });
+                    }, error: function (error) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: 'Something went wrong! Please try again.'
+                        });
+                    }
+                });
+            }
+        });
+    });
 }
 
 function getAllBranches() {
@@ -152,7 +211,7 @@ function getAllBranches() {
                        <button style="height: 30px" class="btn btn-sm btn-outline-primary btn-edit-branch">
                            <i class="bi bi-pencil-square"></i>
                        </button>
-                       <button style="height: 30px" class="btn btn-sm ms-2 btn-outline-danger">
+                       <button style="height: 30px" class="btn btn-sm ms-2 btn-outline-danger btn-branch-delete">
                            <i class="bi bi-trash3-fill"></i>
                        </button>
                    </td>
