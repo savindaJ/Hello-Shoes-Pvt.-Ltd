@@ -26,4 +26,13 @@ public class BranchController {
         boolean isSaved = branchService.saveBranch(branchDTO);
         return isSaved ? ResponseEntity.ok("Branch Saved !") : ResponseEntity.badRequest().body("Failed to save the branch");
     }
+    @GetMapping
+    public ResponseEntity<?> getAllBranches(){
+        return ResponseEntity.ok(branchService.getAllBranches());
+    }
+    @PutMapping
+    public ResponseEntity<?> updateBranch(@RequestBody BranchDTO branchDTO){
+        boolean isUpdated = branchService.updateBranch(branchDTO);
+        return isUpdated ? ResponseEntity.ok("Branch Updated !") : ResponseEntity.badRequest().body("Failed to update the branch");
+    }
 }

@@ -1,13 +1,11 @@
 package lk.ijse.helloshoespvtapi.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import lk.ijse.helloshoespvtapi.embedded.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @author : savindaJ
@@ -22,5 +20,7 @@ public class BranchDTO {
     private String branchName;
     private String branchContact;
     private Address address;
-    private Date openDate;
+    private Integer noOfEmployees;
+    private String branchManager;
+    private Timestamp createdDate;
 }

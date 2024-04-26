@@ -2,6 +2,8 @@ package lk.ijse.helloshoespvtapi.service;
 
 import lk.ijse.helloshoespvtapi.dto.BranchDTO;
 
+import java.util.List;
+
 /**
  * @author : savindaJ
  * @date : 4/26/2024
@@ -9,4 +11,8 @@ import lk.ijse.helloshoespvtapi.dto.BranchDTO;
  **/
 public interface BranchService {
     boolean saveBranch(BranchDTO branchDTO);
+
+    List<BranchDTO> getAllBranches();
+
+    boolean updateBranch(BranchDTO branchDTO);
 }

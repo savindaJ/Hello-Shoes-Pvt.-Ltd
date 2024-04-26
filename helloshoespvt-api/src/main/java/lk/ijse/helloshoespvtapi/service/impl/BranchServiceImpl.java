@@ -8,6 +8,8 @@ import lk.ijse.helloshoespvtapi.util.IDGenerator;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author : savindaJ
  * @date : 4/26/2024
@@ -30,5 +32,25 @@ public class BranchServiceImpl implements BranchService {
         branchDTO.setBranchId(IDGenerator.generateBranchId());
         Branch save = branchRepo.save(mapper.map(branchDTO, Branch.class));
         return save != null;
+    }
+
+    @Override
+    public List<BranchDTO> getAllBranches() {
+        return branchRepo.findAll().stream().map(branch -> mapper.map(branch, BranchDTO.class)).toList();
+    }
+
+    @Override
+    public boolean updateBranch(BranchDTO branchDTO) {
+        Branch branch = branchRepo.findById(branchDTO.getBranchId()).orElse(null);
+        if (branch != null) {
+            branch.setBranchName(branchDTO.getBranchName());
+            branch.setBranchContact(branchDTO.getBranchContact());
+            branch.setAddress(branchDTO.getAddress());
+            branch.setNoOfEmployees(branchDTO.getNoOfEmployees());
+            branch.setBranchManager(branchDTO.getBranchManager());
+            Branch save = branchRepo.save(branch);
+            return save != null;
+        }
+        return false;
     }
 }
