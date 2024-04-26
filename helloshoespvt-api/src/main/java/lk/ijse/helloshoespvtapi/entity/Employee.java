@@ -37,7 +37,7 @@ public class Employee {
     @Column(unique = true)
     private String email;
     private String contact;
-    private Boolean isDeleted;
+    private Boolean isActive;
     private String designation;
     private Date dob;
     private EmployeeAddress employeeAddress;
