@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeAddress implements Serializable {
+public class Address implements Serializable {
     private String lane;
     private String mainCountry;
     private String mainCity;

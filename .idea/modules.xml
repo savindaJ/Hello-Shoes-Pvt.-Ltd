@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Hello Shoes Pvt. Ltd.iml" filepath="$PROJECT_DIR$/.idea/Hello Shoes Pvt. Ltd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/helloshoespvt-api/helloshoespvt-api.iml" filepath="$PROJECT_DIR$/helloshoespvt-api/helloshoespvt-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloshoespvt-frontend.iml" filepath="$PROJECT_DIR$/helloshoespvt-frontend.iml" />
     </modules>
   </component>

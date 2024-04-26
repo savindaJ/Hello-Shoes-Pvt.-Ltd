@@ -1,10 +1,7 @@
 package lk.ijse.helloshoespvtapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import lk.ijse.helloshoespvtapi.embedded.EmployeeAddress;
+import jakarta.persistence.*;
+import lk.ijse.helloshoespvtapi.embedded.Address;
 import lk.ijse.helloshoespvtapi.enums.Gender;
 import lk.ijse.helloshoespvtapi.enums.Role;
 import lombok.AllArgsConstructor;
@@ -28,9 +25,11 @@ public class Employee {
     @Id
     private String empId;
     private String empName;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String emergencyContact;
     private String EmergencyInfo;
+    @Enumerated(EnumType.STRING)
     private Role role;
     private String profilePic;
     private String status;
@@ -40,10 +39,14 @@ public class Employee {
     private Boolean isActive;
     private String designation;
     private Date dob;
-    private EmployeeAddress employeeAddress;
+    private Address address;
     @CreationTimestamp
     private Timestamp regDate;
 
     @OneToOne(mappedBy = "employee")
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "branch_id", referencedColumnName = "branchId", insertable = false, updatable = false)
+    private Branch branch;
 }

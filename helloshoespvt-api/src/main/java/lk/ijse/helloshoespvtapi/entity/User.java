@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author : savindaJ
  * @date : 4/26/2024
@@ -27,4 +29,10 @@ public class User {
     @OneToOne
     @JoinColumn(name = "empId", referencedColumnName = "empId")
     private Employee employee;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Customer> customers;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Sale> sales;
 }
