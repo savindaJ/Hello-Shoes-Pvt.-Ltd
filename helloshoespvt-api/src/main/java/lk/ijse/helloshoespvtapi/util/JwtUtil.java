@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 /**
  * @author : savindaJ
@@ -19,6 +20,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
     private final String SECRET_KEY = "secret";
+
+    private final Logger logger = Logger.getLogger(JwtUtil.class.getName());
 
     /**
      * @param token - token
@@ -36,6 +39,7 @@ public class JwtUtil {
      */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
+        if (claims == null) return null;
         return claimsResolver.apply(claims);
     }
 
@@ -47,7 +51,8 @@ public class JwtUtil {
         try {
             return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
         }catch (Exception e) {
-            throw new RuntimeException("Invalid Token");
+            logger.warning("Invalid token");
+            return null;
         }
     }
 
@@ -68,12 +73,12 @@ public class JwtUtil {
     }
 
     /**
-     * @param userDetails - userDetails
+     * @param userName - String
      * @return - token
      */
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(String userName) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails.getUsername());
+        return createToken(claims, userName);
     }
 
     /**
@@ -82,7 +87,6 @@ public class JwtUtil {
      * @return - token
      */
     private String createToken(Map<String, Object> claims, String subject) {
-
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 + 60 * 60 * 10 * 100))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();

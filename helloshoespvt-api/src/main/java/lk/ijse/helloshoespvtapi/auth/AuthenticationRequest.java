@@ -1,4 +1,4 @@
-package lk.ijse.helloshoespvtapi.models;
+package lk.ijse.helloshoespvtapi.auth;
 
 import lombok.Data;
 
