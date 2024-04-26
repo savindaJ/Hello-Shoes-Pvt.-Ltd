@@ -59,4 +59,14 @@ public class BranchServiceImpl implements BranchService {
         branchRepo.deleteById(branchId);
         return true;
     }
+
+    @Override
+    public List<String> getBranchIds() {
+        return branchRepo.findAll().stream().map(Branch::getBranchId).toList();
+    }
+
+    @Override
+    public Branch getBranchById(String branchId) {
+        return branchRepo.findById(branchId).orElse(null);
+    }
 }

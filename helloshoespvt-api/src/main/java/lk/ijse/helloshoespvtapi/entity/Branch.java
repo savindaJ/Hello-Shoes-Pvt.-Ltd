@@ -34,6 +34,4 @@ public class Branch {
     @CreationTimestamp
     private Timestamp createdDate;
 
-    @OneToOne(mappedBy = "branch")
-    private Employee employee;
 }

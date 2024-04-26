@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ijse-web-bucket",
+  "private_key_id": "111b84e7845ab6679c267c9784c4ba3b2668b0c6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDX7OFvp5KHJzZi\nySOgVGmYcvVKJcWWgXBAkbzhpMdKgBgEV2gyfTSIoJyZCdfq5SZf3Abc0bTGLEvA\ngKdP9uFWGCs8fUP0o9QPG5EX5km/T379mglqHb9QnMO4w5/dkdkNDgTxTSq016aI\nMAKZp3VwBuHFdX92epQT/iAh3TCiynE+h7jP2iPin+YYNJbIUae+bvF9lF4MqUjo\n8/Sr60gn7vppF5ti46dWbCubCpX0HWIliKlifDyUSPCUAg0mVni36m1Xvf/0rtID\nTkrZ7YyuLnP0+Oliyui4mbiN6S35ZtbDQSUCBVpS5AFeSOqjkjDYD0WJs+bxNyvk\nWM5O+YIVAgMBAAECggEAAnLSDElAV55XDGAPMoe9L3iKQIjUyJlM07vzV4mzUCx2\nA+1BJhAWaEA4q7busbVfLdzEX9JUSZ+sojuzP1cOL22UZpoIYGilLyCsZggl/kXh\nVkXeD8vTj2SfsY4tAhRf0OPqTsQwakmRvrSbVZu5BggF8mPGihTnbfdGl6u28U7z\nX1uj/ghpbPYUn78fwmVhBrh/49TB+06SLob9Ss/MC4hPOjUnVoQlQUH6OPPyvCnz\nPZr7jt/88kgCqQON3zicAF/UPRgG27u8xn0NqETKzkMvh4rf32YNbH8BEJKkP9HN\n0t2WkmA2t8CuWBzBNZsWA5P8tL+YszNqbgLXa9oJtwKBgQD5cUi4VDj6hgcGLBug\nxuo90Qgh4OMiDMsJPfOpRX9vlQOnOLYw5/Kxqzs4jXWMXObTeRmsX+fUvUeKHSiM\nM2iizwV603MvdEUXk/p4HAvm3Ib4VzsKnrX781kHEgf+gPq7g/Nm50ZHQNBYN8y/\nKgWed8CaBW+eBufZjCHELLSPNwKBgQDdmge1VAxdMOeOoQgx0mSvTdhGviuHaqLj\nfOXVFci7Ag+/3SyUyrEyRYykpvxQdLO/kcZe1OvZIr8qv1gxoCW8T0LG6QQoIzNM\neHUhHOpn96n3Qql189EgBc7/IsM4YfSylZEbwXy7PerAA5oV4OdbNEWdqBo4OIXC\nuZtrRAqnEwKBgQDg/+FTe40F1V2CoMivBp4F8oY+YOcgMJ/4Dyy5lBm2IZjw/oPA\nq4hL4KODiH3uhWIkgMi6pqusRqvAFjsb88c/jDNqLk9pD5y+/tjf/JRzwpnwama0\nVqLayA+XBBm35MnF2Oj1+kl3PixwVqzWBmaZIXXWuG6NAbeikPdoR9b6kwKBgQCW\nzNjuBnIbgMoy/1aKQPiPa1QAYC1TC7gpQrdMmHRu/molUKej4YNQCJA7A/+z6Jbh\niJwLsK2Gp+SbfHbR3n+PdAinP666eanRIi/jBsBlW95oCw8y22a2ef1xFgDvf4l7\nddi3oKX27Z2waUMUHGaUZC/zp4+gLqan6pLfHgB5zQKBgQDNx8N+j+oLoF8pV1wu\nC/6et1Bqm6AGUoJQFmVPcwEpc5ZgZoBnnTqZrKkay3/vz72zbmnF1nWogMZbI1dB\nrSz+xeSbMw+j1r4I7JKehDacbtNNV+vJTPpQE9oNYt+Fwjr+6p0FOmpBdD0mAory\nNdnLZDjty8XNe0n2yy4XJK11vA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "ijse-web-bucket@ijse-web-bucket.iam.gserviceaccount.com",
+  "client_id": "114594841785339735910",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ijse-web-bucket%40ijse-web-bucket.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

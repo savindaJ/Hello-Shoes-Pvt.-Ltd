@@ -1,6 +1,7 @@
 package lk.ijse.helloshoespvtapi.service;
 
 import lk.ijse.helloshoespvtapi.dto.BranchDTO;
+import lk.ijse.helloshoespvtapi.entity.Branch;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface BranchService {
     boolean updateBranch(BranchDTO branchDTO);
 
     boolean deleteBranch(String branchId);
+
+    List<String> getBranchIds();
+
+    Branch getBranchById(String branchId);
 }

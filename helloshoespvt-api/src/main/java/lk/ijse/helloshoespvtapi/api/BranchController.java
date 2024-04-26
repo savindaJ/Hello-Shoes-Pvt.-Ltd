@@ -43,4 +43,8 @@ public class BranchController {
         boolean isDeleted = branchService.deleteBranch(branchId);
         return isDeleted ? ResponseEntity.ok("Branch Deleted !") : ResponseEntity.badRequest().body("Failed to delete the branch");
     }
+    @GetMapping("/get/id")
+    public ResponseEntity<?> getBranchId() {
+        return ResponseEntity.ok(branchService.getBranchIds());
+    }
 }

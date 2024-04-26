@@ -156,9 +156,9 @@
       <section class="container-fluid">
         <section class="d-flex justify-content-sm-between" style="height: 50px">
           <input type="text" class="form-control mt-3 w-50" placeholder="Search Employee">
-          <button class="btn btn-sm btn-primary mt-3">Add Employee</button>
+          <button class="btn btn-sm btn-primary mt-3" id="btn-employee-modal">Add Employee</button>
         </section>
-        <section class="row row-cols-md-3">
+        <section class="row row-cols-md-3" id="emp-row">
 
           <div class="col position-relative">
             <div class="card mt-3 p-2">
@@ -206,32 +206,143 @@
     </div>
   </div>
 
+  <div class="modal fade" id="employee-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h1 class="modal-title fs-5 " id="staticBackdropLabel">Add New Manager</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="branch-inputs">
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-1">
+                  <label for="emp-branch" class="form-label">Branch</label>
+                  <select class="form-select" aria-label="Default select example" id="emp-branch">
+                    <option selected></option>
+                  </select>
+                </div>
+                <div class="mb-1">
+                  <label for="emp-name" class="form-label">Employee Name</label>
+                  <input type="text" class="form-control" id="emp-name">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-gender" class="form-label">Gender</label>
+                  <select class="form-select" aria-label="Default select example" id="emp-gender">
+                    <option selected></option>
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                  </select>
+                </div>
+                <div class="mb-1">
+                  <label for="emp-civil-status" class="form-label">Civil Status</label>
+                  <input type="text" class="form-control" id="emp-civil-status">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-contact" class="form-label">Contact</label>
+                  <input type="text" class="form-control" id="emp-contact">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="emp-email">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-designation" class="form-label">Designation</label>
+                  <input type="text" class="form-control" id="emp-designation">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-dob" class="form-label">Designation</label>
+                  <input type="date" class="form-control" id="emp-dob">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-emg-guardian" class="form-label">Emergency Guardian</label>
+                  <input type="text" class="form-control" id="emp-emg-guardian">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-emg-contact" class="form-label">Emergency Contact</label>
+                  <input type="text" class="form-control" id="emp-emg-contact">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-1">
+                  <label for="emp-address-lane" class="form-label">Address main Lane</label>
+                  <input type="text" class="form-control" id="emp-address-lane">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-address-state" class="form-label">Address main State</label>
+                  <input type="text" class="form-control" id="emp-address-state">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-address-country" class="form-label">Address main Country</label>
+                  <input type="text" class="form-control" id="emp-address-country">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-address-city" class="form-label">Address main city</label>
+                  <input type="text" class="form-control" id="emp-address-city">
+                </div>
+                <div class="mb-1">
+                  <label for="emp-address-code" class="form-label">Address postal Code</label>
+                  <input type="text" class="form-control" id="emp-address-code">
+                </div>
+
+                <div class="mb-1">
+                  <div class="d-flex justify-content-center m-2">
+                    <img src="../../assets/images/Logo-dark.png" id="emp-img-preview" class="rounded-circle border " style="width: 150px;height: 150px">
+                  </div>
+                  <input type="file" class="form-control" id="emp-img">
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btn-add-emp">Add Manager</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script src="../../assets/js/jquery.js"></script>
+<script src="../../assets/js/sweetAlerts.js"></script>
+<script src="../../util/base.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
 <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <script src="../../controller/commonDetailController.js"></script>
+<script src="../../controller/employeeController.js"></script>
 <script>
+
+  isColspane = true;
+
   $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
+      if (isColspane) {
+        $('#emp-row').addClass('row-cols-md-4');
+        isColspane = false;
+      } else {
+        $('#emp-row').removeClass('row-cols-md-4');
+        isColspane = true;
+      }
       $('#sidebar').toggleClass('active');
     });
   });
 </script>
 <script>
-  $(document).ready(function () {
-    $('#example').DataTable({
-      "language": {
-        "search": "Search Records:",
-        "lengthMenu": "Display count _MENU_",
-        "info": "Showing _START_ to _END_ of _TOTAL_ records",
-        "infoEmpty": "Showing 0 to 0 of 0 records",
-        "infoFiltered": "(filtered from _MAX_ total records)",
-      }
-    });
-  });
+  // $(document).ready(function () {
+  //   $('#example').DataTable({
+  //     "language": {
+  //       "search": "Search Records:",
+  //       "lengthMenu": "Display count _MENU_",
+  //       "info": "Showing _START_ to _END_ of _TOTAL_ records",
+  //       "infoEmpty": "Showing 0 to 0 of 0 records",
+  //       "infoFiltered": "(filtered from _MAX_ total records)",
+  //     }
+  //   });
+  // });
 
 </script>
 </body>

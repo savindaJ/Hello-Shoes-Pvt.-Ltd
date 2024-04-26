@@ -156,7 +156,7 @@
             <section class="container-fluid">
                 <section class="d-flex justify-content-sm-between" style="height: 50px">
                     <input type="text" class="form-control mt-3 w-50" placeholder="Search Employee">
-                    <button class="btn btn-sm btn-primary mt-3">Add Employee</button>
+                    <button class="btn btn-sm btn-primary mt-3" id="btn-employee-modal">Add Employee</button>
                 </section>
                 <section class="row row-cols-md-3">
 
@@ -206,13 +206,69 @@
         </div>
     </div>
 
+    <div class="modal fade" id="employee-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="branch-inputs">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="branch-name" class="form-label">Branch Name</label>
+                                    <input type="text" class="form-control" id="branch-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-contact" class="form-label">Branch Contact</label>
+                                    <input type="text" class="form-control" id="branch-contact">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-lane" class="form-label">Branch Address lane</label>
+                                    <input type="text" class="form-control" id="branch-address-lane">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-state" class="form-label">Branch Address main State</label>
+                                    <input type="text" class="form-control" id="branch-address-state">
+                                </div>
+                            </div>
+                            <div class="col-6">
+
+                                <div class="mb-3">
+                                    <label for="branch-address-country" class="form-label">Branch Address main Country</label>
+                                    <input type="text" class="form-control" id="branch-address-country">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-city" class="form-label">Branch Address main city</label>
+                                    <input type="text" class="form-control" id="branch-address-city">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-code" class="form-label">Branch Address postal Code</label>
+                                    <input type="text" class="form-control" id="branch-address-code">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btn-add-branch">Add Branch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
+<script src="../../assets/js/sweetAlerts.js"></script>
+<script src="../../validation/employeeValidation.js"></script>
 <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <script src="../../controller/commonDetailController.js"></script>
+<script src="../../controller/employeeController.js"></script>
 <script>
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
@@ -220,19 +276,19 @@
         });
     });
 </script>
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "language": {
-                "search": "Search Records:",
-                "lengthMenu": "Display count _MENU_",
-                "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                "infoEmpty": "Showing 0 to 0 of 0 records",
-                "infoFiltered": "(filtered from _MAX_ total records)",
-            }
-        });
-    });
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('#example').DataTable({-->
+<!--            "language": {-->
+<!--                "search": "Search Records:",-->
+<!--                "lengthMenu": "Display count _MENU_",-->
+<!--                "info": "Showing _START_ to _END_ of _TOTAL_ records",-->
+<!--                "infoEmpty": "Showing 0 to 0 of 0 records",-->
+<!--                "infoFiltered": "(filtered from _MAX_ total records)",-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
 
-</script>
+<!--</script>-->
 </body>
 </html>
