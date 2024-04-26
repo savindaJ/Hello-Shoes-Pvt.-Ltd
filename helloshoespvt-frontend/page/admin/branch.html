@@ -55,6 +55,8 @@
             }
         }
     </style>
+
+
 </head>
 <body>
 
@@ -65,12 +67,12 @@
         <nav id="sidebar" style="height: 100vh">
             <div class="sidebar-header">
                 <div class="d-flex justify-content-center">
-                    <img class="rounded-circle bg-dark" src="https://github.com/mdo.png" width="60" height="60">
+                    <img class="rounded-circle bg-dark" id="admin-profile-pic" width="60" height="60">
                 </div>
-                <h6 class="ms-2 text-secondary text-center mt-2">savinda jayasekara</h6>
+                <h6 class="ms-2 text-secondary text-center mt-2" id="admin-user-name"></h6>
                 <hr class="text-dark">
             </div>
-            <ul class="nav nav-pills flex-column mb-auto slider p-2">
+            <ul class="nav nav-pills flex-column mb-auto slider p-2" id="admin-option">
                 <li class="nav-item nav-btn">
                     <a href="index.html" class="nav-link nv-btn" aria-current="page">
                         <svg class="bi me-2" width="16" height="20">
@@ -129,7 +131,7 @@
                         <button type="button" id="sidebarCollapse" class="btn bg-transparent">
                             <i class="bi bi-list fs-5"></i>
                         </button>
-                        <h6 class="text-secondary ms-3 mt-2">Refund</h6>
+                        <h6 class="text-secondary ms-3 mt-2">Branch</h6>
                     </div>
                     <div class="d-flex">
                         <button class="btn btn-sm btn-outline-primary me-2">Logout</button>
@@ -142,7 +144,7 @@
                     <div class="col-12">
                         <section class="">
                             <section class="d-flex justify-content-end">
-                                <button class="btn btn-sm btn-primary">Add New</button>
+                                <button class="btn btn-primary" id="btn-branch-modal">Add New</button>
                             </section>
                             <section class="card overflow-y-scroll mt-2 mb-5" style="height: 60vh">
                                 <div class="card-header w-100 d-flex justify-content-sm-between"
@@ -193,12 +195,71 @@
         </div>
     </div>
 
+    <div class="modal fade" id="branch-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="branch-name" class="form-label">Branch Name</label>
+                                    <input type="text" class="form-control" id="branch-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-contact" class="form-label">Branch Contact</label>
+                                    <input type="text" class="form-control" id="branch-contact">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-lane" class="form-label">Branch Address lane</label>
+                                    <input type="text" class="form-control" id="branch-address-lane">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-state" class="form-label">Branch Address main State</label>
+                                    <input type="text" class="form-control" id="branch-address-state">
+                                </div>
+                            </div>
+                            <div class="col-6">
+
+                                <div class="mb-3">
+                                    <label for="branch-address-country" class="form-label">Branch Address main Country</label>
+                                    <input type="text" class="form-control" id="branch-address-country">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-city" class="form-label">Branch Address main city</label>
+                                    <input type="text" class="form-control" id="branch-address-city">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="branch-address-code" class="form-label">Branch Address postal Code</label>
+                                    <input type="text" class="form-control" id="branch-address-code">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btn-add-branch">Add Branch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 </body>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
+<script src="../../assets/js/sweetAlerts.js"></script>
 <link rel="stylesheet" href="../../assets/css/admin/adminSlideBar.css">
+<script src="../../controller/commonDetailController.js"></script>
+<script src="../../util/base.js"></script>
+<script src="../../controller/branchController.js"></script>
 <script>
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {

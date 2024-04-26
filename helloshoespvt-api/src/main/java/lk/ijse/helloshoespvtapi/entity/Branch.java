@@ -8,6 +8,10 @@ import lk.ijse.helloshoespvtapi.embedded.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * @author : savindaJ
@@ -27,6 +31,8 @@ public class Branch {
     private String branchManager;
     private Address address;
     private Integer noOfEmployees;
+    @CreationTimestamp
+    private Timestamp createdDate;
 
     @OneToOne(mappedBy = "branch")
     private Employee employee;

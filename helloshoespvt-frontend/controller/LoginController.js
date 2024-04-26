@@ -1,9 +1,69 @@
+
+class user {
+    constructor(username, password,jwt,profilePic,role) {
+        this.username = username;
+        this.password = password;
+        this.jwt = jwt;
+        this.profilePic = profilePic;
+        this.role = role;
+    }
+}
+
 $('#btn-login').on('click', function () {
-    var username = $('#username').val();
-    var password = $('#password').val();
+    var username = $('#txt-user-name').val();
+    var password = $('#txt-password').val();
     var data = {
         username: username,
         password: password
     };
-    window.location.href = '../page/admin/';
+
+    console.log(data)
+
+    $.ajax(
+        {
+            url: BASE_URL + 'api/auth/login',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (res) {
+                console.log(res);
+                localStorage.setItem('user', JSON.stringify(res));
+                console.log(JSON.parse(localStorage.getItem('user')).jwt);
+                console.log(JSON.parse(localStorage.getItem('user')).profilePic);
+                console.log(JSON.parse(localStorage.getItem('user')).role);
+                console.log(JSON.parse(localStorage.getItem('user')).username);
+                let timerInterval;
+                Swal.fire({
+                    title: "Login SuccessFull !!!, Please Wait...",
+                    html: "I will close in <b></b> milliseconds.",
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 100);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.location.href = "page/admin/";
+                    } else {
+                        alert('invalid !');
+                    }
+                });
+            },
+            error: function (res) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Invalid username or password!"
+                });
+            }
+        }
+    )
+
 });

@@ -55,6 +55,7 @@
       }
     }
   </style>
+
 </head>
 <body>
 
@@ -67,12 +68,12 @@
     <nav id="sidebar">
       <div class="sidebar-header">
         <div class="d-flex justify-content-center">
-          <img class="rounded-circle bg-dark" src="https://github.com/mdo.png" width="60" height="60">
+          <img class="rounded-circle bg-dark" id="admin-profile-pic" width="60" height="60">
         </div>
-        <h6 class="ms-2 text-secondary text-center mt-2">savinda jayasekara</h6>
+        <h6 class="ms-2 text-secondary text-center mt-2" id="admin-user-name"></h6>
         <hr class="text-dark">
       </div>
-      <ul class="nav nav-pills flex-column mb-auto slider p-2">
+      <ul class="nav nav-pills flex-column mb-auto slider p-2" id="admin-option">
         <li class="nav-item nav-btn">
           <a href="index.html" class="nav-link nv-btn" aria-current="page">
             <svg class="bi me-2" width="16" height="20">
@@ -181,6 +182,7 @@
 <script src="../../assets/js/bootstrap.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
+<script src="../../controller/commonDetailController.js"></script>
 <script>
   for (let i = 0; i < 10; i++) {
     $('#tbl-customer-body').append(`
