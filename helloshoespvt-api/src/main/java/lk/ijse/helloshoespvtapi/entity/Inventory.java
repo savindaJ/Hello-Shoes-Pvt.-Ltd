@@ -25,6 +25,7 @@ public class Inventory {
     private Integer qtyOnHand;
     private Integer size;
     private Double buyingPrice;
+    private String brand;
     private Double sellingPrice;
     private Double expectedProfit;
     private Double profitMargin;
