@@ -1,7 +1,9 @@
 package lk.ijse.helloshoespvtapi.service.impl;
 
 import lk.ijse.helloshoespvtapi.dto.UserDto;
+import lk.ijse.helloshoespvtapi.entity.Employee;
 import lk.ijse.helloshoespvtapi.entity.User;
+import lk.ijse.helloshoespvtapi.repo.EmployeeRepo;
 import lk.ijse.helloshoespvtapi.repo.UserRepo;
 import lk.ijse.helloshoespvtapi.service.UserDetailService;
 import org.modelmapper.ModelMapper;
@@ -24,9 +26,12 @@ public class UserDetailServiceImpl implements UserDetailService, UserDetailsServ
 
     private final ModelMapper mapper;
 
-    public UserDetailServiceImpl(UserRepo userRepo, ModelMapper mapper) {
+    private final EmployeeRepo employeeRepo;
+
+    public UserDetailServiceImpl(UserRepo userRepo, ModelMapper mapper, EmployeeRepo employeeRepo) {
         this.userRepo = userRepo;
         this.mapper = mapper;
+        this.employeeRepo = employeeRepo;
     }
 
     @Override
@@ -37,6 +42,8 @@ public class UserDetailServiceImpl implements UserDetailService, UserDetailsServ
 
     @Override
     public UserDto loginUser(String userName) {
-        return mapper.map(userRepo.findById(userName).get(), UserDto.class);
+        User user = userRepo.findById(userName).get();
+        Employee employee = employeeRepo.findById(user.getEmployee().getEmpId()).get();
+        return new UserDto(user.getUsername(),employee.getProfilePic(),user.getRole());
     }
 }

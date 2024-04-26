@@ -43,11 +43,7 @@ public class Employee {
     private Address address;
     @CreationTimestamp
     private Timestamp regDate;
-
-    @OneToOne(mappedBy = "employee")
-    private User user;
-
-    @OneToOne
-    @JoinColumn(name = "branch_id", referencedColumnName = "branchId")
+    @ManyToOne
+    @JoinColumn(name = "branch_Id", referencedColumnName = "branchId")
     private Branch branch;
 }

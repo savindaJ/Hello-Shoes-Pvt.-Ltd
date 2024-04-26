@@ -33,7 +33,7 @@ public class EmployeeDTO {
     private Address address;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Role role;
-    private String profileImage;
+    private String profilePic;
     private Boolean isActive;
     private String branchId;
     private String branchName;

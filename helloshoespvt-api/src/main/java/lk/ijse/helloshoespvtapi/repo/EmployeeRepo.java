@@ -1,8 +1,11 @@
 package lk.ijse.helloshoespvtapi.repo;
 
 import lk.ijse.helloshoespvtapi.entity.Employee;
+import lk.ijse.helloshoespvtapi.enums.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author : savindaJ
@@ -11,4 +14,5 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, String> {
+    List<Employee> findAllByRole(Role role);
 }

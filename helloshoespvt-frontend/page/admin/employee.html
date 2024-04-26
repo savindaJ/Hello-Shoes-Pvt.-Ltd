@@ -158,48 +158,48 @@
                     <input type="text" class="form-control mt-3 w-50" placeholder="Search Employee">
                     <button class="btn btn-sm btn-primary mt-3" id="btn-employee-modal">Add Employee</button>
                 </section>
-                <section class="row row-cols-md-3">
+                <section class="row row-cols-md-3" id="emp-cashier-row">
 
-                    <div class="col position-relative">
-                        <div class="card mt-3 p-2">
-                            <div class="employee-header"></div>
-                            <img src="https://github.com/mdo.png" width="100" class="rounded-circle m-auto z-3">
-                            <small class="text-center">$EMP-07878</small>
-                            <h6 class="text-center">Savinda Jayasekara</h6>
-                            <small class="text-center">User</small>
-                            <div class="d-flex gap-5 justify-content-sm-between px-4">
-                                <small>Branch</small>
-                                <small>Matara</small>
-                            </div>
-                            <div class="d-flex gap-5 justify-content-sm-between px-4">
-                                <small>Date of Birth</small>
-                                <small>25/08/2002</small>
-                            </div>
-                            <div class="d-flex gap-5 justify-content-sm-between px-4">
-                                <small>Gender</small>
-                                <small>Male</small>
-                            </div>
-                            <div class="d-flex gap-5 justify-content-sm-between px-4">
-                                <small>Email</small>
-                                <small>thantrige32@gmail.com</small>
-                            </div>
-                            <div class="d-flex gap-5 justify-content-sm-between px-4">
-                                <small>Contact No</small>
-                                <small>07145826398</small>
-                            </div>
-                            <small class="text-center mt-2 text-dark">27/2 , 'savinda' Sirisumana MW ,<br>Dickwall</small>
-                            <small class="text-danger">Emergency</small>
-                            <div class="d-flex gap-5 mt-2 justify-content-sm-between px-4">
-                                <small>Ajith Prasanna</small>
-                                <small>0715682429</small>
-                            </div>
-                            <hr>
-                            <div class="d-flex mt-2 justify-content-end px-4">
-                                <button class="btn btn-sm btn-primary">Edit</button>
-                                <button class="btn btn-sm btn-danger ms-2">Delete</button>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="col position-relative">-->
+<!--                        <div class="card mt-3 p-2">-->
+<!--                            <div class="employee-header"></div>-->
+<!--                            <img src="https://github.com/mdo.png" width="100" class="rounded-circle m-auto z-3">-->
+<!--                            <small class="text-center">$EMP-07878</small>-->
+<!--                            <h6 class="text-center">Savinda Jayasekara</h6>-->
+<!--                            <small class="text-center">User</small>-->
+<!--                            <div class="d-flex gap-5 justify-content-sm-between px-4">-->
+<!--                                <small>Branch</small>-->
+<!--                                <small>Matara</small>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex gap-5 justify-content-sm-between px-4">-->
+<!--                                <small>Date of Birth</small>-->
+<!--                                <small>25/08/2002</small>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex gap-5 justify-content-sm-between px-4">-->
+<!--                                <small>Gender</small>-->
+<!--                                <small>Male</small>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex gap-5 justify-content-sm-between px-4">-->
+<!--                                <small>Email</small>-->
+<!--                                <small>thantrige32@gmail.com</small>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex gap-5 justify-content-sm-between px-4">-->
+<!--                                <small>Contact No</small>-->
+<!--                                <small>07145826398</small>-->
+<!--                            </div>-->
+<!--                            <small class="text-center mt-2 text-dark">27/2 , 'savinda' Sirisumana MW ,<br>Dickwall</small>-->
+<!--                            <small class="text-danger">Emergency</small>-->
+<!--                            <div class="d-flex gap-5 mt-2 justify-content-sm-between px-4">-->
+<!--                                <small>Ajith Prasanna</small>-->
+<!--                                <small>0715682429</small>-->
+<!--                            </div>-->
+<!--                            <hr>-->
+<!--                            <div class="d-flex mt-2 justify-content-end px-4">-->
+<!--                                <button class="btn btn-sm btn-primary">Edit</button>-->
+<!--                                <button class="btn btn-sm btn-danger ms-2">Delete</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                 </section>
             </section>
@@ -210,52 +210,97 @@
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Item</h1>
+                <div class="modal-header bg-primary">
+                    <h1 class="modal-title fs-5 " id="staticBackdropLabel">Add New Manager</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="branch-inputs">
                         <div class="row">
                             <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="branch-name" class="form-label">Branch Name</label>
-                                    <input type="text" class="form-control" id="branch-name">
+                                <div class="mb-1">
+                                    <label for="emp-branch" class="form-label">Branch</label>
+                                    <select class="form-select" aria-label="Default select example" id="emp-branch">
+                                        <option selected></option>
+                                    </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="branch-contact" class="form-label">Branch Contact</label>
-                                    <input type="text" class="form-control" id="branch-contact">
+                                <div class="mb-1">
+                                    <label for="emp-name" class="form-label">Employee Name</label>
+                                    <input type="text" class="form-control" id="emp-name">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="branch-address-lane" class="form-label">Branch Address lane</label>
-                                    <input type="text" class="form-control" id="branch-address-lane">
+                                <div class="mb-1">
+                                    <label for="emp-gender" class="form-label">Gender</label>
+                                    <select class="form-select" aria-label="Default select example" id="emp-gender">
+                                        <option selected></option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                    </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="branch-address-state" class="form-label">Branch Address main State</label>
-                                    <input type="text" class="form-control" id="branch-address-state">
+                                <div class="mb-1">
+                                    <label for="emp-civil-status" class="form-label">Civil Status</label>
+                                    <input type="text" class="form-control" id="emp-civil-status">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-contact" class="form-label">Contact</label>
+                                    <input type="text" class="form-control" id="emp-contact">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="emp-email">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-designation" class="form-label">Designation</label>
+                                    <input type="text" class="form-control" id="emp-designation">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-dob" class="form-label">Designation</label>
+                                    <input type="date" class="form-control" id="emp-dob">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-emg-guardian" class="form-label">Emergency Guardian</label>
+                                    <input type="text" class="form-control" id="emp-emg-guardian">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-emg-contact" class="form-label">Emergency Contact</label>
+                                    <input type="text" class="form-control" id="emp-emg-contact">
                                 </div>
                             </div>
                             <div class="col-6">
+                                <div class="mb-1">
+                                    <label for="emp-address-lane" class="form-label">Address main Lane</label>
+                                    <input type="text" class="form-control" id="emp-address-lane">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-address-state" class="form-label">Address main State</label>
+                                    <input type="text" class="form-control" id="emp-address-state">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-address-country" class="form-label">Address main Country</label>
+                                    <input type="text" class="form-control" id="emp-address-country">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-address-city" class="form-label">Address main city</label>
+                                    <input type="text" class="form-control" id="emp-address-city">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="emp-address-code" class="form-label">Address postal Code</label>
+                                    <input type="text" class="form-control" id="emp-address-code">
+                                </div>
 
-                                <div class="mb-3">
-                                    <label for="branch-address-country" class="form-label">Branch Address main Country</label>
-                                    <input type="text" class="form-control" id="branch-address-country">
+                                <div class="mb-1">
+                                    <div class="d-flex justify-content-center m-2">
+                                        <img src="../../assets/images/Logo-dark.png" id="emp-img-preview" class="rounded-circle border " style="width: 150px;height: 150px">
+                                    </div>
+                                    <input type="file" class="form-control" id="emp-img">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="branch-address-city" class="form-label">Branch Address main city</label>
-                                    <input type="text" class="form-control" id="branch-address-city">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="branch-address-code" class="form-label">Branch Address postal Code</label>
-                                    <input type="text" class="form-control" id="branch-address-code">
-                                </div>
+
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btn-add-branch">Add Branch</button>
+                    <button type="button" class="btn btn-primary" id="btn-add-emp">Add User</button>
                 </div>
             </div>
         </div>
@@ -265,13 +310,23 @@
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
 <script src="../../assets/js/sweetAlerts.js"></script>
+<script src="../../util/base.js"></script>
 <script src="../../validation/employeeValidation.js"></script>
 <script src="../../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../../controller/commonDetailController.js"></script>
 <script src="../../controller/employeeController.js"></script>
 <script>
+    isColspane = true;
+
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
+            if (isColspane) {
+                $('#emp-row').addClass('row-cols-md-4');
+                isColspane = false;
+            } else {
+                $('#emp-row').removeClass('row-cols-md-4');
+                isColspane = true;
+            }
             $('#sidebar').toggleClass('active');
         });
     });

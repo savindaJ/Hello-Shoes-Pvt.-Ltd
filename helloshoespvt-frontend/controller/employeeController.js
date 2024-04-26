@@ -48,6 +48,7 @@ $('#btn-add-emp').click(function () {
             "Authorization": "Bearer " + user.jwt
         },
         success: function (data) {
+            loadAllAdmins();
             $('#branch-modal').modal('hide');
             const Toast = Swal.mixin({
                 toast: true,
@@ -67,7 +68,21 @@ $('#btn-add-emp').click(function () {
             $('#employee-modal').modal('hide');
         },
         error: function (error) {
-            console.log(error);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: 'Failed to add employee'
+            });
         }
     });
 
@@ -86,9 +101,175 @@ function loadBranchIds() {
             });
         },
         error: function (error) {
-            console.log(error);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: 'session expired'
+            });
         }
     });
 }
 
 loadBranchIds();
+
+function loadAllAdmins() {
+    $.ajax({
+        url: BASE_URL + 'api/v1/employee/admin',
+        type: 'GET',
+        headers: {
+            Authorization: 'Bearer ' + user.jwt
+        },
+        success: function (data) {
+            console.log(data)
+            data.forEach(employee => {
+                $('#emp-row').append(`
+                   
+            <div class="col position-relative">
+            <div class="card mt-3 p-2">
+              <div class="employee-header"></div>
+              <img src="https://drive.google.com/thumbnail?id=${employee.profilePic}&sz=w1000" width="100" height="100" class="rounded-circle m-auto z-3">
+              <small class="text-center">${employee.empId}</small>
+              <h6 class="text-center">${employee.empName}</h6>
+              <small class="text-center">${employee.designation}</small>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Branch</small>
+                <small>${employee.branchName}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Date of Birth</small>
+                <small>${employee.dob}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Gender</small>
+                <small>${employee.gender}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Email</small>
+                <small>${employee.email}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Contact No</small>
+                <small>${employee.contact}</small>
+              </div>
+              <small class="text-center mt-2 text-dark">${employee.address.lane}<br>Dickwall</small>
+              <small class="text-danger">Emergency</small>
+              <div class="d-flex gap-5 mt-2 justify-content-sm-between px-4">
+                <small>${employee.emergencyInfo}</small>
+                <small>${employee.emergencyContact}</small>
+              </div>
+              <hr>
+              <div class="d-flex mt-2 justify-content-end px-4">
+                <button class="btn btn-sm btn-primary">Edit</button>
+                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+              </div>
+            </div>
+          </div>
+                
+                `)
+            });
+        },
+        error: function (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "session expired"
+            });
+        }});
+}
+
+loadAllAdmins();
+
+function loadAllUsers() {
+    $.ajax({
+        url: BASE_URL + 'api/v1/employee/cashier',
+        type: 'GET',
+        headers: {
+            Authorization: 'Bearer ' + user.jwt
+        },
+        success: function (data) {
+            console.log(data)
+            $('#emp-cashier-row').empty();
+            data.forEach(employee => {
+                $('#emp-cashier-row').append(`
+                    <div class="col position-relative">
+            <div class="card mt-3 p-2">
+              <div class="employee-header"></div>
+              <img src="https://drive.google.com/thumbnail?id=${employee.profilePic}&sz=w1000" width="100" height="100" class="rounded-circle m-auto z-3">
+              <small class="text-center">${employee.empId}</small>
+              <h6 class="text-center">${employee.empName}</h6>
+              <small class="text-center">${employee.designation}</small>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Branch</small>
+                <small>${employee.branchName}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Date of Birth</small>
+                <small>${employee.dob}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Gender</small>
+                <small>${employee.gender}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Email</small>
+                <small>${employee.email}</small>
+              </div>
+              <div class="d-flex gap-5 justify-content-sm-between px-4">
+                <small>Contact No</small>
+                <small>${employee.contact}</small>
+              </div>
+              <small class="text-center mt-2 text-dark">${employee.address.lane}<br>Dickwall</small>
+              <small class="text-danger">Emergency</small>
+              <div class="d-flex gap-5 mt-2 justify-content-sm-between px-4">
+                <small>${employee.emergencyInfo}</small>
+                <small>${employee.emergencyContact}</small>
+              </div>
+              <hr>
+              <div class="d-flex mt-2 justify-content-end px-4">
+                <button class="btn btn-sm btn-primary">Edit</button>
+                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+              </div>
+            </div>
+          </div>
+                `);
+            });
+        },
+        error: function (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "session expired"
+            });
+        }});
+}
+loadAllUsers();

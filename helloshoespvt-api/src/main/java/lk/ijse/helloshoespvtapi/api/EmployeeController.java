@@ -31,4 +31,14 @@ public class EmployeeController {
         boolean isSave = employeeService.saveEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class),file);
         return isSave ? ResponseEntity.ok("Employee Saved !") : ResponseEntity.badRequest().body("Failed to save the employee");
     }
+
+    @GetMapping("/admin")
+    public ResponseEntity<?> getAllEmployees(){
+        return ResponseEntity.ok(employeeService.getAllAdmins());
+    }
+
+    @GetMapping("/cashier")
+    public ResponseEntity<?> getAllCashiers(){
+        return ResponseEntity.ok(employeeService.getAllCashiers());
+    }
 }

@@ -1,5 +1,6 @@
 const user = JSON.parse(localStorage.getItem('user'));
-$('#admin-profile-pic').attr('src', `https://github.com/mdo.png`);
+console.log(user);
+$('#admin-profile-pic').attr('src', `https://drive.google.com/thumbnail?id=${user.profilePic}&sz=w1000`);
 $('#admin-user-name').text(user.username);
 
 if (user.role === 'SUPER_ADMIN') {

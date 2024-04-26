@@ -2,10 +2,7 @@ package lk.ijse.helloshoespvtapi.entity;
 
 import jakarta.persistence.*;
 import lk.ijse.helloshoespvtapi.enums.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,8 +12,8 @@ import java.util.List;
  * @since : 0.1.0
  **/
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -35,4 +32,10 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Sale> sales;
+
+    public User(String email, String password, Role role) {
+        this.username = email;
+        this.password = password;
+        this.role = role;
+    }
 }

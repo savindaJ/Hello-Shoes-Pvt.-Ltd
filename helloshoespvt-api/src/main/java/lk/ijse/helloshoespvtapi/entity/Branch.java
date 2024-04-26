@@ -1,9 +1,6 @@
 package lk.ijse.helloshoespvtapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lk.ijse.helloshoespvtapi.embedded.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author : savindaJ
@@ -34,4 +32,6 @@ public class Branch {
     @CreationTimestamp
     private Timestamp createdDate;
 
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
+    private List<Employee> employees;
 }
