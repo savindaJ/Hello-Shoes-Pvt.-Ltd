@@ -3,6 +3,7 @@ package lk.ijse.helloshoespvtapi.service.impl;
 import lk.ijse.helloshoespvtapi.dto.UserDto;
 import lk.ijse.helloshoespvtapi.entity.Employee;
 import lk.ijse.helloshoespvtapi.entity.User;
+import lk.ijse.helloshoespvtapi.enums.Role;
 import lk.ijse.helloshoespvtapi.repo.EmployeeRepo;
 import lk.ijse.helloshoespvtapi.repo.UserRepo;
 import lk.ijse.helloshoespvtapi.service.UserDetailService;
@@ -43,6 +44,9 @@ public class UserDetailServiceImpl implements UserDetailService, UserDetailsServ
     @Override
     public UserDto loginUser(String userName) {
         User user = userRepo.findById(userName).get();
+        if (user.getRole() == Role.SUPER_ADMIN){
+            return new UserDto(user.getUsername(),"1ai2SKEeXSLhr0XQbI1vKyV35gUwfvCvZ",user.getRole());
+        }
         Employee employee = employeeRepo.findById(user.getEmployee().getEmpId()).get();
         return new UserDto(user.getUsername(),employee.getProfilePic(),user.getRole());
     }

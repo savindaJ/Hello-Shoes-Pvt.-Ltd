@@ -1,4 +1,5 @@
 $('#btn-employee-modal').click(function () {
+    $('#btn-add-emp').text('Add Employee');
     $('#employee-modal').modal('show');
 });
 
@@ -15,7 +16,7 @@ $('#btn-add-emp').click(function () {
 
     let formData = new FormData();
     const employee = {
-        empId: '',
+        empId: employeeId,
         empName: $('#emp-name').val(),
         gender: $('#emp-gender').val(),
         emergencyContact: $('#emp-emg-contact').val(),
@@ -35,56 +36,108 @@ $('#btn-add-emp').click(function () {
             postalCode: $('#emp-address-code').val(),
         },
     };
-    formData.append('employee', JSON.stringify(employee));
-    formData.append('image', $('#emp-img')[0].files[0]);
 
-    $.ajax({
-        url: BASE_URL + 'api/v1/employee',
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        headers: {
-            "Authorization": "Bearer " + user.jwt
-        },
-        success: function (data) {
-            loadAllAdmins();
-            $('#branch-modal').modal('hide');
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "success",
-                title: data
-            });
-            $('#employee-modal').modal('hide');
-        },
-        error: function (error) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: 'Failed to add employee'
-            });
-        }
-    });
+
+    if ($(this).text() === 'Update Employee') {
+        formData.append('employee', JSON.stringify(employee));
+        $.ajax({
+            url: BASE_URL + 'api/v1/employee',
+            type: 'PUT',
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                "Authorization": "Bearer " + user.jwt
+            },
+            success: function (data) {
+                loadAllAdmins();
+                $('#employee-modal').modal('hide');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: data
+                });
+                $('#employee-modal').modal('hide');
+            },
+            error: function (error) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: 'Failed to update employee'
+                });
+            }
+        });
+    }else {
+        formData.append('employee', JSON.stringify(employee));
+        formData.append('image', $('#emp-img')[0].files[0]);
+        $.ajax({
+            url: BASE_URL + 'api/v1/employee',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                "Authorization": "Bearer " + user.jwt
+            },
+            success: function (data) {
+                loadAllAdmins();
+                $('#branch-modal').modal('hide');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: data
+                });
+                $('#employee-modal').modal('hide');
+            },
+            error: function (error) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: 'Failed to add employee'
+                });
+            }
+        });
+    }
 
 });
 
@@ -159,7 +212,7 @@ function loadAllAdmins() {
               </div>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
                 <small>Contact No</small>
-                <small>${employee.contact}</small>
+                <small class="emp-contact">${employee.contact}</small>
               </div>
               <small class="text-center mt-2 text-dark">${employee.address.lane}<br>Dickwall</small>
               <small class="text-danger">Emergency</small>
@@ -169,14 +222,15 @@ function loadAllAdmins() {
               </div>
               <hr>
               <div class="d-flex mt-2 justify-content-end px-4">
-                <button class="btn btn-sm btn-primary">Edit</button>
-                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+                <button class="btn btn-sm btn-primary btn-edit-employee">Edit</button>
+<!--                <button class="btn btn-sm btn-danger ms-2">Delete</button>-->
               </div>
             </div>
           </div>
                 
                 `)
             });
+            setEvent();
         },
         error: function (error) {
             const Toast = Swal.mixin({
@@ -194,7 +248,64 @@ function loadAllAdmins() {
                 icon: "error",
                 title: "session expired"
             });
-        }});
+        }
+    });
+}
+
+
+let employeeId;
+
+function setEvent() {
+    $('.btn-edit-employee').on('click', function () {
+        let branchId = $(this).closest('.card');
+        $('#btn-add-emp').text('Update Employee');
+        $('#emp-email').prop('disabled', true);
+        employeeId = branchId.find('.emp-id').text();
+
+        $.ajax({
+            url: BASE_URL + 'api/v1/employee/' + employeeId,
+            type: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + user.jwt
+            },
+            success: function (data) {
+                $('#emp-name').val(data.empName);
+                $('#emp-gender').val(data.gender);
+                $('#emp-contact').val(data.contact);
+                $('#emp-email').val(data.email);
+                $('#emp-designation').val(data.designation);
+                $('#emp-dob').val(data.dob);
+                $('#emp-emg-guardian').val(data.emergencyInfo);
+                $('#emp-emg-contact').val(data.emergencyContact);
+                $('#emp-civil-status').val(data.status);
+                $('#emp-branch').val(data.branchId);
+                $('#emp-address-lane').val(data.address.lane);
+                $('#emp-address-country').val(data.address.mainCountry);
+                $('#emp-address-city').val(data.address.mainCity);
+                $('#emp-address-state').val(data.address.mainState);
+                $('#emp-address-code').val(data.address.postalCode);
+                $('#emp-img-preview').attr('src', 'https://drive.google.com/thumbnail?id=' + data.profilePic + '&sz=w1000');
+                $('#employee-modal').modal('show');
+            },
+            error: function (error) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "session expired"
+                });
+            }
+        })
+    });
 }
 
 loadAllAdmins();
@@ -215,16 +326,16 @@ function loadAllUsers() {
             <div class="card mt-3 p-2">
               <div class="employee-header"></div>
               <img src="https://drive.google.com/thumbnail?id=${employee.profilePic}&sz=w1000" width="100" height="100" class="rounded-circle m-auto z-3">
-              <small class="text-center">${employee.empId}</small>
+              <small class="text-center emp-id">${employee.empId}</small>
               <h6 class="text-center">${employee.empName}</h6>
-              <small class="text-center">${employee.designation}</small>
+              <small class="text-center emp-designation">${employee.designation}</small>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
                 <small>Branch</small>
                 <small>${employee.branchName}</small>
               </div>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
                 <small>Date of Birth</small>
-                <small>${employee.dob}</small>
+                <small class="dob">${employee.dob}</small>
               </div>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
                 <small>Gender</small>
@@ -232,27 +343,28 @@ function loadAllUsers() {
               </div>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
                 <small>Email</small>
-                <small>${employee.email}</small>
+                <small class="email">${employee.email}</small>
               </div>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
                 <small>Contact No</small>
-                <small>${employee.contact}</small>
+                <small class="emp-contact">${employee.contact}</small>
               </div>
               <small class="text-center mt-2 text-dark">${employee.address.lane}<br>Dickwall</small>
               <small class="text-danger">Emergency</small>
               <div class="d-flex gap-5 mt-2 justify-content-sm-between px-4">
-                <small>${employee.emergencyInfo}</small>
-                <small>${employee.emergencyContact}</small>
+                <small class="emg-info">${employee.emergencyInfo}</small>
+                <small class="emg-contact">${employee.emergencyContact}</small>
               </div>
               <hr>
               <div class="d-flex mt-2 justify-content-end px-4">
-                <button class="btn btn-sm btn-primary">Edit</button>
-                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+                <button class="btn btn-sm btn-primary btn-edit-employee">Edit</button>
+<!--                <button class="btn btn-sm btn-danger ms-2">Delete</button>-->
               </div>
             </div>
           </div>
                 `);
             });
+            setEvent();
         },
         error: function (error) {
             const Toast = Swal.mixin({
@@ -270,6 +382,8 @@ function loadAllUsers() {
                 icon: "error",
                 title: "session expired"
             });
-        }});
+        }
+    });
 }
+
 loadAllUsers();

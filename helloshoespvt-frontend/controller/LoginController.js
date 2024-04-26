@@ -50,7 +50,13 @@ $('#btn-login').on('click', function () {
                     }
                 }).then((result) => {
                     if (result.dismiss === Swal.DismissReason.timer) {
-                        window.location.href = "page/admin/";
+                        if (JSON.parse(localStorage.getItem('user')).role === 'ADMIN' || JSON.parse(localStorage.getItem('user')).role === 'SUPER_ADMIN') {
+                            window.location.href = "page/admin/";
+                        } else if (JSON.parse(localStorage.getItem('user')).role === 'USER') {
+                            window.location.href = 'page/regular/regular-user-order.html';
+                        } else {
+                            alert('invalid !');
+                        }
                     } else {
                         alert('invalid !');
                     }

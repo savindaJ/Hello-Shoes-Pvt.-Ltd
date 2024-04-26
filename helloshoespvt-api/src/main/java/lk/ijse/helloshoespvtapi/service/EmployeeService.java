@@ -17,4 +17,8 @@ public interface EmployeeService {
     List<EmployeeDTO> getAllAdmins();
 
     List<EmployeeDTO> getAllCashiers();
+
+    EmployeeDTO getEmployee(String empId);
+
+    boolean updateEmployee(EmployeeDTO employeeDTO) throws IOException;
 }

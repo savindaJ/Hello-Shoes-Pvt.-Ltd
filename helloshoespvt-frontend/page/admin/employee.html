@@ -237,7 +237,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-1">
-                                    <label for="emp-civil-status" class="form-label">Civil Status</label>
+                                    <label for="emp-civil-status" class="form-label" id="lbl-status">Civil Status</label>
                                     <input type="text" class="form-control" id="emp-civil-status">
                                 </div>
                                 <div class="mb-1">
@@ -253,7 +253,7 @@
                                     <input type="text" class="form-control" id="emp-designation">
                                 </div>
                                 <div class="mb-1">
-                                    <label for="emp-dob" class="form-label">Designation</label>
+                                    <label for="emp-dob" class="form-label">DOB</label>
                                     <input type="date" class="form-control" id="emp-dob">
                                 </div>
                                 <div class="mb-1">
@@ -321,10 +321,10 @@
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
             if (isColspane) {
-                $('#emp-row').addClass('row-cols-md-4');
+                $('#emp-cashier-row').addClass('row-cols-md-4');
                 isColspane = false;
             } else {
-                $('#emp-row').removeClass('row-cols-md-4');
+                $('#emp-cashier-row').removeClass('row-cols-md-4');
                 isColspane = true;
             }
             $('#sidebar').toggleClass('active');

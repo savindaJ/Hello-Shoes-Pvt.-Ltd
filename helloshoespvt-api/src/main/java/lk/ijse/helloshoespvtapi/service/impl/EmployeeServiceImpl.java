@@ -81,4 +81,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDTO> getAllCashiers() {
         return employeeRepo.findAllByRole(Role.USER).stream().map(employee -> mapper.map(employee, EmployeeDTO.class)).toList();
     }
+
+    @Override
+    public EmployeeDTO getEmployee(String empId) {
+        return mapper.map(employeeRepo.findById(empId).orElseThrow(), EmployeeDTO.class);
+    }
+
+    @Override
+    public boolean updateEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeRepo.findById(employeeDTO.getEmpId()).orElseThrow();
+        Branch branch = branchService.getBranchById(employeeDTO.getBranchId());
+        employee.setBranch(branch);
+        employee.setEmpName(employeeDTO.getEmpName());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setContact(employeeDTO.getContact());
+        employee.setRole(employeeDTO.getRole());
+        employeeRepo.save(employee);
+        return true;
+    }
 }

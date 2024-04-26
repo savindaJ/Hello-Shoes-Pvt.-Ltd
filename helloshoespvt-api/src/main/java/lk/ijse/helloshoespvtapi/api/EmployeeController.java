@@ -41,4 +41,15 @@ public class EmployeeController {
     public ResponseEntity<?> getAllCashiers(){
         return ResponseEntity.ok(employeeService.getAllCashiers());
     }
+
+    @GetMapping("/{empId}")
+    public ResponseEntity<?> getEmployee(@PathVariable("empId") String empId){
+        return ResponseEntity.ok(employeeService.getEmployee(empId));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateEmployee(@RequestParam("employee") String employee) throws IOException {
+        boolean isUpdate = employeeService.updateEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class));
+        return isUpdate ? ResponseEntity.ok("Employee Updated !") : ResponseEntity.badRequest().body("Failed to update the employee");
+    }
 }

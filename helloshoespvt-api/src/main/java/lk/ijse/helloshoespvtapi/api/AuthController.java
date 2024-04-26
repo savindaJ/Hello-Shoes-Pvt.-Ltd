@@ -50,12 +50,10 @@ public class AuthController {
                     .loadUserByUsername(authenticationRequest.getUsername());
             final String jwt = jwtTokenUtil.generateToken(userDetails.getUsername());
             userDto = userDetailService.loginUser(userDetails.getUsername());
-            System.out.println(userDto);
             if (userDto.getRole().equals(Role.SUPER_ADMIN)) {
                 profilePic = "1hed1ivemscqrCQ6Vhwf1-gQQEV2PkSEb";
             } else {
                 profilePic = userDto.getProfilePic();
-                System.out.println(profilePic);
             }
             return ResponseEntity.ok(new AuthenticationResponse(jwt, userDto.getUserName(), profilePic, userDto.getRole()));
         } catch (BadCredentialsException e) {
