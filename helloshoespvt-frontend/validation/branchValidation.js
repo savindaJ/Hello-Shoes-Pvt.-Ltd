@@ -13,56 +13,27 @@ vArray.push({field: $("#branch-address-city"), regEx: branchAddressRegex});
 vArray.push({field: $("#branch-address-country"), regEx: branchAddressRegex});
 vArray.push({field: $("#branch-address-lane"), regEx: branchAddressRegex});
 
-function clearInputFields() {
-    $("#branch-inputs input").val("");
-    $("#branch-inputs input").css("border", "1px solid #ced4da");
-    $("#branch-name").focus();
-}
-
-function checkValidations(object) {
-    if (object.regEx.test(object.field.val())) {
-        setBorder(true, object)
-        return true;
-    }
-    setBorder(false, object)
-    return false;
+function validateEmployee() {
+    let isValid = true;
+    vArray.forEach(function (item) {
+        if (!item.regEx.test(item.field.val())) {
+            item.field.addClass("is-invalid");
+            isValid = false;
+        } else {
+            item.field.removeClass("is-invalid");
+        }
+    });
+    return isValid;
 }
 
 
 $("#branch-inputs input").on("keydown keyup", function () {
-    setBtn();
-});
-
-function setBorder(bol, ob) {
-    if (!bol) {
-        if (ob.field.val().length >= 1) {
-            ob.field.css("border", "2px solid red");
-        } else {
-            ob.field.css("border", "1px solid #ced4da");
-        }
-    } else {
-        if (ob.field.val().length >= 1) {
-            ob.field.css("border", "2px solid green");
-        } else {
-            ob.field.css("border", "1px solid #ced4da");
-        }
-    }
-
-}
-
-function checkAll() {
-    for (let i = 0; i < vArray.length; i++) {
-        if (!checkValidations(vArray[i])) return false;
-    }
-    return true;
-}
-
-function setBtn() {
-    if (checkAll()) {
+    let isTrue = validateEmployee();
+    if (isTrue) {
         $("#btn-add-branch").prop("disabled", false);
     } else {
         $("#btn-add-branch").prop("disabled", true);
     }
-}
+});
 
 $("#btn-add-branch").prop("disabled", true);
