@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import lk.ijse.helloshoespvtapi.entity.Supplier;
+import lk.ijse.helloshoespvtapi.enums.ItemGender;
 import lk.ijse.helloshoespvtapi.enums.ItemStatus;
+import lk.ijse.helloshoespvtapi.enums.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,4 +34,10 @@ public class InventoryDTO {
     private Double profitMargin;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private ItemStatus itemStatus;
+    private Integer discount;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private ItemType itemType;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private ItemGender itemGender;
+    private SupplierDTO supplier;
 }

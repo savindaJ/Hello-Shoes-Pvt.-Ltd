@@ -1,7 +1,9 @@
 package lk.ijse.helloshoespvtapi.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.helloshoespvtapi.enums.ItemGender;
 import lk.ijse.helloshoespvtapi.enums.ItemStatus;
+import lk.ijse.helloshoespvtapi.enums.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,11 @@ public class Inventory {
     private String itemPicture;
     private Integer qtyOnHand;
     private Integer size;
+    private Integer discount;
+    @Enumerated(EnumType.STRING)
+    private ItemType itemType;
+    @Enumerated(EnumType.STRING)
+    private ItemGender itemGender;
     private Double buyingPrice;
     private String brand;
     private Double sellingPrice;
@@ -31,6 +38,7 @@ public class Inventory {
     private Double profitMargin;
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus;
+    private String supplierName;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Supplier supplier;

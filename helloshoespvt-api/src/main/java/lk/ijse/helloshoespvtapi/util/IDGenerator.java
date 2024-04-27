@@ -1,6 +1,9 @@
 package lk.ijse.helloshoespvtapi.util;
 
 
+import lk.ijse.helloshoespvtapi.enums.ItemGender;
+import lk.ijse.helloshoespvtapi.enums.ItemType;
+
 import java.util.UUID;
 
 /**
@@ -23,4 +26,11 @@ public class IDGenerator {
         String uuid = UUID.randomUUID().toString();
         return "EMP-"+uuid.substring(0, 8);
     }
+
+    public static String generateItemCode(ItemGender itemGender, ItemType itemType, String itemDescription) {
+        String uuid = UUID.randomUUID().toString();
+        return String.format("%s%s%s-%s",itemType.toString().charAt(0),"S", itemGender.toString().charAt(0), uuid.substring(0, 6));
+    }
 }
+
+

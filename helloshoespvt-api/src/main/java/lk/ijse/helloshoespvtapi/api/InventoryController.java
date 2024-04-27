@@ -1,12 +1,13 @@
 package lk.ijse.helloshoespvtapi.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.ijse.helloshoespvtapi.dto.InventoryDTO;
 import lk.ijse.helloshoespvtapi.service.InventoryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @author : savindaJ
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since : 0.1.0
  **/
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/inventory")
 public class InventoryController {
 
@@ -24,7 +26,19 @@ public class InventoryController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveInventory(@RequestBody InventoryDTO inventoryDTO){
-        return ResponseEntity.ok(inventoryDTO);
+    public ResponseEntity<?> saveInventory(@RequestParam("item") String inventory, @RequestParam("itemImage") MultipartFile file) throws IOException {
+        InventoryDTO inventoryDTO = new ObjectMapper().readValue(inventory, InventoryDTO.class);
+        boolean isSave = inventoryService.saveInventory(inventoryDTO, file);
+        return isSave ? ResponseEntity.ok("Inventory Saved !") : ResponseEntity.badRequest().body("Failed to save the inventory");
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<?> getAvailableInventory(){
+        return ResponseEntity.ok(inventoryService.getAvailableInventory());
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllInventory(){
+        return ResponseEntity.ok(inventoryService.getAllInventory());
     }
 }
