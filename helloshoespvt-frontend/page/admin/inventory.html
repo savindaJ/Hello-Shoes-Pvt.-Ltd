@@ -142,21 +142,24 @@
             </nav>
             <section class="container-fluid">
                 <div class="d-flex justify-content-end mt-3">
-                    <button class="btn btn-primary"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New</button>
+                    <button class="btn btn-primary" id="btn-open-model">Add New Inventory</button>
                 </div>
                 <table id="example" class="table table-hover table-striped" style="width:100%">
                     <thead class="bg-primary mb-2">
                     <tr class="bg-primary rounded-2 text-sm-center" style="font-size: 12px">
+                        <th class="text-center bg-primary text-white"></th>
                         <th class="text-center bg-primary text-white">Item Code</th>
                         <th class="text-center bg-primary text-white">Name</th>
-                        <th class="text-center bg-primary text-white">Pic</th>
-                        <th class="text-center bg-primary text-white">Category</th>
                         <th class="text-center bg-primary text-white">Size</th>
                         <th class="text-center bg-primary text-white">Qty</th>
                         <th class="text-center bg-primary text-white">Supplier Code</th>
                         <th class="text-center bg-primary text-white">Supplier name</th>
-                        <th class="text-center bg-primary text-white"><small>Unit price - Sale</small></th>
-                        <th class="text-center bg-primary text-white"><small>Unit price -Buy</small></th>
+                        <th class="text-center bg-primary text-white">Brand</th>
+                        <th class="text-center bg-primary text-white">type</th>
+                        <th class="text-center bg-primary text-white">Discount</th>
+                        <th class="text-center bg-primary text-white">gender</th>
+                        <th class="text-center bg-primary text-white"><small>price - Sale</small></th>
+                        <th class="text-center bg-primary text-white"><small>price -Buy</small></th>
                         <th class="text-center bg-primary text-white">Expected Profit</th>
                         <th class="text-center bg-primary text-white">Profit margin</th>
                         <th class="text-center bg-primary text-white">Status</th>
@@ -165,230 +168,17 @@
                     </thead>
                     <tbody class="mt-5" id="tbl-customer-body" style="font-size: 14px">
                     <tr style="width: 50px" class="">
+                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
                         <td class="text-center">1</td>
                         <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
                         <td class="text-center">Large</td>
                         <td class="text-center">10</td>
                         <td class="text-center">Sup-001</td>
+                        <td class="text-center">DSI PVT</td>
                         <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
-                        <td class="text-center">8500</td>
-                        <td class="text-center">4000</td>
-                        <td class="text-center">5000</td>
-                        <td class="text-center">20%</td>
-                        <td class="text-center"><span class="badge bg-success">Enough</span></td>
-                        <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                    <tr style="width: 50px" class="">
-                        <td class="text-center">1</td>
-                        <td class="text-center">Shoe</td>
-                        <td class="text-center"><img src="../../assets/images/shoe-3.jpg" width="80"></td>
-                        <td class="text-center">Sport</td>
-                        <td class="text-center">Large</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">Sup-001</td>
-                        <td class="text-center">DSI</td>
+                        <td class="text-center">SPORT</td>
+                        <td class="text-center">0%</td>
+                        <td class="text-center">MEN</td>
                         <td class="text-center">8500</td>
                         <td class="text-center">4000</td>
                         <td class="text-center">5000</td>
@@ -401,16 +191,19 @@
                     </tbody>
                     <tfoot>
                     <tr class="bg-primary rounded-2 text-sm-center" style="font-size: 12px">
+                        <th class="text-center"></th>
                         <th class="text-center">Item Code</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Pic</th>
-                        <th class="text-center">Category</th>
                         <th class="text-center">Size</th>
                         <th class="text-center">Qty</th>
                         <th class="text-center">Supplier Code</th>
                         <th class="text-center">Supplier name</th>
-                        <th class="text-center"><small>Unit price - Sale</small></th>
-                        <th class="text-center"><small>Unit price -Buy</small></th>
+                        <th class="text-center">Brand</th>
+                        <th class="text-center">type</th>
+                        <th class="text-center">Discount</th>
+                        <th class="text-center">gender</th>
+                        <th class="text-center"><small>price - Sale</small></th>
+                        <th class="text-center"><small>price -Buy</small></th>
                         <th class="text-center">Expected Profit</th>
                         <th class="text-center">Profit margin</th>
                         <th class="text-center">Status</th>
@@ -423,31 +216,121 @@
         </div>
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="inventory-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Item</h1>
+                <div class="modal-header bg-primary">
+                    <h1 class="modal-title fs-5 " id="staticBackdropLabel">Add New Item</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    ...
+                <div class="modal-body" style="background-color: #e1e2e3">
+                    <form id="inventory-inputs">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-1">
+                                    <label for="item-supplier" class="form-label">Select Supplier</label>
+                                    <select class="form-select shadow-sm" aria-label="Default select example" id="item-supplier">
+                                        <option selected></option>
+                                    </select>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-desc" class="form-label">Item Description</label>
+                                    <input type="text" class="form-control shadow-sm" id="item-desc">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-status" class="form-label">Item Status</label>
+                                    <select class="form-select shadow-sm" aria-label="Default select example" id="item-status">
+                                        <option selected></option>
+                                        <option value="AVAILABLE">AVAILABLE</option>
+                                        <option value="NOT_AVAILABLE">NOT_AVAILABLE</option>
+                                        <option value="LOW_STOCK">LOW_STOCK</option>
+                                    </select>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-qty" class="form-label" id="lbl-status">Item Qty</label>
+                                    <input type="text" class="form-control shadow-sm" id="item-qty">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-size" class="form-label">Size</label>
+                                    <input type="number" class="form-control shadow-sm" id="item-size">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-discount" class="form-label">Item Discount</label>
+                                    <input type="number" class="form-control shadow-sm" id="item-discount">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-gender" class="form-label">Item Gender</label>
+                                    <select class="form-select shadow-sm" aria-label="Default select example" id="item-gender">
+                                        <option selected></option>
+                                        <option value="AVAILABLE">MEN</option>
+                                        <option value="AVAILABLE">CHILD</option>
+                                        <option value="NOT_AVAILABLE">FEMALE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+
+                                <label>Supplier Name</label>
+                                <div style="height: 35px" class="bg-white rounded-2 d-flex mt-2 mb-1 justify-content-sm-between p-2">
+                                    <label class="text-primary" id="supplier-name"></label>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-userbility" class="form-label">Formal Or Casual</label>
+                                    <select class="form-select shadow-sm" aria-label="Default select example" id="item-userbility">
+                                        <option selected></option>
+                                        <option value="AVAILABLE">Formal</option>
+                                        <option value="NOT_AVAILABLE">Casual</option>
+                                        <option value="NOT_AVAILABLE">SPORT</option>
+                                    </select>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-buying-price" class="form-label">Item Buying Price</label>
+                                    <input type="text" class="form-control shadow-sm" id="item-buying-price">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-selling-price" class="form-label">Item Selling Price</label>
+                                    <input type="text" class="form-control shadow-sm" id="item-selling-price">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="item-expect-profit" class="form-label">Item expected Profit</label>
+                                    <input type="text" class="form-control shadow-sm" id="item-expect-profit">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="Profit Margin" class="form-label">Profit Margin</label>
+                                    <input type="text" class="form-control shadow-sm" id="Profit Margin">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="Item-brand" class="form-label">Item Brand</label>
+                                    <input type="text" class="form-control shadow-sm" id="item-brand">
+                                </div>
+                            </div>
+                            <div class="mb-1">
+                                <div class="d-flex justify-content-center m-2">
+                                    <img src="../../assets/images/Logo-dark.png" id="item-img-preview" class="border border-dark shadow-lg rounded-2" style="width: 190px;height: 150px">
+                                </div>
+                                <input type="file" class="form-control w-50 m-auto" id="item-img">
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="background-color: #e1e2e3">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="btn-add-item">Add Item</button>
                 </div>
             </div>
         </div>
     </div>
+
 </main>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
-<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/sweetAlerts.js"></script>
+<script src="../../util/base.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <script src="../../controller/commonDetailController.js"></script>
+<script src="../../controller/inventoryController.js"></script>
 <script>
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {

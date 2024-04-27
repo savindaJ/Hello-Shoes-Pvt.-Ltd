@@ -48,4 +48,9 @@ public class SupplierController {
         boolean isDelete = supplierService.deleteSupplier(id);
         return isDelete ? ResponseEntity.ok("Supplier Deleted !") : ResponseEntity.badRequest().body("Failed to delete the supplier");
     }
+
+    @GetMapping("/get/id")
+    public ResponseEntity<?> getSupplierId(){
+        return ResponseEntity.ok(supplierService.getSupplierId());
+    }
 }

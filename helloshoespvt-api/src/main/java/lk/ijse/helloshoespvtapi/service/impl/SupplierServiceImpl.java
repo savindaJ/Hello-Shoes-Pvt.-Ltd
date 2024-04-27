@@ -61,4 +61,9 @@ public class SupplierServiceImpl implements SupplierService {
         Supplier save = supplierRepo.save(supplier);
         return save != null;
     }
+
+    @Override
+    public List<String> getSupplierId() {
+        return supplierRepo.findAllByIsActive(true).stream().map(Supplier::getSupplierCode).toList();
+    }
 }
