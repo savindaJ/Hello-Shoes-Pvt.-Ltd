@@ -26,7 +26,7 @@ public class UploadServiceImpl implements UploadService {
 
     @Override
     public String uploadFile(MultipartFile file) throws IOException {
-        File tempFile = File.createTempFile("drivemate", "nic");
+        File tempFile = File.createTempFile("helloShoe", "images");
         file.transferTo(tempFile);
         com.google.api.services.drive.model.File fileMetaData = new com.google.api.services.drive.model.File();
         fileMetaData.setName(tempFile.getName());

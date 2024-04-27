@@ -1,5 +1,10 @@
 $('#btn-employee-modal').click(function () {
-    $('#btn-add-emp').text('Add Employee');
+    if ($(this).text() === 'Add Manager') {
+        $('#btn-add-emp').text('Add Manager');
+    }else {
+        $('#btn-add-emp').text('Add Employee');
+    }
+
     $('#employee-modal').modal('show');
 });
 
@@ -51,6 +56,7 @@ $('#btn-add-emp').click(function () {
             },
             success: function (data) {
                 loadAllAdmins();
+                loadAllUsers();
                 $('#employee-modal').modal('hide');
                 const Toast = Swal.mixin({
                     toast: true,
@@ -101,6 +107,7 @@ $('#btn-add-emp').click(function () {
             },
             success: function (data) {
                 loadAllAdmins();
+                loadAllUsers();
                 $('#branch-modal').modal('hide');
                 const Toast = Swal.mixin({
                     toast: true,
