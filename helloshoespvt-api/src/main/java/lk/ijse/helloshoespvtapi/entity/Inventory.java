@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lk.ijse.helloshoespvtapi.enums.ItemGender;
 import lk.ijse.helloshoespvtapi.enums.ItemStatus;
 import lk.ijse.helloshoespvtapi.enums.ItemType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,7 +14,8 @@ import java.util.List;
  * @since : 0.1.0
  **/
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Inventory {

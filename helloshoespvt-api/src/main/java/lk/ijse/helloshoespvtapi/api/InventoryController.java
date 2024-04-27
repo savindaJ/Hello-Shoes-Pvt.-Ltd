@@ -41,4 +41,16 @@ public class InventoryController {
     public ResponseEntity<?> getAllInventory(){
         return ResponseEntity.ok(inventoryService.getAllInventory());
     }
+
+    @GetMapping("/{itemCode}")
+    public ResponseEntity<?> getInventory(@PathVariable String itemCode){
+        return ResponseEntity.ok(inventoryService.getInventory(itemCode));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateInventory(@RequestParam("item") String inventory, @RequestParam("itemImage") MultipartFile file) throws IOException {
+        InventoryDTO inventoryDTO = new ObjectMapper().readValue(inventory, InventoryDTO.class);
+        boolean isSave = inventoryService.updateInventory(inventoryDTO, file);
+        return isSave ? ResponseEntity.ok("Inventory Updated !") : ResponseEntity.badRequest().body("Failed to update the inventory");
+    }
 }

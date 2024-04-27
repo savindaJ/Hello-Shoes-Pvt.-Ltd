@@ -65,7 +65,7 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" style="">
             <div class="sidebar-header">
                 <div class="d-flex justify-content-center">
                     <img class="rounded-circle bg-dark" id="admin-profile-pic" width="60" height="60">
@@ -160,13 +160,13 @@
                         <th class="text-center bg-primary text-white">gender</th>
                         <th class="text-center bg-primary text-white"><small>price - Sale</small></th>
                         <th class="text-center bg-primary text-white"><small>price -Buy</small></th>
-                        <th class="text-center bg-primary text-white">Expected Profit</th>
-                        <th class="text-center bg-primary text-white">Profit margin</th>
+                        <th class="text-center bg-primary text-white">Expected</th>
+                        <th class="text-center bg-primary text-white">Profit</th>
                         <th class="text-center bg-primary text-white">Status</th>
                         <th class="text-center bg-primary text-white">Action</th>
                     </tr>
                     </thead>
-                    <tbody class="mt-5" id="tbl-item-body" style="font-size: 14px"></tbody>
+                    <tbody class="mt-5" id="tbl-item-body" style="font-size: 13px"></tbody>
                     <tfoot>
                     <tr class="bg-primary rounded-2 text-sm-center" style="font-size: 12px">
                         <th class="text-center"></th>
@@ -295,6 +295,18 @@
                 <div class="modal-footer" style="background-color: #e1e2e3">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="btn-add-item">Add Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bg-transparent" id="spinner" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg bg-transparent">
+            <div class="modal-content bg-transparent">
+                <div class="modal-body bg-transparent">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
             </div>
         </div>

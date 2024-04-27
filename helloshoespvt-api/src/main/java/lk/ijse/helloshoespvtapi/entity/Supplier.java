@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lk.ijse.helloshoespvtapi.embedded.Address;
 import lk.ijse.helloshoespvtapi.embedded.Contact;
 import lk.ijse.helloshoespvtapi.enums.SupplierCategory;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,7 +13,8 @@ import java.util.List;
  * @date : 4/26/2024
  * @since : 0.1.0
  **/
-@Data
+@Getter
+@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

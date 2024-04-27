@@ -45,7 +45,7 @@ public class InventoryServiceImpl implements InventoryService {
         map.setSupplier(supplierRepo.findById(inventoryDTO.getSupplierId()).get());
         map.setItemPicture(image);
         map.setSupplierName(map.getSupplier().getSupplierName());
-        map.setItemCode(IDGenerator.generateItemCode(inventoryDTO.getItemGender(),inventoryDTO.getItemType(),inventoryDTO.getItemDescription()));
+        map.setItemCode(IDGenerator.generateItemCode(inventoryDTO.getItemGender(), inventoryDTO.getItemType(), inventoryDTO.getItemDescription()));
         inventoryRepo.save(map);
         return true;
     }
@@ -58,5 +58,35 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public List<InventoryDTO> getAllInventory() {
         return inventoryRepo.findAll().stream().map(inventory -> modelMapper.map(inventory, InventoryDTO.class)).toList();
+    }
+
+    @Override
+    public InventoryDTO getInventory(String itemCode) {
+        return modelMapper.map(inventoryRepo.findById(itemCode).get(), InventoryDTO.class);
+    }
+
+    @Override
+    public boolean updateInventory(InventoryDTO inventoryDTO, MultipartFile file) throws IOException {
+        Inventory inventory = inventoryRepo.findById(inventoryDTO.getItemCode()).get();
+        inventory.setSupplier(supplierRepo.findById(inventoryDTO.getSupplierId()).get());
+        inventory.setSupplierName(inventory.getSupplier().getSupplierName());
+        inventory.setSize(inventoryDTO.getSize());
+        inventory.setQtyOnHand(inventoryDTO.getQtyOnHand());
+        inventory.setSellingPrice(inventoryDTO.getSellingPrice());
+        inventory.setItemDescription(inventoryDTO.getItemDescription());
+        inventory.setItemGender(inventoryDTO.getItemGender());
+        inventory.setItemType(inventoryDTO.getItemType());
+        inventory.setBrand(inventoryDTO.getBrand());
+        inventory.setBuyingPrice(inventoryDTO.getBuyingPrice());
+        inventory.setDiscount(inventoryDTO.getDiscount());
+        inventory.setExpectedProfit(inventoryDTO.getExpectedProfit());
+        inventory.setProfitMargin(inventoryDTO.getProfitMargin());
+        inventory.setItemStatus(inventoryDTO.getItemStatus());
+        if (!file.getOriginalFilename().equals("notUpdate")) {
+            String image = uploadService.uploadFile(file);
+            inventory.setItemPicture(image);
+        }
+        inventoryRepo.save(inventory);
+        return true;
     }
 }

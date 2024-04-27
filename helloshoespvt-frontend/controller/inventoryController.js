@@ -1,4 +1,7 @@
+let itemCode;
+
 $('#btn-open-model').on('click', function () {
+    itemCode = null;
     $('#btn-add-item').text('Add Item');
     $('#inventory-modal').modal('show');
 });
@@ -11,7 +14,6 @@ $('#item-img').on('change', function () {
     reader.readAsDataURL(this.files[0]);
 });
 
-let itemCode;
 
 $('#btn-add-item').on('click', function () {
 
@@ -36,53 +38,148 @@ $('#btn-add-item').on('click', function () {
     };
 
     formData.append('item', JSON.stringify(item));
-    formData.append('itemImage', $('#item-img')[0].files[0]);
+    let timerInterval;
+    if ($('#btn-add-item').text() === 'Update Item') {
 
-    $.ajax({
-        type: 'POST',
-        url: BASE_URL + 'api/v1/inventory',
-        headers: {
-            Authorization: 'Bearer ' + user.jwt
-        },
-        contentType: false,
-        processData: false,
-        data: formData,
-        success: function (data) {
-            $('#inventory-modal').modal('hide');
-            loadItems();
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "success",
-                title: data
-            });
-        },error: function (error) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: 'Item not added !'
-            });
+
+        Swal.fire({
+            timer: 100000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+            }
+        });
+
+        if ($('#item-img')[0].files.length === 0) {
+            formData.append('itemImage', new File([""], "notUpdate"));
+        }else {
+            formData.append('itemImage', $('#item-img')[0].files[0]);
         }
-    });
+
+        $.ajax({
+            type: 'PUT',
+            url: BASE_URL + 'api/v1/inventory',
+            headers: {
+                Authorization: 'Bearer ' + user.jwt
+            },
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                $('#inventory-modal').modal('hide');
+                clearInterval(timerInterval);
+                loadItems();
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: data
+                });
+
+
+            }, error: function (error) {
+                clearInterval(timerInterval);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: 'Item not added !'
+                });
+            }
+        });
+    } else {
+
+        Swal.fire({
+            timer: 100000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+            }
+        });
+
+        formData.append('itemImage', $('#item-img')[0].files[0]);
+        $.ajax({
+            type: 'POST',
+            url: BASE_URL + 'api/v1/inventory',
+            headers: {
+                Authorization: 'Bearer ' + user.jwt
+            },
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                clearInterval(timerInterval);
+                $('#inventory-modal').modal('hide');
+                loadItems();
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: data
+                });
+            }, error: function (error) {
+                clearInterval(timerInterval);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: 'Item not added !'
+                });
+            }
+        });
+    }
 
 });
 
@@ -104,7 +201,7 @@ function loadAllSupplierId() {
     });
 }
 
-function initializeTable(){
+function initializeTable() {
     $(document).ready(function () {
         $('#example').DataTable({
             "language": {
@@ -135,11 +232,11 @@ function loadItems() {
             let html = '';
             items.forEach(item => {
 
-                if (item.itemStatus === 'AVAILABLE'){
+                if (item.itemStatus === 'AVAILABLE') {
                     status = `<span class="badge bg-success">${item.itemStatus}</span>`;
-                }else if (item.itemStatus === 'LOW_STOCK'){
+                } else if (item.itemStatus === 'LOW_STOCK') {
                     status = `<span class="badge bg-warning">Low<20</span>`;
-                }else {
+                } else {
                     status = `<span class="badge bg-danger">${item.itemStatus}</span>`;
                 }
 
@@ -162,12 +259,13 @@ function loadItems() {
                         <td class="text-center">${item.profitMargin}</td>
                         <td class="text-center">${status}</td>
                         <td class="text-center text-white">
-                            <button class="btn btn-sm btn-primary">Edit</button>
+                            <button class="btn btn-sm btn-primary btn-edit-item"><i class="bi bi-pencil-square"></i></button>
                         </td>
                     </tr>
                 `;
             });
             $('#tbl-item-body').html(html);
+            setEvents();
         }, error: function (error) {
             console.log(error);
         }
@@ -195,6 +293,47 @@ function renderSupplier(id) {
         },
         error: function (error) {
             alert('Supplier not found !')
+        }
+    });
+}
+
+function setEvents() {
+    $('.btn-edit-item').on('click', function () {
+        $('#btn-add-item').text('Update Item');
+        itemCode = $(this).closest('tr').find('td:eq(1)').text();
+        renderItem(itemCode)
+        $('#inventory-modal').modal('show');
+    });
+}
+
+function renderItem(id) {
+    $.ajax({
+        type: 'GET',
+        url: BASE_URL + 'api/v1/inventory/' + id,
+        headers: {
+            Authorization: 'Bearer ' + user.jwt
+        },
+        success: function (data) {
+            $('#item-supplier').val(data.supplierId);
+            $('#item-desc').val(data.itemDescription);
+            $('#item-category').val(data.itemCategory);
+            $('#item-brand').val(data.brand);
+            $('#item-qty').val(data.qtyOnHand);
+            $('#item-size').val(data.size);
+            $('#item-buying-price').val(data.buyingPrice);
+            $('#item-selling-price').val(data.sellingPrice);
+            $('#item-expect-profit').val(data.expectedProfit);
+            $('#profit-margin').val(data.profitMargin);
+            $('#item-status').val(data.itemStatus);
+            $('#item-discount').val(data.discount);
+            $('#item-userbility').val(data.itemType);
+            $('#item-supplier').val(data.supplier.supplierCode);
+            $('#supplier-name').text(data.supplier.supplierName);
+            $('#item-gender').val(data.itemGender);
+            $('#item-img-preview').attr('src', 'https://drive.google.com/thumbnail?id=' + data.itemPicture + '&sz=w1000');
+        },
+        error: function (error) {
+            alert('Item not found !')
         }
     });
 }
