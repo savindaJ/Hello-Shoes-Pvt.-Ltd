@@ -29,4 +29,25 @@ public class CustomerController {
         boolean isSave = customerService.saveCustomer(customerDTO);
         return isSave ? ResponseEntity.created(new URI("/customers")).body("Customer Saved !") : ResponseEntity.badRequest().body("Customer Save Failed !");
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllCustomers(){
+        return ResponseEntity.ok(customerService.getAllCustomers());
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateCustomer(@RequestBody CustomerDTO customerDTO){
+        boolean isUpdate = customerService.updateCustomer(customerDTO);
+        return isUpdate ? ResponseEntity.ok("Customer Updated !") : ResponseEntity.badRequest().body("Customer Update Failed !");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCustomer(@PathVariable String id){
+        return ResponseEntity.ok(customerService.getCustomer(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCustomer(@PathVariable String id){
+        return ResponseEntity.ok(customerService.deleteCustomer(id));
+    }
 }

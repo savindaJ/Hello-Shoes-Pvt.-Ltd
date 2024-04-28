@@ -27,7 +27,7 @@ public class User {
     @JoinColumn(name = "empId", referencedColumnName = "empId")
     private Employee employee;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Customer> customers;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

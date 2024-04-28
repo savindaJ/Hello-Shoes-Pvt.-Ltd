@@ -39,4 +39,5 @@ public class CustomerDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Level level;
     private Date dob;
+    private Timestamp registeredDate;
 }
