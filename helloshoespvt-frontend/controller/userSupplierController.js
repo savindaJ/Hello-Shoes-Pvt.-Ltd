@@ -278,3 +278,35 @@ function initializeTable(){
     });
 }
 
+function loadSuppliersForRegeular() {
+    $.ajax({
+        type: 'GET',
+        url: BASE_URL + 'api/v1/suppliers',
+        headers: {
+            Authorization: 'Bearer ' + user.jwt
+        },
+        success: function (data) {
+            console.log(data)
+            let supplier = data;
+            let html = '';
+            supplier.forEach(supplier => {
+                html += `
+               <tr>
+                   <td class="text-center">${supplier.supplierCode}</td>
+                   <td class="text-center">${supplier.supplierName}</td>
+                   <td class="text-center">${supplier.supplierCategory}</td>
+                   <td class="text-center">${supplier.contact.land}</td>
+                   <td class="text-center">${supplier.contact.mobile}</td>
+                   <td class="text-center">${supplier.email}</td>
+                   <td class="text-center"> ${supplier.address.lane} , ${supplier.address.mainCity},${supplier.address.mainState},${supplier.address.mainCountry},${supplier.address.postalCode}</td>
+              </tr>
+                `;
+            });
+            $('#tbl-supplier-regeular-body').html(html);
+            new DataTable('#tbl-supplier-regeular');
+        },error: function (error) {
+            console.log(error);
+        }});
+}
+
+loadSuppliersForRegeular();

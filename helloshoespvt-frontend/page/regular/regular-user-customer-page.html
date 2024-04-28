@@ -48,7 +48,7 @@
                 <div class="dropdown pb-4">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
+                        <img id="user-image" alt="hugenerd" width="30" height="30"
                              class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
@@ -71,32 +71,36 @@
             </div>
 <!--            <hr>-->
             <section class="container">
-                <table id="example" class="table table-hover table-striped" style="width:100%">
+                <table id="tbl-customer-regeular" class="table table-hover table-striped" style="width:100%">
                     <thead class="bg-primary mb-2">
-                    <tr class="bg-primary rounded-2">
+                    <tr class="bg-primary rounded-2" style="font-size: 13px">
                         <th class="text-center bg-primary text-white">Name</th>
+                        <th class="text-center bg-primary text-white">ID</th>
                         <th class="text-center bg-primary text-white">Gender</th>
                         <th class="text-center bg-primary text-white">Join date</th>
+                        <th class="text-center bg-primary text-white">DOB</th>
+                        <th class="text-center bg-primary text-white">Last Perches</th>
                         <th class="text-center bg-primary text-white">Total Points</th>
                         <th class="text-center bg-primary text-white">Contact Number</th>
                         <th class="text-center bg-primary text-white">Level</th>
                         <th class="text-center bg-primary text-white">Email</th>
-                        <th class="text-center bg-primary text-white">Recent Perches</th>
-                        <th class="text-center bg-primary text-white">Recent Perches</th>
+                        <th class="text-center bg-primary text-white">Address</th>
                     </tr>
                     </thead>
-                    <tbody class="mt-5" id="tbl-customer-body"></tbody>
+                    <tbody class="mt-5" id="tbl-customer-regeular-body"></tbody>
                     <tfoot>
-                    <tr>
+                    <tr style="font-size: 13px">
+                        <th class="text-center">ID</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Gender</th>
                         <th class="text-center">Join date</th>
+                        <th class="text-center">DOB</th>
+                        <th class="text-center">Last Perches</th>
                         <th class="text-center">Total Points</th>
                         <th class="text-center">Contact Number</th>
                         <th class="text-center">Level</th>
                         <th class="text-center">Email</th>
-                        <th class="text-center">Recent Perches</th>
-                        <th class="text-center">Recent Perches</th>
+                        <th class="text-center">Address</th>
                     </tr>
                     </tfoot>
                 </table>
@@ -106,11 +110,11 @@
 </main>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.bundle.js"></script>
-<script src="../../controller/userCustomerController.js"></script>
+<script src="../../assets/js/sweetAlerts.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
-<script>
-    new DataTable('#example');
-</script>
+<script src="../../util/base.js"></script>
+<script src="../../controller/commonDetailController.js"></script>
+<script src="../../controller/userCustomerController.js"></script>
 </body>
 </html>

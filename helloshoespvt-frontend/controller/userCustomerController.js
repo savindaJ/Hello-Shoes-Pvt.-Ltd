@@ -242,3 +242,59 @@ function initializeTable(){
         });
     });
 }
+
+
+function loadRegeularUserCustomers(){
+    $.ajax({
+        url: BASE_URL + 'api/v1/customers',
+        type: 'GET',
+        headers: {
+            Authorization: 'Bearer ' + user.jwt
+        },
+        success: function (data) {
+            console.log(data)
+            initializeTable();  //initialize table
+            let customers = data;
+            let html = '';
+            customers.forEach(customer => {
+                html += `
+               <tr>
+                   <td class="text-center">${customer.customerId}</td>
+                   <td class="text-center">${customer.customerName}</td>
+                   <td class="text-center">${customer.gender}</td>
+                   <td class="text-center">${customer.registeredDate}</td>
+                   <td class="text-center">${customer.dob}</td>
+                   <td class="text-center">${customer.recentPurchaseDate}</td>
+                   <td class="text-center">${customer.totalPoints}</td>
+                   <td class="text-center">${customer.contact}</td>
+                   <td class="text-center">${customer.level}</td>
+                   <td class="text-center">${customer.email}</td>
+                   <td class="text-center">${customer.address.lane},${customer.address.mainState},${customer.address.mainCity},${customer.address.postalCode}</td>
+            </tr>
+                `;
+            });
+
+            $('#tbl-customer-regeular-body').html(html);
+        },
+        error: function (error) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: 'session expired'
+            });
+        }
+    });
+
+}
+
+loadRegeularUserCustomers();
