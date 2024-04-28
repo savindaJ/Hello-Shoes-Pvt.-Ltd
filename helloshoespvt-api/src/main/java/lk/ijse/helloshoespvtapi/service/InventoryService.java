@@ -21,4 +21,8 @@ public interface InventoryService {
     InventoryDTO getInventory(String itemCode);
 
     boolean updateInventory(InventoryDTO inventoryDTO, MultipartFile file) throws IOException;
+
+    List<String> getBrands();
+
+    List<InventoryDTO> getAvailableBrandItems(String brand);
 }

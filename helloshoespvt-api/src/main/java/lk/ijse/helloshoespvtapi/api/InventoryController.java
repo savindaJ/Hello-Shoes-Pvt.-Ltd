@@ -53,4 +53,14 @@ public class InventoryController {
         boolean isSave = inventoryService.updateInventory(inventoryDTO, file);
         return isSave ? ResponseEntity.ok("Inventory Updated !") : ResponseEntity.badRequest().body("Failed to update the inventory");
     }
+
+    @GetMapping("/get/brands")
+    public ResponseEntity<?> getBrands(){
+        return ResponseEntity.ok(inventoryService.getBrands());
+    }
+
+    @GetMapping("/available/{brand}")
+    public ResponseEntity<?> getAvailableInventory(@PathVariable String brand){
+        return ResponseEntity.ok(inventoryService.getAvailableBrandItems(brand));
+    }
 }

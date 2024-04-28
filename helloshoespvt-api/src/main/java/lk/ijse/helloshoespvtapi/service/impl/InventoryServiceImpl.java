@@ -52,7 +52,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<InventoryDTO> getAvailableInventory() {
-        return inventoryRepo.findAllByItemStatus(ItemStatus.AVAILABLE).stream().map(inventory -> modelMapper.map(inventory, InventoryDTO.class)).toList();
+        return inventoryRepo.findAllByItemStatusNot(ItemStatus.NOT_AVAILABLE).stream().map(inventory -> modelMapper.map(inventory, InventoryDTO.class)).toList();
     }
 
     @Override
@@ -88,5 +88,15 @@ public class InventoryServiceImpl implements InventoryService {
         }
         inventoryRepo.save(inventory);
         return true;
+    }
+
+    @Override
+    public List<String> getBrands() {
+        return inventoryRepo.getBrands();
+    }
+
+    @Override
+    public List<InventoryDTO> getAvailableBrandItems(String brand) {
+        return inventoryRepo.findAllByBrandAndItemStatusNot(brand, ItemStatus.NOT_AVAILABLE).stream().map(inventory -> modelMapper.map(inventory, InventoryDTO.class)).toList();
     }
 }
