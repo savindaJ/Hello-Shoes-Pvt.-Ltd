@@ -38,6 +38,7 @@ public class Inventory {
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus;
     private String supplierName;
+    private Integer itemSoldCount;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Supplier supplier;

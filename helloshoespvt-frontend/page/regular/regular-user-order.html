@@ -85,7 +85,7 @@
                         <button class="btn btn-secondary rounded-circle me-2" id="btn-move-right"> ></button>
                     </div>
                     <div class="tab-content overflow-y-scroll" style="height: 83vh">
-                        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-6 flex-wrap me-2"
+                        <div class="row row-cols-md-2 row-cols-sm-6 row-cols-lg-4 flex-wrap me-2"
                              id="product-content"></div>
                     </div>
                 </section>
@@ -140,78 +140,7 @@
                             </div>
                         </div>
                         <small class="text-secondary">Product</small>
-                        <section class="mt-1 overflow-y-scroll" style="height: 250px">
-                            <div class="border mt-1 rounded-4">
-                                <div class="d-flex">
-                                    <img src="../../assets/images/shoe-2.jpg" style="width: 80px;height: 80px">
-                                    <div class="d-flex flex-column ms-3 p-2">
-                                        <small class="text-dark">Nike Air Max</small>
-                                        <small class="text-dark">Rs. 4200</small>
-                                        <small class="text-dark">Large</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end rounded-4">
-                                    <div class="d-flex gap-3 bg-secondary rounded-4">
-                                        <button class="btn btn-secondary rounded-4 btn-sm">-</button>
-                                        <small class="text-dark mt-1 text-white">1</small>
-                                        <button class="btn btn-secondary rounded-4 btn-sm">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border mt-1 rounded-4">
-                                <div class="d-flex">
-                                    <img src="../../assets/images/shoe-2.jpg" style="width: 80px;height: 80px">
-                                    <div class="d-flex flex-column ms-3 p-2">
-                                        <small class="text-dark">Nike Air Max</small>
-                                        <small class="text-dark">Rs. 4200</small>
-                                        <small class="text-dark">Large</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end rounded-4">
-                                    <div class="d-flex gap-3 bg-secondary rounded-4">
-                                        <button class="btn btn-secondary rounded-4 btn-sm">-</button>
-                                        <small class="text-dark mt-1 text-white">1</small>
-                                        <button class="btn btn-secondary rounded-4 btn-sm">+</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="border mt-1 rounded-4">
-                                <div class="d-flex">
-                                    <img src="../../assets/images/shoe-2.jpg" style="width: 80px;height: 80px">
-                                    <div class="d-flex flex-column ms-3 p-2">
-                                        <small class="text-dark">Nike Air Max</small>
-                                        <small class="text-dark">Rs. 4200</small>
-                                        <small class="text-dark">Large</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end rounded-4">
-                                    <div class="d-flex gap-3 bg-secondary rounded-4">
-                                        <button class="btn btn-secondary rounded-4 btn-sm">-</button>
-                                        <small class="text-dark mt-1 text-white">1</small>
-                                        <button class="btn btn-secondary rounded-4 btn-sm">+</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="border mt-1 mt-1 rounded-4">
-                                <div class="d-flex">
-                                    <img src="../../assets/images/shoe-2.jpg" style="width: 80px;height: 80px">
-                                    <div class="d-flex flex-column ms-3 p-2">
-                                        <small class="text-dark">Nike Air Max</small>
-                                        <small class="text-dark">Rs. 4200</small>
-                                        <small class="text-dark">Large</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end rounded-4">
-                                    <div class="d-flex gap-3 bg-secondary rounded-4">
-                                        <button class="btn btn-secondary rounded-4 btn-sm">-</button>
-                                        <small class="text-dark mt-1 text-white">1</small>
-                                        <button class="btn btn-secondary rounded-4 btn-sm">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        <section class="mt-1 overflow-y-scroll border" style="height: 250px" id="cart"></section>
 
                         <div class="d-flex justify-content-sm-around mt-1">
                             <div class="form-check">
@@ -235,17 +164,14 @@
                         <section class="bg-info-subtle rounded-2 mt-1 p-2">
                             <div class="d-flex justify-content-between">
                                 <h6>Subtotal</h6>
-                                <small>$ 100.00</small>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h6>Discount</h6>
-                                <small>$ 0.00</small>
+                                <small id="txt-sub-total"></small>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h6>Balance</h6>
-                                <small>$ 10.00</small>
+                                <small id="txt-balance"></small>
                             </div>
                         </section>
+                        <button class="btn btn-danger w-100 mt-1" id="btn-clear">Clear</button>
                         <button class="btn btn-primary w-100 mt-1">Proceed Order</button>
                     </section>
                 </section>
