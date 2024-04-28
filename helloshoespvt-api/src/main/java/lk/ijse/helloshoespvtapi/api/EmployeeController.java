@@ -48,8 +48,8 @@ public class EmployeeController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateEmployee(@RequestParam("employee") String employee) throws IOException {
-        boolean isUpdate = employeeService.updateEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class));
+    public ResponseEntity<?> updateEmployee(@RequestParam("employee") String employee,@RequestParam("image") MultipartFile file) throws IOException {
+        boolean isUpdate = employeeService.updateEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class),file);
         return isUpdate ? ResponseEntity.ok("Employee Updated !") : ResponseEntity.badRequest().body("Failed to update the employee");
     }
 }

@@ -20,5 +20,5 @@ public interface EmployeeService {
 
     EmployeeDTO getEmployee(String empId);
 
-    boolean updateEmployee(EmployeeDTO employeeDTO) throws IOException;
+    boolean updateEmployee(EmployeeDTO employeeDTO,MultipartFile file) throws IOException;
 }

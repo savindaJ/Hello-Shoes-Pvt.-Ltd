@@ -16,8 +16,24 @@ $('#emp-img').on('change', function () {
         $('#emp-img-preview').attr('src', reader.result);
     };
 });
-
+let timerInterval;
 $('#btn-add-emp').click(function () {
+
+    Swal.fire({
+        timer: 100000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading();
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+        }
+    });
 
     let formData = new FormData();
     const employee = {
@@ -45,6 +61,11 @@ $('#btn-add-emp').click(function () {
 
     if ($(this).text() === 'Update Employee') {
         formData.append('employee', JSON.stringify(employee));
+        if ($('#emp-img')[0].files.length === 0) {
+            formData.append('image', new File([""], "notUpdate"));
+        }else {
+            formData.append('image', $('#emp-img')[0].files[0]);
+        }
         $.ajax({
             url: BASE_URL + 'api/v1/employee',
             type: 'PUT',
@@ -55,6 +76,7 @@ $('#btn-add-emp').click(function () {
                 "Authorization": "Bearer " + user.jwt
             },
             success: function (data) {
+                clearInterval(timerInterval);
                 loadAllAdmins();
                 loadAllUsers();
                 $('#employee-modal').modal('hide');
@@ -76,6 +98,7 @@ $('#btn-add-emp').click(function () {
                 $('#employee-modal').modal('hide');
             },
             error: function (error) {
+                clearInterval(timerInterval);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -106,6 +129,7 @@ $('#btn-add-emp').click(function () {
                 "Authorization": "Bearer " + user.jwt
             },
             success: function (data) {
+                clearInterval(timerInterval);
                 loadAllAdmins();
                 loadAllUsers();
                 $('#branch-modal').modal('hide');
@@ -127,6 +151,7 @@ $('#btn-add-emp').click(function () {
                 $('#employee-modal').modal('hide');
             },
             error: function (error) {
+                clearInterval(timerInterval);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",

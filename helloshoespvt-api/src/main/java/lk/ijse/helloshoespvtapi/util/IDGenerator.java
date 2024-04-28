@@ -31,6 +31,11 @@ public class IDGenerator {
         String uuid = UUID.randomUUID().toString();
         return String.format("%s%s%s-%s",itemType.toString().charAt(0),"S", itemGender.toString().charAt(0), uuid.substring(0, 6));
     }
+
+    public static String generateCustomerId() {
+        String uuid = UUID.randomUUID().toString();
+        return "CUS-"+uuid.substring(0, 6);
+    }
 }
 
 

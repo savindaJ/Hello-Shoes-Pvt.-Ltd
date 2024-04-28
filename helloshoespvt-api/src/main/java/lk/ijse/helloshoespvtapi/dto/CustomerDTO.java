@@ -1,48 +1,42 @@
-package lk.ijse.helloshoespvtapi.entity;
+package lk.ijse.helloshoespvtapi.dto;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lk.ijse.helloshoespvtapi.embedded.Address;
 import lk.ijse.helloshoespvtapi.enums.Gender;
 import lk.ijse.helloshoespvtapi.enums.Level;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author : savindaJ
- * @date : 4/26/2024
+ * @date : 4/28/2024
  * @since : 0.1.0
  **/
-@Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
-    @Id
+public class CustomerDTO {
+    private String userEmail;
     private String customerId;
     private String customerName;
-    @Enumerated(EnumType.STRING)
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Gender gender;
-    @CreationTimestamp
-    private Timestamp registeredDate;
     private Integer totalPoints;
-    @Column(unique = true)
     private String contact;
     private String email;
     private Date recentPurchaseDate;
     private Address address;
-    @Enumerated(EnumType.STRING)
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Level level;
     private Date dob;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Sale> sales;
 }

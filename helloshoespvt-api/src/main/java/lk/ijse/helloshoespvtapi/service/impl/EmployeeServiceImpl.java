@@ -106,7 +106,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean updateEmployee(EmployeeDTO employeeDTO) {
+    public boolean updateEmployee(EmployeeDTO employeeDTO,MultipartFile file) throws IOException {
         Employee employee = employeeRepo.findById(employeeDTO.getEmpId()).orElseThrow();
         Branch branch = branchService.getBranchById(employeeDTO.getBranchId());
         employee.setBranch(branch);
@@ -119,6 +119,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDob(employeeDTO.getDob());
         employee.setGender(employeeDTO.getGender());
         employee.setAddress(employeeDTO.getAddress());
+        if (!file.getOriginalFilename().equals("notUpdate")){
+            String image = uploadService.uploadFile(file);
+            employee.setProfilePic(image);
+        }
         employeeRepo.save(employee);
         return true;
     }

@@ -201,21 +201,7 @@ function loadAllSupplierId() {
     });
 }
 
-function initializeTable() {
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "language": {
-                "search": "Search Supplier:",
-                "lengthMenu": "Display count _MENU_",
-                "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                "infoEmpty": "Showing 0 to 0 of 0 records",
-                "infoFiltered": "(filtered from _MAX_ total records)",
-            }
-        });
-    });
-}
 
-initializeTable();
 
 function loadItems() {
     $.ajax({
@@ -266,6 +252,7 @@ function loadItems() {
             });
             $('#tbl-item-body').html(html);
             setEvents();
+            initializeTable();
         }, error: function (error) {
             console.log(error);
         }
@@ -337,3 +324,18 @@ function renderItem(id) {
         }
     });
 }
+
+function initializeTable() {
+    $(document).ready(function () {
+        $('#tbl-inventory').DataTable({
+            "language": {
+                "search": "Search Supplier:",
+                "lengthMenu": "Display count _MENU_",
+                "info": "Showing _START_ to _END_ of _TOTAL_ records",
+                "infoEmpty": "Showing 0 to 0 of 0 records",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+            }
+        });
+    });
+}
+

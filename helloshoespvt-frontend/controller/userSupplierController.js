@@ -156,7 +156,7 @@ function loadSuppliers() {
                 `;
             });
             $('#tbl-supplier-body').html(html);
-
+            initializeTable();
             setEvent();
         },error: function (error) {
             console.log(error);
@@ -164,21 +164,7 @@ function loadSuppliers() {
 }
 
 loadSuppliers();
-function initializeTable(){
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "language": {
-                "search": "Search Supplier:",
-                "lengthMenu": "Display count _MENU_",
-                "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                "infoEmpty": "Showing 0 to 0 of 0 records",
-                "infoFiltered": "(filtered from _MAX_ total records)",
-            }
-        });
-    });
-}
 
-initializeTable();
 function setEvent(){
 
 
@@ -277,3 +263,18 @@ function renderSupplier(id) {
         }
     });
 }
+
+function initializeTable(){
+    $(document).ready(function () {
+        $('#tbl-supplier').DataTable({
+            "language": {
+                "search": "Search Supplier:",
+                "lengthMenu": "Display count _MENU_",
+                "info": "Showing _START_ to _END_ of _TOTAL_ records",
+                "infoEmpty": "Showing 0 to 0 of 0 records",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+            }
+        });
+    });
+}
+

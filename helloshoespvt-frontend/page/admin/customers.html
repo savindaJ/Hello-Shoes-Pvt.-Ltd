@@ -138,7 +138,7 @@
         </div>
       </nav>
       <section class="mt-2 container-fluid d-flex justify-content-end">
-        <button class="btn btn-sm btn-primary" style="height: 35px" type="button">Add loyalty Customer
+        <button class="btn btn-sm btn-primary" id="btn-add-customer" style="height: 35px" type="button">Add loyalty Customer
         </button>
       </section>
       <section class="p-3">
@@ -148,6 +148,7 @@
             <th class="text-center bg-primary text-white">Name</th>
             <th class="text-center bg-primary text-white">Gender</th>
             <th class="text-center bg-primary text-white">Join date</th>
+            <th class="text-center bg-primary text-white">Last Perches date</th>
             <th class="text-center bg-primary text-white">Total Points</th>
             <th class="text-center bg-primary text-white">Contact Number</th>
             <th class="text-center bg-primary text-white">Level</th>
@@ -162,6 +163,7 @@
             <th class="text-center">Name</th>
             <th class="text-center">Gender</th>
             <th class="text-center">Join date</th>
+            <th class="text-center">Last Perches date</th>
             <th class="text-center">Total Points</th>
             <th class="text-center">Contact Number</th>
             <th class="text-center">Level</th>
@@ -175,16 +177,93 @@
     </div>
   </div>
 
+  <div class="modal fade" id="customer-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h1 class="modal-title fs-5 " id="staticBackdropLabel">Add New Customer</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="supplier-inputs">
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-1">
+                  <label for="customer-name" class="form-label">Customer Name</label>
+                  <input type="text" class="form-control" id="customer-name">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-gender" class="form-label">Customer Gender</label>
+                  <select class="form-select" aria-label="Default select example" id="customer-gender">
+                    <option selected></option>
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                  </select>
+                </div>
+                <div class="mb-1">
+                  <label for="customer-contact" class="form-label" id="lbl-status">Customer Contact</label>
+                  <input type="text" class="form-control" id="customer-contact">
+                </div>
+                <div class="mb-1">
+                  <label for="sup-contact-2" class="form-label">Supplier Contact No 2</label>
+                  <input type="text" class="form-control" id="sup-contact-2">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="customer-email">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-dob" class="form-label">Customer Birthday</label>
+                  <input type="date" class="form-control" id="customer-dob">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-1">
+                  <label for="customer-address-lane" class="form-label">Address main Lane</label>
+                  <input type="text" class="form-control" id="customer-address-lane">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-address-state" class="form-label">Address main State</label>
+                  <input type="text" class="form-control" id="customer-address-state">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-address-country" class="form-label">Address main Country</label>
+                  <input type="text" class="form-control" id="customer-address-country">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-address-city" class="form-label">Address main city</label>
+                  <input type="text" class="form-control" id="customer-address-city">
+                </div>
+                <div class="mb-1">
+                  <label for="customer-address-code" class="form-label">Address postal Code</label>
+                  <input type="text" class="form-control" id="customer-address-code">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btn-save-customer">Add Supplier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 </body>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>
+<script src="../../assets/js/sweetAlerts.js"></script>
+<script src="../../util/base.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <script src="../../controller/commonDetailController.js"></script>
+<script src="../../controller/userCustomerController.js"></script>
 <script>
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 0; i++) {
     $('#tbl-customer-body').append(`
         <tr>
              <td class="text-center">${i}</td>
@@ -192,6 +271,7 @@
              <td class="text-center">Edinburgh</td>
              <td class="text-center">61</td>
              <td class="text-center">2011-04-25</td>
+             <td class="text-center">2011-04-30</td>
              <td class="text-center">$320,800</td>
              <td class="text-center">$320,800</td>
              <td class="text-center">savinda , sirisumana mw dickwalla</td>
