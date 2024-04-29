@@ -92,14 +92,6 @@
                 <section class="col-3 border-start position-fixed end-0 overflow-y-scroll" style="height: 100vh">
                     <section class="p-3">
                         <h4>Order Details</h4>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="text-secondary">ID Order</h6>
-                            <small class="text-dark">#1212128j2hhj12</small>
-                        </div>
-<!--                        <div class="d-flex justify-content-between">-->
-<!--                            <h6 class="text-secondary">Date</h6>-->
-<!--                            <small class="text-dark">Monday,5/13/2022</small>-->
-<!--                        </div>-->
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
@@ -122,9 +114,6 @@
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                  aria-labelledby="nav-profile-tab" tabindex="0">
-                                <div class="d-flex justify-content-end mt-1">
-                                    <button class="btn btn-secondary btn-sm">Add Loyalty</button>
-                                </div>
                                 <div class="mt-1">
                                     <input type="text" class="form-control input-group-sm"
                                            placeholder="Customer Mobile">
@@ -136,6 +125,10 @@
                                 <div class="d-flex justify-content-sm-between mt-1">
                                     <h6 class="text-secondary">Loyalty Point</h6>
                                     <small class="text-dark">100</small>
+                                </div>
+                                <div class="d-flex justify-content-sm-between mt-1">
+                                    <h6 class="text-secondary">Added Point</h6>
+                                    <small class="text-dark" id="added-new-point">1</small>
                                 </div>
                             </div>
                         </div>
@@ -163,12 +156,8 @@
 
                         <section class="bg-info-subtle rounded-2 mt-1 p-2">
                             <div class="d-flex justify-content-between">
-                                <h6>Subtotal</h6>
-                                <small id="txt-sub-total"></small>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h6>Balance</h6>
-                                <small id="txt-balance"></small>
+                                <h5 class="">Subtotal</h5>
+                                <h5 id="txt-sub-total">RS. 1200</h5>
                             </div>
                         </section>
                         <button class="btn btn-danger w-100 mt-1" id="btn-clear">Clear</button>

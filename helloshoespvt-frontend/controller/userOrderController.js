@@ -180,6 +180,8 @@ function setEvent() {
         if (!cart.find(p => p.itemCode === product.itemCode)) {
             subTotal += product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
+            let point = Math.ceil(subTotal/800)
+            $('#added-new-point').text(point+'');
             cart.push(product);
         }
         renderCart();
@@ -229,6 +231,8 @@ function setQtyEvent() {
             $(this).siblings('.txt-qty').text(qty);
             subTotal -= product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
+            let point = Math.ceil(subTotal/800)
+            $('#added-new-point').text(point+'');
         }
     });
 
@@ -241,6 +245,8 @@ function setQtyEvent() {
             $(this).siblings('.txt-qty').text(qty);
             subTotal += product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
+            let point = Math.ceil(subTotal/800)
+            $('#added-new-point').text(point+'');
         }
     });
 }
