@@ -196,7 +196,7 @@ function renderCart() {
                   <div class="d-flex">
                       <img <img src="https://drive.google.com/thumbnail?id=${product.itemPicture}&sz=w1000" width="100" style="width: 80px;height: 80px">
                       <div class="d-flex flex-column ms-3 p-2">
-                          <small class="text-dark">${product.itemDescription}</small>
+                          <small class="text-dark">${product.itemCode}</small>
                           <small class="text-dark">Rs. ${product.sellingPrice} /=</small>
                           <small class="text-dark">Size: ${product.size}</small>
                       </div>
