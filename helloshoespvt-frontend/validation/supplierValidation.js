@@ -27,6 +27,7 @@ function validateEmployee() {
             isValid = false;
         } else {
             item.field.removeClass("is-invalid");
+            item.field.addClass("is-valid");
         }
     });
     return isValid;

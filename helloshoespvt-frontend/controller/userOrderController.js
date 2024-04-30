@@ -201,7 +201,8 @@ function renderCart() {
                           <small class="text-dark">Size: ${product.size}</small>
                       </div>
                   </div>
-                  <div class="d-flex justify-content-end rounded-4">
+                  <div class="d-flex justify-content-sm-between rounded-4">
+                  <button class="btn btn-danger btn-sm btn-remove-cart-item"><i class="bi bi-trash3-fill"></i></button>
                       <div class="d-flex gap-3 bg-secondary rounded-4">
                           <button class="btn btn-secondary rounded-4 btn-sm btn-increse-qty">-</button>
                           <small class="text-dark mt-1 text-white txt-qty">1</small>
@@ -245,9 +246,57 @@ function setQtyEvent() {
             $(this).siblings('.txt-qty').text(qty);
             subTotal += product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
-            let point = Math.ceil(subTotal/800)
+            let point = Math.ceil(subTotal/800);
             $('#added-new-point').text(point+'');
         }
     });
+
+    $('.btn-remove-cart-item').on('click', function () {
+        let index = $(this).closest('.cart-item').index();
+        let product = cart[index];
+        subTotal -= product.sellingPrice - (product.sellingPrice * product.discount / 100);
+        $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
+        let point = Math.ceil(subTotal/800);
+        $('#added-new-point').text(point+'');
+        cart.splice(index, 1);
+        renderCart();
+    });
 }
+
+$('#txt-search-product').on('keyup', function () {
+    let search = $(this).val();
+    let filtered = productList.filter(p => p.itemCode.toLowerCase().includes(search.toLowerCase()) || p.itemDescription.toLowerCase().includes(search.toLowerCase()));
+    $('#product-content').empty();
+    for (const product of filtered) {
+        $('#product-content').append(`
+             <div class="col mt-3 z-1">
+                <div class="card h-100">
+                 <img src="https://drive.google.com/thumbnail?id=${product.itemPicture}&sz=w1000" width="100" height="120" class="card-img-top" alt="...">
+                 <div class="card-body">
+                 <small>${product.itemCode}</small>
+                     <div class="d-flex justify-content-sm-between">
+                         <small>${product.itemDescription}</small>
+                         <small>${product.itemGender}</small>
+                     </div>
+                     <div class="d-flex justify-content-sm-between">
+                         <small>Size: ${product.size}</small>
+                         <small>1k Sold</small>
+                     </div>
+                      <div class="d-flex justify-content-sm-between">
+                         <small class="text-danger">Discount :</small>
+                         <small class="text-danger">${product.discount}%</small>
+                     </div>
+                     <div class="d-flex justify-content-sm-between">
+                         <small class="text-primary">QtyOnHand :</small>
+                         <small class="text-primary">${product.qtyOnHand}</small>
+                     </div>
+                     
+                     <h5 class="card-title m-2 text-center">Rs. ${product.sellingPrice} /=</h5>
+                     <button class="btn btn-primary w-100 btn-add-cart">Add to cart</button>
+                </div>
+            </div>
+        </div>`);
+    }
+
+});
 

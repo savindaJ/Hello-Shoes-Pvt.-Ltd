@@ -66,6 +66,7 @@ $('#btn-save-customer').on('click',function () {
             });
             $('#customer-modal').modal('hide');
             loadAllCustomers();
+            loadRegeularUserCustomers();
         },
         error: function (error) {
             const Toast = Swal.mixin({
@@ -81,7 +82,7 @@ $('#btn-save-customer').on('click',function () {
             });
             Toast.fire({
                 icon: "error",
-                title: 'Failed to update employee'
+                title: 'Fail Customer Saved !'
             });
         }
     });
@@ -275,6 +276,17 @@ function loadRegeularUserCustomers(){
             });
 
             $('#tbl-customer-regeular-body').html(html);
+            $(document).ready(function () {
+                $('#tbl-customer-regeular').DataTable({
+                    "language": {
+                        "search": "Search Supplier:",
+                        "lengthMenu": "Display count _MENU_",
+                        "info": "Showing _START_ to _END_ of _TOTAL_ records",
+                        "infoEmpty": "Showing 0 to 0 of 0 records",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                    }
+                });
+            });
         },
         error: function (error) {
             const Toast = Swal.mixin({
