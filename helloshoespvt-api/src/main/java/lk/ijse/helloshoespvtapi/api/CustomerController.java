@@ -50,4 +50,14 @@ public class CustomerController {
     public ResponseEntity<?> deleteCustomer(@PathVariable String id){
         return ResponseEntity.ok(customerService.deleteCustomer(id));
     }
+
+    @GetMapping("/contact-list")
+    public ResponseEntity<?> getContactList(){
+        return ResponseEntity.ok(customerService.getContactList());
+    }
+
+    @GetMapping("/get/contact/{id}")
+    public ResponseEntity<?> getContact(@PathVariable String id){
+        return ResponseEntity.ok(customerService.getCustomerByContact(id));
+    }
 }

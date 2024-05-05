@@ -67,4 +67,14 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepo.deleteById(id);
         return "Customer Deleted !";
     }
+
+    @Override
+    public List<String> getContactList() {
+        return customerRepo.findAllByContact();
+    }
+
+    @Override
+    public CustomerDTO getCustomerByContact(String id) {
+        return mapper.map(customerRepo.findCustomerByContact(id),CustomerDTO.class);
+    }
 }

@@ -19,4 +19,8 @@ public interface CustomerService {
     CustomerDTO getCustomer(String id);
 
     String deleteCustomer(String id);
+
+    List<String> getContactList();
+
+    CustomerDTO getCustomerByContact(String id);
 }

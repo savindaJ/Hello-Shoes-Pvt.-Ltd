@@ -219,6 +219,12 @@ $('#btn-clear').on('click', function () {
     subTotal = 0;
     $('#cart').empty();
     $('#txt-sub-total').text('Rs. 0 /=');
+    $('#txt-point').text('0');
+    $('#txt-cus-contact').val('');
+    $('#txt-customer-name').text('');
+    $('#txt-cus-contact').css({
+        'border-color': 'gray'
+    });
 });
 
 function setQtyEvent() {
@@ -300,3 +306,48 @@ $('#txt-search-product').on('keyup', function () {
 
 });
 
+function setCustomerContacts() {
+    $.ajax({
+        url: BASE_URL + 'api/v1/customers/contact-list',
+        headers: {
+            Authorization : 'Bearer ' + user.jwt
+        },
+        type: 'GET',
+        success: function (response) {
+            console.log(response);
+            for (const contact of response) {
+                $('#list-customerList').append(`
+                    <option value=${contact}></option>
+                `);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }});
+}
+
+setCustomerContacts();
+
+$('#txt-cus-contact').on('keypress', function () {
+    let contact = $(this).val();
+    $.ajax({
+        url: BASE_URL + 'api/v1/customers/get/contact/' + contact,
+        headers: {
+            Authorization : 'Bearer ' + user.jwt
+        },
+        type: 'GET',
+        success: function (response) {
+            console.log(response);
+            $('#txt-customer-name').text(response.customerName);
+            $('#txt-point').text(response.totalPoints === null ? 0 : response.totalPoints);
+            $('#txt-cus-contact').css({
+                'border-color': 'green'
+            });
+        },
+        error: function (error) {
+            $('#txt-cus-contact').css({
+                'border-color': 'red'
+            });
+        }
+    });
+});

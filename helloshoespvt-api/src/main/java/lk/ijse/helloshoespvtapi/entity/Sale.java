@@ -22,10 +22,10 @@ import java.util.List;
 public class Sale {
     @Id
     private String saleId;
-    private String itemDescription;
+//    private String itemDescription;
     private Integer itemQty;
-    private Integer size;
-    private Double unitPrice;
+//    private Integer size;
+//    private Double unitPrice;
     private Double totalPrice;
     private String customerName;
     private String cashierName;
