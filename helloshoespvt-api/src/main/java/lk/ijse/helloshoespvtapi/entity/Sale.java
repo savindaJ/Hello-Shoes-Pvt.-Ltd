@@ -26,7 +26,7 @@ public class Sale {
     private Integer itemQty;
 //    private Integer size;
 //    private Double unitPrice;
-    private Double totalPrice;
+    private Double subTotal;
     private String customerName;
     private String cashierName;
     private Integer addedPoints;

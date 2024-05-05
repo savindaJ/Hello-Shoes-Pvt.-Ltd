@@ -5,6 +5,10 @@ let cart = [];
 
 let subTotal = 0;
 
+let paymentMethod = 'cash';
+
+let isDemoUser = true;
+
 function loadBrands() {
     $.ajax({
         url: BASE_URL + 'api/v1/inventory/get/brands',
@@ -182,10 +186,13 @@ function setEvent() {
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
             let point = Math.ceil(subTotal/800)
             $('#added-new-point').text(point+'');
+            product.getqty = 1;
             cart.push(product);
         }
         renderCart();
+        console.log(cart);
     });
+
 }
 
 function renderCart() {
@@ -236,6 +243,7 @@ function setQtyEvent() {
         if (qty > 1) {
             qty--;
             $(this).siblings('.txt-qty').text(qty);
+            product.getqty = qty;
             subTotal -= product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
             let point = Math.ceil(subTotal/800)
@@ -250,6 +258,7 @@ function setQtyEvent() {
         if (qty < product.qtyOnHand) {
             qty++;
             $(this).siblings('.txt-qty').text(qty);
+            product.getqty = qty;
             subTotal += product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
             let point = Math.ceil(subTotal/800);
@@ -328,6 +337,7 @@ function setCustomerContacts() {
 
 setCustomerContacts();
 
+
 $('#txt-cus-contact').on('keypress', function () {
     let contact = $(this).val();
     $.ajax({
@@ -351,3 +361,60 @@ $('#txt-cus-contact').on('keypress', function () {
         }
     });
 });
+
+$('#pay-method input').on('change', function () {
+    paymentMethod = $(this).val();
+    console.log(paymentMethod);
+});
+
+$('#nav-demo-tab').on('click', function () {
+    isDemoUser = true;
+    console.log(isDemoUser);
+});
+
+$('#nav-tab-loyality').on('click', function () {
+    isDemoUser = false;
+    console.log(isDemoUser);
+});
+
+$('#btn-proceed-order').on('click', function () {
+    let contact = $('#txt-cus-contact').val();
+    let customerName = $('#txt-customer-name').text();
+    let point = $('#added-new-point').text();
+    let demoCusName = $('#txt-demo-name').val() === '' ? 'Demo Customer' : $('#txt-demo-name').val()
+    let order = {
+        customerContact: contact,
+        customerName: isDemoUser === true ? demoCusName : customerName,
+        subTotal: subTotal,
+        addedPoints: point,
+        orderDetails: cart,
+        cashierName: user.username,
+        paymentMethod: paymentMethod,
+        isDemo: isDemoUser
+    };
+    console.log(order);
+    // $.ajax({
+    //     url: BASE_URL + 'api/v1/sale/place',
+    //     headers: {
+    //         Authorization: 'Bearer ' + user.jwt
+    //     },
+    //     type: 'POST',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify(order),
+    //     success: function (response) {
+    //         console.log(response);
+    //         $('#btn-clear').click();
+    //         $('#txt-cus-contact').val('');
+    //         $('#txt-customer-name').text('');
+    //         $('#txt-cus-contact').css({
+    //             'border-color': 'gray'
+    //         });
+    //     },
+    //     error: function (error) {
+    //         console.log(error);
+    //     }
+    // });
+});
+
+
+// name into / functiolity / login / admin / companay management / user manage ment / client login / er function / requested doceument / pet / vacine /
