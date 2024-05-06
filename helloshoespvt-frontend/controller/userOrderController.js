@@ -374,7 +374,6 @@ $('#nav-demo-tab').on('click', function () {
 
 $('#nav-tab-loyality').on('click', function () {
     isDemoUser = false;
-    console.log(isDemoUser);
 });
 
 $('#btn-proceed-order').on('click', function () {
@@ -415,6 +414,3 @@ $('#btn-proceed-order').on('click', function () {
     //     }
     // });
 });
-
-
-// name into / functiolity / login / admin / companay management / user manage ment / client login / er function / requested doceument / pet / vacine /
