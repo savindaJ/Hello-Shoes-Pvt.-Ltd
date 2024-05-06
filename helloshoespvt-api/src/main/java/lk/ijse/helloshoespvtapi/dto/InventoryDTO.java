@@ -28,6 +28,7 @@ public class InventoryDTO {
     private Integer qtyOnHand;
     private Integer size;
     private Double buyingPrice;
+    private Integer getqty;
     private String brand;
     private Double sellingPrice;
     private Double expectedProfit;

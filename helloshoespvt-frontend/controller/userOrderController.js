@@ -5,7 +5,7 @@ let cart = [];
 
 let subTotal = 0;
 
-let paymentMethod = 'cash';
+let paymentMethod = 'CASH';
 
 let isDemoUser = true;
 
@@ -364,7 +364,6 @@ $('#txt-cus-contact').on('keypress', function () {
 
 $('#pay-method input').on('change', function () {
     paymentMethod = $(this).val();
-    console.log(paymentMethod);
 });
 
 $('#nav-demo-tab').on('click', function () {
@@ -392,25 +391,27 @@ $('#btn-proceed-order').on('click', function () {
         isDemo: isDemoUser
     };
     console.log(order);
-    // $.ajax({
-    //     url: BASE_URL + 'api/v1/sale/place',
-    //     headers: {
-    //         Authorization: 'Bearer ' + user.jwt
-    //     },
-    //     type: 'POST',
-    //     contentType: 'application/json',
-    //     data: JSON.stringify(order),
-    //     success: function (response) {
-    //         console.log(response);
-    //         $('#btn-clear').click();
-    //         $('#txt-cus-contact').val('');
-    //         $('#txt-customer-name').text('');
-    //         $('#txt-cus-contact').css({
-    //             'border-color': 'gray'
-    //         });
-    //     },
-    //     error: function (error) {
-    //         console.log(error);
-    //     }
-    // });
+    $.ajax({
+        url: BASE_URL + 'api/v1/sale',
+        headers: {
+            Authorization: 'Bearer ' + user.jwt
+        },
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(order),
+        success: function (response) {
+            console.log(response);
+            $('#btn-clear').click();
+            $('#txt-cus-contact').val('');
+            $('#txt-customer-name').text('');
+            $('#txt-cus-contact').css({
+                'border-color': 'gray'
+            });
+            $('#txt-demo-name').val('');
+            loadProducts();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 });

@@ -1,8 +1,7 @@
 package lk.ijse.helloshoespvtapi.api;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.ijse.helloshoespvtapi.dto.SaleDTO;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : savindaJ
@@ -10,11 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @since : 0.1.0
  **/
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/sale")
 public class SaleController {
 
     @PostMapping
-    public void saveSale(){
-
+    public void saveSale(@RequestBody SaleDTO saleDTO){
+        System.out.println(saleDTO);
     }
 }
