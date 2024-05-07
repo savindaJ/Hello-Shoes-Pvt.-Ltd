@@ -32,6 +32,8 @@ public class InventoryDTO {
     private String brand;
     private Double sellingPrice;
     private Double expectedProfit;
+    private Integer itemSoldCount;
+    private Integer getStockTotal;
     private Double profitMargin;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private ItemStatus itemStatus;

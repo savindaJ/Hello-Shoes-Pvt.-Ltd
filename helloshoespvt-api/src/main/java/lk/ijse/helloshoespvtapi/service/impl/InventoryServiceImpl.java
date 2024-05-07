@@ -44,6 +44,7 @@ public class InventoryServiceImpl implements InventoryService {
         Inventory map = modelMapper.map(inventoryDTO, Inventory.class);
         map.setSupplier(supplierRepo.findById(inventoryDTO.getSupplierId()).get());
         map.setItemPicture(image);
+        map.setGetStockTotal(inventoryDTO.getQtyOnHand());
         map.setSupplierName(map.getSupplier().getSupplierName());
         map.setItemCode(IDGenerator.generateItemCode(inventoryDTO.getItemGender(), inventoryDTO.getItemType(), inventoryDTO.getItemDescription()));
         inventoryRepo.save(map);
@@ -82,6 +83,7 @@ public class InventoryServiceImpl implements InventoryService {
         inventory.setExpectedProfit(inventoryDTO.getExpectedProfit());
         inventory.setProfitMargin(inventoryDTO.getProfitMargin());
         inventory.setItemStatus(inventoryDTO.getItemStatus());
+        inventory.setGetStockTotal(inventoryDTO.getQtyOnHand());
         if (!file.getOriginalFilename().equals("notUpdate")) {
             String image = uploadService.uploadFile(file);
             inventory.setItemPicture(image);

@@ -4,6 +4,7 @@ import lk.ijse.helloshoespvtapi.dto.SaleDTO;
 import lk.ijse.helloshoespvtapi.entity.Customer;
 import lk.ijse.helloshoespvtapi.entity.Inventory;
 import lk.ijse.helloshoespvtapi.entity.Sale;
+import lk.ijse.helloshoespvtapi.enums.ItemStatus;
 import lk.ijse.helloshoespvtapi.enums.Level;
 import lk.ijse.helloshoespvtapi.repo.CustomerRepo;
 import lk.ijse.helloshoespvtapi.repo.InventoryRepo;
@@ -44,6 +45,13 @@ public class SaleServiceImpl implements SaleService {
             inventoryRepo.findById(inventory.getItemCode()).ifPresent(entity -> {
                 entity.setQtyOnHand(entity.getQtyOnHand() - inventory.getGetqty());
                 entity.setItemSoldCount(entity.getItemSoldCount() + inventory.getGetqty());
+                Integer getStockTotal = entity.getGetStockTotal();
+                int percentageInStock = (entity.getQtyOnHand() * 100) / getStockTotal;
+                if (percentageInStock <= 50 && entity.getQtyOnHand() >= 1) {
+                    entity.setItemStatus(ItemStatus.LOW_STOCK);
+                } else if (entity.getQtyOnHand() == 0) {
+                    entity.setItemStatus(ItemStatus.NOT_AVAILABLE);
+                }
                 inventories.add(inventoryRepo.save(entity));
             });
         });
@@ -54,14 +62,14 @@ public class SaleServiceImpl implements SaleService {
         if (!saleDTO.getIsDemo()) {
             Customer customer = customerRepo.findCustomerByContact(saleDTO.getCustomerContact());
             customer.setTotalPoints(customer.getTotalPoints() == null ? saleDTO.getAddedPoints() : customer.getTotalPoints() + saleDTO.getAddedPoints());
-            int totalPoints = customer.getTotalPoints()+saleDTO.getAddedPoints();
-            if (totalPoints<50) {
+            int totalPoints = customer.getTotalPoints() + saleDTO.getAddedPoints();
+            if (totalPoints < 50) {
                 customer.setLevel(Level.NEW);
             } else if (totalPoints < 100 && totalPoints >= 50) {
                 customer.setLevel(Level.BRONZE);
-            } else if(totalPoints < 200 && totalPoints >= 100){
+            } else if (totalPoints < 200 && totalPoints >= 100) {
                 customer.setLevel(Level.SILVER);
-            }else {
+            } else {
                 customer.setLevel(Level.GOLD);
             }
             customer.setRecentPurchaseDate(new Date(System.currentTimeMillis()));

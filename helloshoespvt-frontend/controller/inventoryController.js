@@ -221,7 +221,7 @@ function loadItems() {
                 if (item.itemStatus === 'AVAILABLE') {
                     status = `<span class="badge bg-success">${item.itemStatus}</span>`;
                 } else if (item.itemStatus === 'LOW_STOCK') {
-                    status = `<span class="badge bg-warning">Low<20</span>`;
+                    status = `<span class="badge bg-warning">${item.itemStatus}</span>`;
                 } else {
                     status = `<span class="badge bg-danger">${item.itemStatus}</span>`;
                 }

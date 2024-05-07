@@ -39,6 +39,7 @@ public class Inventory {
     private ItemStatus itemStatus;
     private String supplierName;
     private Integer itemSoldCount;
+    private Integer getStockTotal;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Supplier supplier;
