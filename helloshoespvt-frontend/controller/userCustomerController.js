@@ -244,6 +244,8 @@ function initializeTable(){
     });
 }
 
+initializeTable();
+
 
 function loadRegeularUserCustomers(){
     $.ajax({

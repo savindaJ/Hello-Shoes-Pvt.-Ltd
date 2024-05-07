@@ -46,8 +46,8 @@ public class BranchServiceImpl implements BranchService {
             branch.setBranchName(branchDTO.getBranchName());
             branch.setBranchContact(branchDTO.getBranchContact());
             branch.setAddress(branchDTO.getAddress());
-            branch.setNoOfEmployees(branchDTO.getNoOfEmployees());
-            branch.setBranchManager(branchDTO.getBranchManager());
+//            branch.setNoOfEmployees(branchDTO.getNoOfEmployees());
+//            branch.setBranchManager(branchDTO.getBranchManager());
             Branch save = branchRepo.save(branch);
             return save != null;
         }

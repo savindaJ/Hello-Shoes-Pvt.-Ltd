@@ -223,7 +223,7 @@ function loadAllAdmins() {
             <div class="card mt-3 p-2">
               <div class="employee-header"></div>
               <img src="https://drive.google.com/thumbnail?id=${employee.profilePic}&sz=w1000" width="100" height="100" class="rounded-circle m-auto z-3">
-              <small class="text-center">${employee.empId}</small>
+              <small class="text-center emp-id">${employee.empId}</small>
               <h6 class="text-center">${employee.empName}</h6>
               <small class="text-center">${employee.designation}</small>
               <div class="d-flex gap-5 justify-content-sm-between px-4">
@@ -293,6 +293,7 @@ function setEvent() {
         $('#btn-add-emp').text('Update Employee');
         $('#emp-email').prop('disabled', true);
         employeeId = branchId.find('.emp-id').text();
+        console.log(employeeId)
 
         $.ajax({
             url: BASE_URL + 'api/v1/employee/' + employeeId,
