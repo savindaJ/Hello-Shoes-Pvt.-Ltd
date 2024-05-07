@@ -41,20 +41,18 @@ public class SaleServiceImpl implements SaleService {
     public boolean saveSale(SaleDTO saleDTO) {
         List<Inventory> inventories = new ArrayList<>();
         Sale sale = mapper.map(saleDTO, Sale.class);
-        saleDTO.getInventories().forEach(inventory -> {
-            inventoryRepo.findById(inventory.getItemCode()).ifPresent(entity -> {
-                entity.setQtyOnHand(entity.getQtyOnHand() - inventory.getGetqty());
-                entity.setItemSoldCount(entity.getItemSoldCount() + inventory.getGetqty());
-                Integer getStockTotal = entity.getGetStockTotal();
-                int percentageInStock = (entity.getQtyOnHand() * 100) / getStockTotal;
-                if (percentageInStock <= 50 && entity.getQtyOnHand() >= 1) {
-                    entity.setItemStatus(ItemStatus.LOW_STOCK);
-                } else if (entity.getQtyOnHand() == 0) {
-                    entity.setItemStatus(ItemStatus.NOT_AVAILABLE);
-                }
-                inventories.add(inventoryRepo.save(entity));
-            });
-        });
+        saleDTO.getInventories().forEach(inventory -> inventoryRepo.findById(inventory.getItemCode()).ifPresent(entity -> {
+            entity.setQtyOnHand(entity.getQtyOnHand() - inventory.getGetqty());
+            entity.setItemSoldCount(entity.getItemSoldCount() + inventory.getGetqty());
+            Integer getStockTotal = entity.getGetStockTotal();
+            int percentageInStock = (entity.getQtyOnHand() * 100) / getStockTotal;
+            if (percentageInStock <= 50 && entity.getQtyOnHand() >= 1) {
+                entity.setItemStatus(ItemStatus.LOW_STOCK);
+            } else if (entity.getQtyOnHand() == 0) {
+                entity.setItemStatus(ItemStatus.NOT_AVAILABLE);
+            }
+            inventories.add(inventoryRepo.save(entity));
+        }));
         sale.setSaleId(IDGenerator.generateSaleId());
         sale.setInventories(inventories);
         sale.setUser(userRepo.findById(saleDTO.getCashierName()).get());
@@ -65,9 +63,9 @@ public class SaleServiceImpl implements SaleService {
             int totalPoints = customer.getTotalPoints() + saleDTO.getAddedPoints();
             if (totalPoints < 50) {
                 customer.setLevel(Level.NEW);
-            } else if (totalPoints < 100 && totalPoints >= 50) {
+            } else if (totalPoints < 100) {
                 customer.setLevel(Level.BRONZE);
-            } else if (totalPoints < 200 && totalPoints >= 100) {
+            } else if (totalPoints < 200) {
                 customer.setLevel(Level.SILVER);
             } else {
                 customer.setLevel(Level.GOLD);
@@ -77,7 +75,6 @@ public class SaleServiceImpl implements SaleService {
         } else {
             sale.setCustomer(null);
         }
-        System.out.println(sale.getCustomer());
         saleRepo.save(sale);
         return true;
     }
