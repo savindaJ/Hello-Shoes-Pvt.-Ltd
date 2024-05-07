@@ -43,10 +43,6 @@ public class Inventory {
     @ManyToOne(cascade = CascadeType.ALL)
     private Supplier supplier;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "sale_inventory_detail",
-            joinColumns = @JoinColumn(name = "item_code"),
-            inverseJoinColumns = @JoinColumn(name = "sale_id"))
+    @ManyToMany(mappedBy = "inventories")
     private List<Sale> sales;
 }

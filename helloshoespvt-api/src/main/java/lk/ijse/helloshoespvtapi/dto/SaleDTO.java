@@ -26,6 +26,7 @@ public class SaleDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private PaymentMethod paymentMethod;
     private Boolean isDemo;
-    private List<InventoryDTO> orderDetails;
+    private List<InventoryDTO> inventories;
+    private Integer getqty;
 
 }

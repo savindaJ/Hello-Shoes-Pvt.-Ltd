@@ -338,28 +338,30 @@ function setCustomerContacts() {
 setCustomerContacts();
 
 
-$('#txt-cus-contact').on('keypress', function () {
+$('#txt-cus-contact').on('keypress', function (e) {
     let contact = $(this).val();
-    $.ajax({
-        url: BASE_URL + 'api/v1/customers/get/contact/' + contact,
-        headers: {
-            Authorization : 'Bearer ' + user.jwt
-        },
-        type: 'GET',
-        success: function (response) {
-            console.log(response);
-            $('#txt-customer-name').text(response.customerName);
-            $('#txt-point').text(response.totalPoints === null ? 0 : response.totalPoints);
-            $('#txt-cus-contact').css({
-                'border-color': 'green'
-            });
-        },
-        error: function (error) {
-            $('#txt-cus-contact').css({
-                'border-color': 'red'
-            });
-        }
-    });
+    if (e.keyCode === 13) {
+        $.ajax({
+            url: BASE_URL + 'api/v1/customers/get/contact/' + contact,
+            headers: {
+                Authorization : 'Bearer ' + user.jwt
+            },
+            type: 'GET',
+            success: function (response) {
+                console.log(response);
+                $('#txt-customer-name').text(response.customerName);
+                $('#txt-point').text(response.totalPoints === null ? 0 : response.totalPoints);
+                $('#txt-cus-contact').css({
+                    'border-color': 'green'
+                });
+            },
+            error: function (error) {
+                $('#txt-cus-contact').css({
+                    'border-color': 'red'
+                });
+            }
+        });
+    }
 });
 
 $('#pay-method input').on('change', function () {
@@ -376,6 +378,8 @@ $('#nav-tab-loyality').on('click', function () {
 });
 
 $('#btn-proceed-order').on('click', function () {
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
     let contact = $('#txt-cus-contact').val();
     let customerName = $('#txt-customer-name').text();
     let point = $('#added-new-point').text();
@@ -385,10 +389,11 @@ $('#btn-proceed-order').on('click', function () {
         customerName: isDemoUser === true ? demoCusName : customerName,
         subTotal: subTotal,
         addedPoints: point,
-        orderDetails: cart,
+        inventories: cart,
         cashierName: user.username,
         paymentMethod: paymentMethod,
-        isDemo: isDemoUser
+        isDemo: isDemoUser,
+        getqty: cart.length
     };
     console.log(order);
     $.ajax({
@@ -400,6 +405,8 @@ $('#btn-proceed-order').on('click', function () {
         contentType: 'application/json',
         data: JSON.stringify(order),
         success: function (response) {
+            $("div.spanner").removeClass("show");
+            $("div.overlay").removeClass("show");
             console.log(response);
             $('#btn-clear').click();
             $('#txt-cus-contact').val('');
@@ -408,6 +415,22 @@ $('#btn-proceed-order').on('click', function () {
                 'border-color': 'gray'
             });
             $('#txt-demo-name').val('');
+            $('#added-new-point').text('');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: response
+            });
             loadProducts();
         },
         error: function (error) {

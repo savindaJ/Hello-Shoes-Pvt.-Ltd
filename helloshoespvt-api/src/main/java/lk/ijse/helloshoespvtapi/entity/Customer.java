@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lk.ijse.helloshoespvtapi.embedded.Address;
 import lk.ijse.helloshoespvtapi.enums.Gender;
 import lk.ijse.helloshoespvtapi.enums.Level;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
@@ -19,7 +17,8 @@ import java.util.List;
  * @since : 0.1.0
  **/
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer {

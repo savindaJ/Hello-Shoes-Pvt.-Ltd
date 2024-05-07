@@ -98,7 +98,7 @@ function loadAllCustomers(){
         },
         success: function (data) {
             console.log(data)
-            initializeTable();  //initialize table
+            // initializeTable();  //initialize table
             let customers = data;
             let html = '';
             customers.forEach(customer => {
@@ -254,7 +254,7 @@ function loadRegeularUserCustomers(){
         },
         success: function (data) {
             console.log(data)
-            initializeTable();  //initialize table
+            // initializeTable();  //initialize table
             let customers = data;
             let html = '';
             customers.forEach(customer => {

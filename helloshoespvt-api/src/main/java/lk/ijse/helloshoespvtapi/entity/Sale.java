@@ -23,7 +23,7 @@ public class Sale {
     @Id
     private String saleId;
 //    private String itemDescription;
-    private Integer itemQty;
+    private Integer getqty;
 //    private Integer size;
 //    private Double unitPrice;
     private Double subTotal;
@@ -43,6 +43,11 @@ public class Sale {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
 
-    @ManyToMany(mappedBy = "sales", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "sale_inventory",
+            joinColumns = @JoinColumn(name = "sale_id"),
+            inverseJoinColumns = @JoinColumn(name = "inventory_id")
+    )
     private List<Inventory> inventories;
 }
