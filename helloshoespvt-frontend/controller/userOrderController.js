@@ -77,7 +77,7 @@ function loadProducts() {
                      </div>
                      <div class="d-flex justify-content-sm-between">
                          <small>Size: ${product.size}</small>
-                         <small>1k Sold</small>
+                         
                      </div>
                       <div class="d-flex justify-content-sm-between">
                          <small class="text-danger">Discount :</small>
@@ -85,7 +85,7 @@ function loadProducts() {
                      </div>
                      <div class="d-flex justify-content-sm-between">
                          <small class="text-primary">QtyOnHand :</small>
-                         <small class="text-primary">${product.qtyOnHand}</small>
+                         <small class="text-primary">${product.qtyOnHand}</small>  
                      </div>
                      
                      <h5 class="card-title m-2 text-center">Rs. ${product.sellingPrice} /=</h5>
@@ -378,8 +378,7 @@ $('#nav-tab-loyality').on('click', function () {
 });
 
 $('#btn-proceed-order').on('click', function () {
-    $("div.spanner").addClass("show");
-    $("div.overlay").addClass("show");
+
     let contact = $('#txt-cus-contact').val();
     let customerName = $('#txt-customer-name').text();
     let point = $('#added-new-point').text();
@@ -389,7 +388,96 @@ $('#btn-proceed-order').on('click', function () {
     let cash = parseFloat(txtCash);
     let balance = cash - total;
 
-    if (cart.length === 0 || subTotal === 0 || subTotal < parseFloat(txtCash)) {
+    if (paymentMethod === 'CASH') {
+        $("div.spanner").addClass("show");
+        $("div.overlay").addClass("show");
+        if (cart.length === 0 || subTotal === 0 || subTotal < parseFloat(txtCash)) {
+            $("div.spanner").removeClass("show");
+            $("div.overlay").removeClass("show");
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "warning",
+                title: 'Cannot proceed without any items in the cart'
+            });
+            return;
+        }
+
+        let order = {
+            customerContact: contact,
+            customerName: isDemoUser === true ? demoCusName : customerName,
+            subTotal: subTotal,
+            addedPoints: point,
+            inventories: cart,
+            cashierName: user.username,
+            paymentMethod: paymentMethod,
+            isDemo: isDemoUser,
+            getqty: cart.length
+        };
+        console.log(order);
+        $.ajax({
+            url: BASE_URL + 'api/v1/sale',
+            headers: {
+                Authorization: 'Bearer ' + user.jwt
+            },
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(order),
+            success: function (response) {
+                $("div.spanner").removeClass("show");
+                $("div.overlay").removeClass("show");
+                console.log(response);
+                $('#btn-clear').click();
+                $('#txt-cus-contact').val('');
+                $('#txt-customer-name').text('');
+                $('#txt-cus-contact').css({
+                    'border-color': 'gray'
+                });
+                $('#txt-demo-name').val('');
+                $('#added-new-point').text('');
+
+                Swal.fire({
+                    title: "Balance",
+                    text: 'Rs. ' + balance.toFixed(3) + ' /=' + ' has to be returned',
+                    icon: "success"
+                });
+                $('#txt-cash').val('');
+                loadProducts();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }else{
+        $('#payment-modal').modal('show');
+    }
+
+
+});
+
+
+$('#btn-payment').on('click', function () {
+    let contact = $('#txt-cus-contact').val();
+    let customerName = $('#txt-customer-name').text();
+    let point = $('#added-new-point').text();
+    let demoCusName = $('#txt-demo-name').val() === '' ? 'Demo Customer' : $('#txt-demo-name').val();
+    let txtCash = $('#txt-cash').val();
+    let total = parseFloat(subTotal);
+    let cash = parseFloat(txtCash);
+    let balance = cash - total;
+
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
+    if (cart.length === 0 || subTotal === 0) {
         $("div.spanner").removeClass("show");
         $("div.overlay").removeClass("show");
         const Toast = Swal.mixin({

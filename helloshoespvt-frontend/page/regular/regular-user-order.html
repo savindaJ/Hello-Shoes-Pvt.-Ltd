@@ -178,6 +178,44 @@
         <p>Uploading music file, please be patient.</p>
     </div>
 
+    <div class="modal fade" id="payment-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form id="supplier-inputs">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-1">
+                                    <label for="customer-gender" class="form-label">Customer Gender</label>
+                                    <select class="form-select" aria-label="Default select example" id="customer-gender">
+                                        <option selected></option>
+                                        <option value="BOC">BOC</option>
+                                        <option value="HNB">HNB</option>
+                                        <option value="PEOPLES">PEOPLES</option>
+                                        <option value="SAMPATH">SAMPATH</option>
+                                        <option value="NSB">NSB</option>
+                                        <option value="COMERCEL">COMERCEL</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-1">
+                                    <label for="customer-contact" class="form-label" id="lbl-status">Customer Contact</label>
+                                    <input type="text" class="form-control" id="customer-contact">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btn-payment">Add Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/sweetAlerts.js"></script>
