@@ -383,7 +383,33 @@ $('#btn-proceed-order').on('click', function () {
     let contact = $('#txt-cus-contact').val();
     let customerName = $('#txt-customer-name').text();
     let point = $('#added-new-point').text();
-    let demoCusName = $('#txt-demo-name').val() === '' ? 'Demo Customer' : $('#txt-demo-name').val()
+    let demoCusName = $('#txt-demo-name').val() === '' ? 'Demo Customer' : $('#txt-demo-name').val();
+    let txtCash = $('#txt-cash').val();
+    let total = parseFloat(subTotal);
+    let cash = parseFloat(txtCash);
+    let balance = cash - total;
+
+    if (cart.length === 0 || subTotal === 0 || subTotal < parseFloat(txtCash)) {
+        $("div.spanner").removeClass("show");
+        $("div.overlay").removeClass("show");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "warning",
+            title: 'Cannot proceed without any items in the cart'
+        });
+        return;
+    }
+
     let order = {
         customerContact: contact,
         customerName: isDemoUser === true ? demoCusName : customerName,
@@ -416,21 +442,13 @@ $('#btn-proceed-order').on('click', function () {
             });
             $('#txt-demo-name').val('');
             $('#added-new-point').text('');
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
+
+            Swal.fire({
+                title: "Balance",
+                text: 'Rs. ' + balance.toFixed(3) + ' /=' + ' has to be returned',
+                icon: "success"
             });
-            Toast.fire({
-                icon: "success",
-                title: response
-            });
+            $('#txt-cash').val('');
             loadProducts();
         },
         error: function (error) {
