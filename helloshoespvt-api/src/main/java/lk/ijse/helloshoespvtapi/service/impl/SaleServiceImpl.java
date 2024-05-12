@@ -1,5 +1,6 @@
 package lk.ijse.helloshoespvtapi.service.impl;
 
+import lk.ijse.helloshoespvtapi.dto.RefundDTO;
 import lk.ijse.helloshoespvtapi.dto.SaleDTO;
 import lk.ijse.helloshoespvtapi.entity.Customer;
 import lk.ijse.helloshoespvtapi.entity.Inventory;
@@ -77,5 +78,22 @@ public class SaleServiceImpl implements SaleService {
         }
         saleRepo.save(sale);
         return true;
+    }
+
+    @Override
+    public List<RefundDTO> getCanRefundItems() {
+        List<RefundDTO> refundDTOS = new ArrayList<>();
+        saleRepo.getCanRefundItems().forEach((refund)->{
+            RefundDTO refundDTO = new RefundDTO();
+            refundDTO.setSaleId(refund.getSaleId());
+            refundDTO.setCashierName(refund.getCashierName());
+            refundDTO.setPurchaseDate(refund.getPurchaseDate());
+            refundDTO.setSubTotal(refund.getSubTotal());
+            refundDTO.setCustomerName(refund.getCustomerName());
+            refundDTO.setInventoryId(refund.getInventoryId());
+            refundDTO.setItemDescription(refund.getItemDescription());
+            refundDTOS.add(refundDTO);
+        });
+        return refundDTOS;
     }
 }

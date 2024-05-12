@@ -169,32 +169,13 @@
                                             <th scope="col">Item DESC</th>
                                             <th scope="col">Customer Name</th>
                                             <th scope="col">Item ID</th>
-                                            <th scope="col">Quantity</th>
                                             <th scope="col">Sale Date</th>
                                             <th scope="col">Cashier Name</th>
-                                            <th scope="col">Size</th>
                                             <th scope="col">Total Price</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>
-                                        <tbody style="font-size: 14px">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>DSI Bata</td>
-                                            <td>Demo CUS</td>
-                                            <td>FS-009998F</td>
-                                            <td>3</td>
-                                            <td>2021-10-10</td>
-                                            <td>Udara</td>
-                                            <td>Large</td>
-                                            <td>Rs. 1000</td>
-                                            <td>
-                                                <button style="height: 25px" class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-arrow-down-square-fill"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
+                                        <tbody style="font-size: 14px" id="tbl-refund"></tbody>
                                     </table>
                                 </div>
                             </section>
@@ -277,6 +258,7 @@
 <script src="../../assets/js/bootstrap.js"></script>
 <link rel="stylesheet" href="../../assets/css/admin/adminSlideBar.css">
 <script src="../../controller/commonDetailController.js"></script>
+<script src="../../util/base.js"></script>
 <script src="../../controller/refundController.js"></script>
 <script>
     $(document).ready(function () {

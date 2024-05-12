@@ -24,4 +24,9 @@ public class SaleController {
         boolean isPlaced = saleService.saveSale(saleDTO);
         return isPlaced ? ResponseEntity.ok("Sale Placed") : ResponseEntity.badRequest().body("Sale Not Placed");
     }
+
+    @GetMapping("/refund")
+    public ResponseEntity<?> getCanRefundItems(){
+        return ResponseEntity.ok(saleService.getCanRefundItems());
+    }
 }
