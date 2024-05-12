@@ -50,6 +50,7 @@ public class SupplierServiceImpl implements SupplierService {
     public boolean updateSupplier(SupplierDTO supplierDTO) {
         Supplier supplier = supplierRepo.findById(supplierDTO.getSupplierCode()).get();
         mapper.map(supplierDTO, supplier);
+        supplier.setIsActive(true);
         Supplier save = supplierRepo.save(supplier);
         return save != null;
     }
