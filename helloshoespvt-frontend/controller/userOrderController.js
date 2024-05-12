@@ -391,7 +391,7 @@ $('#btn-proceed-order').on('click', function () {
     if (paymentMethod === 'CASH') {
         $("div.spanner").addClass("show");
         $("div.overlay").addClass("show");
-        if (cart.length === 0 || subTotal === 0 || subTotal < parseFloat(txtCash)) {
+        if (cart.length === 0 || subTotal === 0 || subTotal < parseFloat(txtCash) || $('#txt-cash').val()==='') {
             $("div.spanner").removeClass("show");
             $("div.overlay").removeClass("show");
             const Toast = Swal.mixin({
