@@ -1,4 +1,3 @@
-
 let productList;
 
 let cart = [];
@@ -110,7 +109,7 @@ $('#brand-list').on('click', 'button', function () {
     let brand = $(this).text();
     if (brand.trim() === 'All') {
         loadProducts();
-    }else {
+    } else {
         renderProductForBrand(brand);
     }
 
@@ -120,7 +119,7 @@ $('#brand-list').on('click', 'button', function () {
 
 function renderProductForBrand(brand) {
     $.ajax({
-        url: BASE_URL + 'api/v1/inventory/available/'+brand,
+        url: BASE_URL + 'api/v1/inventory/available/' + brand,
         headers: {
             Authorization: 'Bearer ' + user.jwt
         },
@@ -184,8 +183,8 @@ function setEvent() {
         if (!cart.find(p => p.itemCode === product.itemCode)) {
             subTotal += product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
-            let point = Math.ceil(subTotal/800)
-            $('#added-new-point').text(point+'');
+            let point = Math.ceil(subTotal / 800)
+            $('#added-new-point').text(point + '');
             product.getqty = 1;
             cart.push(product);
         }
@@ -199,7 +198,7 @@ function renderCart() {
     $('#cart').empty();
     for (const product of cart) {
         $('#cart').append(
-              `<div class="border mt-1 rounded-4 cart-item">
+            `<div class="border mt-1 rounded-4 cart-item">
                   <div class="d-flex">
                       <img <img src="https://drive.google.com/thumbnail?id=${product.itemPicture}&sz=w1000" width="100" style="width: 80px;height: 80px">
                       <div class="d-flex flex-column ms-3 p-2">
@@ -246,8 +245,8 @@ function setQtyEvent() {
             product.getqty = qty;
             subTotal -= product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
-            let point = Math.ceil(subTotal/800)
-            $('#added-new-point').text(point+'');
+            let point = Math.ceil(subTotal / 800)
+            $('#added-new-point').text(point + '');
         }
     });
 
@@ -261,18 +260,19 @@ function setQtyEvent() {
             product.getqty = qty;
             subTotal += product.sellingPrice - (product.sellingPrice * product.discount / 100);
             $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
-            let point = Math.ceil(subTotal/800);
-            $('#added-new-point').text(point+'');
+            let point = Math.ceil(subTotal / 800);
+            $('#added-new-point').text(point + '');
         }
     });
 
     $('.btn-remove-cart-item').on('click', function () {
         let index = $(this).closest('.cart-item').index();
         let product = cart[index];
-        subTotal -= product.sellingPrice - (product.sellingPrice * product.discount / 100);
+        console.log(product)
+        subTotal -= (product.sellingPrice - (product.sellingPrice * product.discount / 100)) * parseInt(product.getqty);
         $('#txt-sub-total').text('Rs. ' + subTotal + ' /=');
-        let point = Math.ceil(subTotal/800);
-        $('#added-new-point').text(point+'');
+        let point = Math.ceil(subTotal / 800);
+        $('#added-new-point').text(point + '');
         cart.splice(index, 1);
         renderCart();
     });
@@ -319,7 +319,7 @@ function setCustomerContacts() {
     $.ajax({
         url: BASE_URL + 'api/v1/customers/contact-list',
         headers: {
-            Authorization : 'Bearer ' + user.jwt
+            Authorization: 'Bearer ' + user.jwt
         },
         type: 'GET',
         success: function (response) {
@@ -332,7 +332,8 @@ function setCustomerContacts() {
         },
         error: function (error) {
             console.log(error);
-        }});
+        }
+    });
 }
 
 setCustomerContacts();
@@ -344,7 +345,7 @@ $('#txt-cus-contact').on('keypress', function (e) {
         $.ajax({
             url: BASE_URL + 'api/v1/customers/get/contact/' + contact,
             headers: {
-                Authorization : 'Bearer ' + user.jwt
+                Authorization: 'Bearer ' + user.jwt
             },
             type: 'GET',
             success: function (response) {
@@ -388,12 +389,15 @@ $('#btn-proceed-order').on('click', function () {
     let cash = parseFloat(txtCash);
     let balance = cash - total;
 
+    console.log(subTotal);
+    console.log(txtCash);
     if (paymentMethod === 'CASH') {
         $("div.spanner").addClass("show");
         $("div.overlay").addClass("show");
-        if (cart.length === 0 || subTotal === 0 || subTotal < parseFloat(txtCash) || $('#txt-cash').val()==='') {
+        if (cart.length === 0 || subTotal === 0 || subTotal > parseFloat(txtCash)) {
             $("div.spanner").removeClass("show");
             $("div.overlay").removeClass("show");
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -457,7 +461,7 @@ $('#btn-proceed-order').on('click', function () {
                 console.log(error);
             }
         });
-    }else{
+    } else {
         $('#payment-modal').modal('show');
     }
 
