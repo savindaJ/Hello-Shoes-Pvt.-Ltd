@@ -1,8 +1,10 @@
-package lk.ijse.helloshoespvtapi.dto;
+package lk.ijse.helloshoespvtapi.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -12,10 +14,15 @@ import java.sql.Timestamp;
  * @date : 5/12/2024
  * @since : 0.1.0
  **/
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class RefundDTO {
+@Getter
+@Setter
+public class Refund {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long refundId;
     private String saleId;
     private String cashierName;
     @CreationTimestamp
@@ -24,5 +31,8 @@ public class RefundDTO {
     private String customerName;
     private String inventoryId;
     private String itemDescription;
-    private Integer quantity;
+
+    @OneToOne
+    @JoinColumn(name = "itemCode", referencedColumnName = "itemCode")
+    private Inventory inventory;
 }

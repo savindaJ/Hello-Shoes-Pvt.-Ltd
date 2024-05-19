@@ -5,12 +5,10 @@ import lk.ijse.helloshoespvtapi.dto.SaleDTO;
 import lk.ijse.helloshoespvtapi.entity.Customer;
 import lk.ijse.helloshoespvtapi.entity.Inventory;
 import lk.ijse.helloshoespvtapi.entity.Sale;
+import lk.ijse.helloshoespvtapi.entity.SaleInventory;
 import lk.ijse.helloshoespvtapi.enums.ItemStatus;
 import lk.ijse.helloshoespvtapi.enums.Level;
-import lk.ijse.helloshoespvtapi.repo.CustomerRepo;
-import lk.ijse.helloshoespvtapi.repo.InventoryRepo;
-import lk.ijse.helloshoespvtapi.repo.SaleRepo;
-import lk.ijse.helloshoespvtapi.repo.UserRepo;
+import lk.ijse.helloshoespvtapi.repo.*;
 import lk.ijse.helloshoespvtapi.service.SaleService;
 import lk.ijse.helloshoespvtapi.util.IDGenerator;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +34,7 @@ public class SaleServiceImpl implements SaleService {
     private final InventoryRepo inventoryRepo;
     private final CustomerRepo customerRepo;
     private final UserRepo userRepo;
+    private final SaleInventoryRepo saleInventoryRepo;
 
     @Override
     @Transactional
@@ -55,7 +54,7 @@ public class SaleServiceImpl implements SaleService {
             inventories.add(inventoryRepo.save(entity));
         }));
         sale.setSaleId(IDGenerator.generateSaleId());
-        sale.setInventories(inventories);
+//        sale.setSaleInventories(inventories);
         sale.setUser(userRepo.findById(saleDTO.getCashierName()).get());
         sale.setSubTotal(saleDTO.getSubTotal());
         if (!saleDTO.getIsDemo()) {
@@ -77,6 +76,13 @@ public class SaleServiceImpl implements SaleService {
             sale.setCustomer(null);
         }
         saleRepo.save(sale);
+        saleInventoryRepo.saveAll(inventories.stream().map(inventory -> {
+            SaleInventory saleInventory = new SaleInventory();
+            saleInventory.setInventory(inventory);
+            saleInventory.setSale(sale);
+            saleInventory.setQuantity(saleDTO.getInventories().stream().filter(inventoryDTO -> inventoryDTO.getItemCode().equals(inventory.getItemCode())).findFirst().get().getGetqty());
+            return saleInventory;
+        }).toList());
         return true;
     }
 
@@ -92,6 +98,7 @@ public class SaleServiceImpl implements SaleService {
             refundDTO.setCustomerName(refund.getCustomerName());
             refundDTO.setInventoryId(refund.getInventoryId());
             refundDTO.setItemDescription(refund.getItemDescription());
+            refundDTO.setQuantity(refund.getQuantity());
             refundDTOS.add(refundDTO);
         });
         return refundDTOS;

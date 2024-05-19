@@ -21,4 +21,6 @@ public interface RefundProjection {
     String getInventoryId();
 
     String getItemDescription();
+
+    Integer getQuantity();
 }

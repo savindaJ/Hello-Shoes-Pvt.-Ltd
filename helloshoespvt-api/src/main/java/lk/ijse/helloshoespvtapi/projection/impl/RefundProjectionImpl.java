@@ -25,4 +25,5 @@ public class RefundProjectionImpl implements RefundProjection {
     private String customerName;
     private String inventoryId;
     private String itemDescription;
+    private Integer quantity;
 }

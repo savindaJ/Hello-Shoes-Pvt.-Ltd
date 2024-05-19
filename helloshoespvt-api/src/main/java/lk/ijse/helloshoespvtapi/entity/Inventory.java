@@ -44,6 +44,6 @@ public class Inventory {
     @ManyToOne(cascade = CascadeType.ALL)
     private Supplier supplier;
 
-    @ManyToMany(mappedBy = "inventories")
-    private List<Sale> sales;
+    @OneToMany(mappedBy = "inventory")
+    private List<SaleInventory> saleInventories;
 }

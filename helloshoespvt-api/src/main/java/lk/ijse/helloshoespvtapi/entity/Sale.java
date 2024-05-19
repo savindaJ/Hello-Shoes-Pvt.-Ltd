@@ -43,11 +43,6 @@ public class Sale {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = "sale_inventory",
-            joinColumns = @JoinColumn(name = "sale_id"),
-            inverseJoinColumns = @JoinColumn(name = "inventory_id")
-    )
-    private List<Inventory> inventories;
+    @OneToMany(mappedBy = "sale")
+    private List<SaleInventory> saleInventories;
 }
