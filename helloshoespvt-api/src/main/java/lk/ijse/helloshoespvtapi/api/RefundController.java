@@ -1,8 +1,11 @@
 package lk.ijse.helloshoespvtapi.api;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.ijse.helloshoespvtapi.dto.RefundDTO;
+import lk.ijse.helloshoespvtapi.dto.RefundRequestDTO;
+import lk.ijse.helloshoespvtapi.service.RefundService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : savindaJ
@@ -10,11 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @since : 0.1.0
  **/
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/refund")
+@RequiredArgsConstructor
 public class RefundController {
 
+    private final RefundService refundService;
+
     @PostMapping
-    public void refund(){
-        System.out.println("Refund");
+    public ResponseEntity<?> addRefund(@RequestBody RefundRequestDTO refundDTO){
+        boolean isRefund = refundService.addRefund(refundDTO);
+        return isRefund ? ResponseEntity.ok("Refund Added") : ResponseEntity.ok("Refund Not Added");
     }
 }

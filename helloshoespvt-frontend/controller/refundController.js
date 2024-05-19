@@ -61,50 +61,71 @@ function loadCanRefundItemsDetails() {
 loadCanRefundItemsDetails();
 
 function setEvent() {
-    $('.btn-refund').click(function () {
+    $('.btn-refund').click(async function () {
         let saleId = $(this).closest('tr').find('th').text();
-        console.log(saleId);
-        // $.ajax({
-        //     url: BASE_URL + 'api/v1/sale/refund/' + saleId,
-        //     headers: {
-        //         "Authorization": "Bearer " + user.jwt
-        //     },
-        //     method: 'POST',
-        //     success: function (res) {
-        //         console.log(res);
-        //         const Toast = Swal.mixin({
-        //             toast: true,
-        //             position: "top-end",
-        //             showConfirmButton: false,
-        //             timer: 3000,
-        //             timerProgressBar: true,
-        //             didOpen: (toast) => {
-        //                 toast.onmouseenter = Swal.stopTimer;
-        //                 toast.onmouseleave = Swal.resumeTimer;
-        //             }
-        //         });
-        //         Toast.fire({
-        //             icon: "success",
-        //             title: 'Refund success'
-        //         });
-        //         loadCanRefundItemsDetails();
-        //     }, error: function (error) {
-        //         const Toast = Swal.mixin({
-        //             toast: true,
-        //             position: "top-end",
-        //             showConfirmButton: false,
-        //             timer: 3000,
-        //             timerProgressBar: true,
-        //             didOpen: (toast) => {
-        //                 toast.onmouseenter = Swal.stopTimer;
-        //                 toast.onmouseleave = Swal.resumeTimer;
-        //             }
-        //         });
-        //         Toast.fire({
-        //             icon: "error",
-        //             title: 'Session expired! Please login again.'
-        //         });
-        //     }
-        // });
+        let inventoryId = $(this).closest('tr').find('td').eq(2).text();
+        console.log(inventoryId);
+        const {value: qty} = await Swal.fire({
+            title: "Confirm Refund",
+            input: "text",
+            inputLabel: "what is refund count ?",
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "Please enter quantity!";
+                }
+            }
+        });
+        if (qty) {
+            const refund = {
+                saleId: saleId,
+                inventoryId: inventoryId,
+                quantity: qty
+            };
+            $.ajax({
+                url: BASE_URL + 'api/v1/refund',
+                contentType: 'application/json',
+                headers: {
+                    "Authorization": "Bearer " + user.jwt
+                },
+                method: 'POST',
+                data: JSON.stringify(refund),
+                success: function (res) {
+                    console.log(res);
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: 'Refund success'
+                    });
+                    loadCanRefundItemsDetails();
+                }, error: function (error) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: 'Session expired! Please login again.'
+                    });
+                }
+            });
+        }
     });
 }

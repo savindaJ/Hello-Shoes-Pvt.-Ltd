@@ -29,10 +29,10 @@ public class Refund {
     private Timestamp purchaseDate;
     private double subTotal;
     private String customerName;
-    private String inventoryId;
     private String itemDescription;
+    private Integer quantity;
 
-    @OneToOne
-    @JoinColumn(name = "itemCode", referencedColumnName = "itemCode")
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 }

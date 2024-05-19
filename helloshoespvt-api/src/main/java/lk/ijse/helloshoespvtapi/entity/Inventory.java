@@ -46,4 +46,7 @@ public class Inventory {
 
     @OneToMany(mappedBy = "inventory")
     private List<SaleInventory> saleInventories;
+
+    @OneToMany(mappedBy = "inventory")
+    private List<Refund> refunds;
 }

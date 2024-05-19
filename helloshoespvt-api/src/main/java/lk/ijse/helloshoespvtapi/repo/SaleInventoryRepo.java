@@ -1,5 +1,7 @@
 package lk.ijse.helloshoespvtapi.repo;
 
+import lk.ijse.helloshoespvtapi.entity.Inventory;
+import lk.ijse.helloshoespvtapi.entity.Sale;
 import lk.ijse.helloshoespvtapi.entity.SaleInventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface SaleInventoryRepo extends JpaRepository<SaleInventory,Long> {
+    SaleInventory findBySaleAndInventory(Sale sale, Inventory inventory);
 }
