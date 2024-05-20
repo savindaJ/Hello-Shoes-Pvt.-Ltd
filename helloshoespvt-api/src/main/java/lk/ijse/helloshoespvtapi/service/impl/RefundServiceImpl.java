@@ -1,5 +1,6 @@
 package lk.ijse.helloshoespvtapi.service.impl;
 
+import lk.ijse.helloshoespvtapi.dto.RefundDTO;
 import lk.ijse.helloshoespvtapi.dto.RefundRequestDTO;
 import lk.ijse.helloshoespvtapi.entity.Refund;
 import lk.ijse.helloshoespvtapi.entity.Sale;
@@ -13,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author : savindaJ
@@ -39,7 +42,9 @@ public class RefundServiceImpl implements RefundService {
             inventory.setItemSoldCount(inventory.getItemSoldCount() - refundDTO.getQuantity());
             Double sellingPrice = inventory.getSellingPrice()- inventory.getDiscount()/100 * inventory.getSellingPrice();
             Double refundAmount = sellingPrice * refundDTO.getQuantity();
-            sale.setSubTotal(subTotal - refundAmount);
+            Double x = subTotal - refundAmount;
+            System.out.println(x);
+            sale.setSubTotal(x);
             refund.setSubTotal(refundAmount);
             inventoryRepo.save(inventory);
             sale.setAddedPoints(sale.getAddedPoints() - refundAmount.intValue() / 800);
@@ -49,6 +54,7 @@ public class RefundServiceImpl implements RefundService {
         bySaleAndInventory.setQuantity(bySaleAndInventory.getQuantity() - refundDTO.getQuantity());
         saleInventoryRepo.save(bySaleAndInventory);
         if (bySaleAndInventory.getQuantity() == 0) {
+            sale.setSubTotal(0.0);
             saleInventoryRepo.delete(bySaleAndInventory);
         }
         saleRepo.save(sale);
@@ -59,5 +65,16 @@ public class RefundServiceImpl implements RefundService {
         refund.setItemDescription(refund.getInventory().getItemDescription());
         Refund save = refundRepo.save(refund);
         return save != null;
+    }
+
+    @Override
+    public List<RefundDTO> getAllRefunds() {
+        List<Refund> all = refundRepo.findAll();
+        ModelMapper modelMapper = new ModelMapper();
+        return all.stream().map(refund -> {
+            RefundDTO map = modelMapper.map(refund, RefundDTO.class);
+            map.setInventoryId(refund.getInventory().getItemCode());
+            return map;
+        }).toList();
     }
 }

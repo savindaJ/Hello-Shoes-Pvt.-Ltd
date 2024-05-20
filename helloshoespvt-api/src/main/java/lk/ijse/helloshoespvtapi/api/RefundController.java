@@ -25,4 +25,9 @@ public class RefundController {
         boolean isRefund = refundService.addRefund(refundDTO);
         return isRefund ? ResponseEntity.ok("Refund Added") : ResponseEntity.ok("Refund Not Added");
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllRefunds(){
+        return ResponseEntity.ok(refundService.getAllRefunds());
+    }
 }

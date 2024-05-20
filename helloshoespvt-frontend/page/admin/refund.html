@@ -159,7 +159,7 @@
                             <section class="card overflow-y-scroll mt-2 mb-5" style="height: 60vh">
                                 <div class="card-header bg-success w-100 d-flex justify-content-sm-between">
                                     <small class="text-white">You Can refund this sales</small>
-                                    <input type="text" class="form-control w-25" placeholder="Search">
+                                    <input type="text" id="txt-can-refund" class="form-control w-25" placeholder="Search">
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-hover">
@@ -185,63 +185,23 @@
                         <section class="card overflow-y-scroll" style="height: 50vh">
                             <div class="card-header bg-warning w-100 d-flex justify-content-sm-between">
                                 <h6 class="text-dark">Refunded List</h6>
-                                <input type="text" class="form-control w-25" placeholder="Search">
+                                <input type="text" class="form-control w-25" id="txt-serch-refund" placeholder="Search">
                             </div>
                             <div class="card-body">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr style="font-size: 15px">
-                                        <th scope="col">Refund ID</th>
-                                        <th scope="col">Order ID</th>
-                                        <th scope="col">Customer ID</th>
-                                        <th scope="col">Product ID</th>
+                                        <th scope="col">Sale ID</th>
+                                        <th scope="col">Inventory DESC</th>
+                                        <th scope="col">Customer Name</th>
+                                        <th scope="col">Item ID</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Refund Date</th>
-                                        <th scope="col">Refund Reason</th>
-                                        <th scope="col">Refund Status</th>
+                                        <th scope="col">Refund Total</th>
                                     </tr>
                                     </thead>
-                                    <tbody style="font-size: 14px">
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>2021-10-10</td>
-                                        <td>Not satisfied</td>
-                                        <td>Refunded</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2021-10-10</td>
-                                        <td>Not satisfied</td>
-                                        <td>Refunded</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>3</td>
-                                        <td>2021-10-10</td>
-                                        <td>Not satisfied</td>
-                                        <td>Refunded</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>4</td>
-                                        <td>2021-10-10</td>
-                                        <td>Not satisfied</td>
-                                        <td>Refunded</td>
-                                    </tr>
+                                    <tbody id="tbl-refunded" style="font-size: 14px">
+
                                     </tbody>
                                 </table>
                             </div>

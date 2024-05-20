@@ -1,6 +1,9 @@
 package lk.ijse.helloshoespvtapi.service;
 
+import lk.ijse.helloshoespvtapi.dto.RefundDTO;
 import lk.ijse.helloshoespvtapi.dto.RefundRequestDTO;
+
+import java.util.List;
 
 /**
  * @author : savindaJ
@@ -9,4 +12,6 @@ import lk.ijse.helloshoespvtapi.dto.RefundRequestDTO;
  **/
 public interface RefundService {
     boolean addRefund(RefundRequestDTO refundDTO);
+
+    List<RefundDTO> getAllRefunds();
 }

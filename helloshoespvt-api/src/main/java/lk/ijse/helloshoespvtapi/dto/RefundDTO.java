@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RefundDTO {
+    private String refundId;
     private String saleId;
     private String cashierName;
     @CreationTimestamp
