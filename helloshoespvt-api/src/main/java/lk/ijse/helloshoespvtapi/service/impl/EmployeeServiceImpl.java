@@ -8,10 +8,7 @@ import lk.ijse.helloshoespvtapi.enums.Role;
 import lk.ijse.helloshoespvtapi.repo.BranchRepo;
 import lk.ijse.helloshoespvtapi.repo.EmployeeRepo;
 import lk.ijse.helloshoespvtapi.repo.UserRepo;
-import lk.ijse.helloshoespvtapi.service.BranchService;
-import lk.ijse.helloshoespvtapi.service.EmployeeService;
-import lk.ijse.helloshoespvtapi.service.UploadService;
-import lk.ijse.helloshoespvtapi.service.UserDetailService;
+import lk.ijse.helloshoespvtapi.service.*;
 import lk.ijse.helloshoespvtapi.util.IDGenerator;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,7 +43,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final BranchRepo branchRepo;
 
-    public EmployeeServiceImpl(UploadService uploadService, ModelMapper mapper, EmployeeRepo employeeRepo, BranchService branchService, UserRepo userRepo, PasswordEncoder bCryptPasswordEncoder, BranchRepo branchRepo) {
+    private final EmailService emailService;
+
+    public EmployeeServiceImpl(UploadService uploadService, ModelMapper mapper, EmployeeRepo employeeRepo, BranchService branchService, UserRepo userRepo, PasswordEncoder bCryptPasswordEncoder, BranchRepo branchRepo, EmailService emailService) {
         this.uploadService = uploadService;
         this.mapper = mapper;
         this.employeeRepo = employeeRepo;
@@ -54,12 +53,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.userRepo = userRepo;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.branchRepo = branchRepo;
+        this.emailService = emailService;
     }
-
-    //f5a24919
-
-    //fefe3cc8
-
 
     @Transactional
     @Override
@@ -81,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         User user = new User();
         String password = UUID.randomUUID().toString().substring(0, 8);
-        System.out.println("password = " + password);
+        emailService.sendSimpleMessage(employee.getEmail(), "Hello Shoes Pvt Ltd", "Your password is : " + password);
         user.setUsername(employee.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(password));
         user.setRole(employee.getRole());
