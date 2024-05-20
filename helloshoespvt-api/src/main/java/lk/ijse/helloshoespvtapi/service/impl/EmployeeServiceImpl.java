@@ -11,7 +11,6 @@ import lk.ijse.helloshoespvtapi.repo.UserRepo;
 import lk.ijse.helloshoespvtapi.service.*;
 import lk.ijse.helloshoespvtapi.util.IDGenerator;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,13 +75,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         User user = new User();
         String password = UUID.randomUUID().toString().substring(0, 8);
-        emailService.sendSimpleMessage(employee.getEmail(), "Hello Shoes Pvt Ltd", "Your password is : " + password);
+        sendMail(employee.getEmail(), "Your password is : " + password);
         user.setUsername(employee.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(password));
         user.setRole(employee.getRole());
         user.setEmployee(map);
         userRepo.save(user);
         return true;
+    }
+
+    private void sendMail(String email, String s) {
+        new Thread(() -> emailService.sendSimpleMessage(email, "Purchase Confirmation", s)).start();
     }
 
     @Override

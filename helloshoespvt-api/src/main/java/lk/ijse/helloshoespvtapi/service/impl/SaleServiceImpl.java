@@ -74,7 +74,7 @@ public class SaleServiceImpl implements SaleService {
             }
             customer.setRecentPurchaseDate(new Date(System.currentTimeMillis()));
             sale.setCustomer(customerRepo.save(customer));
-            emailService.sendSimpleMessage(customer.getEmail(), "Purchase Confirmation", "Thank you for purchasing with us. Your total points are " + customer.getTotalPoints());
+            sendEmail(customer.getEmail(), "Thank you for purchasing with us. Your total points are " + customer.getTotalPoints());
         } else {
             sale.setCustomer(null);
         }
@@ -88,6 +88,10 @@ public class SaleServiceImpl implements SaleService {
             return saleInventory;
         }).toList());
         return true;
+    }
+
+    private void sendEmail(String email, String message) {
+        new Thread(() -> emailService.sendSimpleMessage(email, "Purchase Confirmation", message)).start();
     }
 
     @Override
