@@ -20,6 +20,6 @@ import java.util.Optional;
 public interface SaleInventoryRepo extends JpaRepository<SaleInventory,Long> {
     SaleInventory findBySaleAndInventory(Sale sale, Inventory inventory);
 
-    @Query(value = "SELECT si.inventory_id, MAX(si.quantity) as max_qty FROM sale s JOIN sale_inventory si on s.sale_id = si.sale_id WHERE DATE(s.purchase_date) = DATE(:selectedDate) GROUP BY si.inventory_id ORDER BY max_qty DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT si.inventory_id, SUM(si.quantity) as max_qty FROM sale s JOIN sale_inventory si on s.sale_id = si.sale_id WHERE DATE(s.purchase_date) = DATE(:selectedDate) GROUP BY si.inventory_id ORDER BY max_qty DESC LIMIT 1", nativeQuery = true)
     String findMaxSaleInventoryByDate(@Param("selectedDate") Date selectedDate);
 }
