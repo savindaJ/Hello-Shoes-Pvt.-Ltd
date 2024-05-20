@@ -29,7 +29,7 @@ $('#btn-add-branch').on('click', function () {
             data: JSON.stringify(branch),
             success: function (res) {
                 getAllBranches();
-                clearInputFields();
+                // clearInputFields();
                 $('#branch-modal').modal('hide');
                 const Toast = Swal.mixin({
                     toast: true,
