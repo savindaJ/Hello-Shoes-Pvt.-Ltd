@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 /**
@@ -26,9 +26,9 @@ public class SaleInventoryServiceImpl implements SaleInventoryService {
     private final ModelMapper mapper;
     @Override
     public InventoryDTO getSaleInventory(java.util.Date date) {
-//        if (date == null){
-//            date = new Date(System.currentTimeMillis());
-//        }
+        if (date == null){
+            date = new Date(System.currentTimeMillis());
+        }
         String maxSaleInventoryByDate = saleInventoryRepo.findMaxSaleInventoryByDate(date);
         if (maxSaleInventoryByDate == null){
             return null;
