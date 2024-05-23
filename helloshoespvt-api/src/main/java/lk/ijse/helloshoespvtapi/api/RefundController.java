@@ -31,7 +31,7 @@ public class RefundController {
         return ResponseEntity.ok(refundService.getAllRefunds());
     }
 
-    @GetMapping
+    @GetMapping("/get-total")
     public ResponseEntity<?> getRefundTotal(){
         return ResponseEntity.ok(refundService.getTotal());
     }

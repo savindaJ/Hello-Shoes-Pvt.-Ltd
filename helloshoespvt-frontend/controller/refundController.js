@@ -311,9 +311,24 @@ function getTotalOfRefund() {
         },
         method: 'GET',
         success: function (res) {
-            console.log(res)
+            $('#total-refund').text('Rs. '+res);
         },
     });
 }
 
 getTotalOfRefund();
+
+function getTotalOfSale(){
+    $.ajax({
+        url: BASE_URL + 'api/v1/sale/total',
+        headers: {
+            Authorization: "Bearer " + user.jwt
+        },
+        method: 'GET',
+        success: function (res) {
+            $('#total-sale').text('Rs. '+res);
+        },
+    });
+}
+
+getTotalOfSale();

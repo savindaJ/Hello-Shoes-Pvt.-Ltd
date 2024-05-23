@@ -30,7 +30,7 @@ public class SaleController {
         return ResponseEntity.ok(saleService.getCanRefundItems());
     }
 
-    @GetMapping
+    @GetMapping("/total")
     public ResponseEntity<?> getTotalOfSale(){
         return ResponseEntity.ok(saleService.getTotalOfSale());
     }
