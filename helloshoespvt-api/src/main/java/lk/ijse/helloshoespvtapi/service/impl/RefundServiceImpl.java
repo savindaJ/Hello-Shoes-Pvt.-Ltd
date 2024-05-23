@@ -77,4 +77,9 @@ public class RefundServiceImpl implements RefundService {
             return map;
         }).toList();
     }
+
+    @Override
+    public Double getTotal() {
+        return refundRepo.findBySum();
+    }
 }

@@ -111,4 +111,9 @@ public class SaleServiceImpl implements SaleService {
         });
         return refundDTOS;
     }
+
+    @Override
+    public Double getTotalOfSale() {
+        return saleRepo.findSumOfTotal();
+    }
 }

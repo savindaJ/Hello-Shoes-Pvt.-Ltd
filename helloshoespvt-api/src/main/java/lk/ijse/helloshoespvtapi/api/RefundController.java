@@ -30,4 +30,9 @@ public class RefundController {
     public ResponseEntity<?> getAllRefunds(){
         return ResponseEntity.ok(refundService.getAllRefunds());
     }
+
+    @GetMapping
+    public ResponseEntity<?> getRefundTotal(){
+        return ResponseEntity.ok(refundService.getTotal());
+    }
 }

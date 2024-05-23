@@ -2,6 +2,7 @@ package lk.ijse.helloshoespvtapi.repo;
 
 import lk.ijse.helloshoespvtapi.entity.Refund;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,4 +12,7 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface RefundRepo extends JpaRepository<Refund,Long> {
+
+    @Query(value = "SELECT SUM(sub_total) as total from refund",nativeQuery = true)
+    Double findBySum();
 }

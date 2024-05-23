@@ -14,4 +14,6 @@ public interface SaleService {
     boolean saveSale(SaleDTO saleDTO);
 
     List<RefundDTO> getCanRefundItems();
+
+    Double getTotalOfSale();
 }

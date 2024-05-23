@@ -14,4 +14,6 @@ public interface RefundService {
     boolean addRefund(RefundRequestDTO refundDTO);
 
     List<RefundDTO> getAllRefunds();
+
+    Double getTotal();
 }

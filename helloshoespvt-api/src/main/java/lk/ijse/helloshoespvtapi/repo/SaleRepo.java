@@ -17,4 +17,7 @@ import java.util.List;
 public interface SaleRepo extends JpaRepository<Sale,String> {
     @Query(value = "SELECT s.sale_id as saleId,s.cashier_name as cashierName,s.purchase_date as purchaseDate,sub_total as subTotal, sd.quantity as quantity,s.customer_name as customerName,sd.inventory_id as inventoryId,i.item_description as itemDescription from sale s JOIN sale_inventory sd ON s.sale_id = sd.sale_id Join inventory i on sd.inventory_id = i.item_code WHERE s.purchase_date >= DATE_SUB(CURDATE(), INTERVAL 3 DAY) order by s.purchase_date desc",nativeQuery = true)
     List<RefundProjection> getCanRefundItems();
+
+    @Query(value = "SELECT SUM(sub_total) from sale",nativeQuery = true)
+    Double findSumOfTotal();
 }

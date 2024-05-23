@@ -302,3 +302,18 @@ $('#txt-serch-refund').on('keyup keydown', function () {
     });
     $('#tbl-refunded').html(html);
 });
+
+function getTotalOfRefund() {
+    $.ajax({
+        url: BASE_URL + 'api/v1/refund/get-total',
+        headers: {
+            Authorization: "Bearer " + user.jwt
+        },
+        method: 'GET',
+        success: function (res) {
+            console.log(res)
+        },
+    });
+}
+
+getTotalOfRefund();

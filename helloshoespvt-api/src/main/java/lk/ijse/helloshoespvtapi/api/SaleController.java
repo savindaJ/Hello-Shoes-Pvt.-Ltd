@@ -29,4 +29,9 @@ public class SaleController {
     public ResponseEntity<?> getCanRefundItems(){
         return ResponseEntity.ok(saleService.getCanRefundItems());
     }
+
+    @GetMapping
+    public ResponseEntity<?> getTotalOfSale(){
+        return ResponseEntity.ok(saleService.getTotalOfSale());
+    }
 }
