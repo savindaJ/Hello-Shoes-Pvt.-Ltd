@@ -44,6 +44,7 @@ public class InventoryServiceImpl implements InventoryService {
         Inventory map = modelMapper.map(inventoryDTO, Inventory.class);
         map.setSupplier(supplierRepo.findById(inventoryDTO.getSupplierId()).get());
         map.setItemPicture(image);
+        map.setDiscount(inventoryDTO.getDiscount() == null ? 0 : inventoryDTO.getDiscount());
         map.setItemSoldCount(0);
         map.setGetStockTotal(inventoryDTO.getQtyOnHand());
         map.setSupplierName(map.getSupplier().getSupplierName());

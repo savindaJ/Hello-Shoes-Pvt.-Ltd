@@ -4,8 +4,10 @@ import lk.ijse.helloshoespvtapi.entity.Sale;
 import lk.ijse.helloshoespvtapi.projection.RefundProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,4 +22,7 @@ public interface SaleRepo extends JpaRepository<Sale,String> {
 
     @Query(value = "SELECT SUM(sub_total) from sale",nativeQuery = true)
     Double findSumOfTotal();
+
+    @Query(value ="SELECT SUM(sub_total) from sale WHERE DATE(purchase_date) = DATE(:selectedDate)",nativeQuery = true)
+    Double findSumOfTotalByDate(@Param("selectedDate") Date date);
 }

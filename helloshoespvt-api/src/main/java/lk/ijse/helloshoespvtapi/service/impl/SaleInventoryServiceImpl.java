@@ -4,6 +4,7 @@ import lk.ijse.helloshoespvtapi.dto.InventoryDTO;
 import lk.ijse.helloshoespvtapi.entity.Inventory;
 import lk.ijse.helloshoespvtapi.repo.InventoryRepo;
 import lk.ijse.helloshoespvtapi.repo.SaleInventoryRepo;
+import lk.ijse.helloshoespvtapi.repo.SaleRepo;
 import lk.ijse.helloshoespvtapi.service.SaleInventoryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -23,18 +24,23 @@ public class SaleInventoryServiceImpl implements SaleInventoryService {
 
     private final SaleInventoryRepo saleInventoryRepo;
     private final InventoryRepo inventoryRepo;
+    private final SaleRepo saleRepo;
     private final ModelMapper mapper;
+
     @Override
     public InventoryDTO getSaleInventory(java.util.Date date) {
-        if (date == null){
+        if (date == null) {
             date = new Date(System.currentTimeMillis());
         }
-        String maxSaleInventoryByDate = saleInventoryRepo.findMaxSaleInventoryByDate(date);
-        if (maxSaleInventoryByDate == null){
+        String maxSaleInventoryByDate = saleInventoryRepo.findMaxSaleInventoryByDate(date == null ? new Date(System.currentTimeMillis()) : date);
+        if (maxSaleInventoryByDate == null) {
             return null;
         }
         String[] split = maxSaleInventoryByDate.split(",");
         Inventory inventory = inventoryRepo.findById(split[0]).get();
-        return mapper.map(inventory,InventoryDTO.class);
+        int saleCount = Integer.parseInt(split[1]);
+        Double sumOfTotalByDate = saleRepo.findSumOfTotalByDate(date == null ? new Date(System.currentTimeMillis()) : date);
+        System.out.println("Sales " + sumOfTotalByDate);
+        return mapper.map(inventory, InventoryDTO.class);
     }
 }

@@ -136,6 +136,8 @@ function setEvent() {
                         title: 'Refund success'
                     });
                     loadCanRefundItemsDetails();
+                    getTotalOfSale();
+                    getTotalOfRefund();
                 }, error: function (error) {
                     const Toast = Swal.mixin({
                         toast: true,
