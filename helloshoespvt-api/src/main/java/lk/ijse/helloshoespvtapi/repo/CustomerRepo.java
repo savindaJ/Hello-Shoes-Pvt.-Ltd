@@ -18,4 +18,7 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     List<String> findAllByContact();
 
     Customer findCustomerByContact(String contact);
+
+    @Query(value = "SELECT * FROM customer where DATE(dob) = DATE(CURDATE())",nativeQuery = true)
+    List<Customer> findDob();
 }
