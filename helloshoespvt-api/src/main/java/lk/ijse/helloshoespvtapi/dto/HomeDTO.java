@@ -17,4 +17,8 @@ import java.util.Date;
 public class HomeDTO {
     private Date date;
     private InventoryDTO inventoryDTO;
+    private Double todayTotal;
+    private long inventoryCount;
+    private Double totalOfSales;
+    private long customerCount;
 }

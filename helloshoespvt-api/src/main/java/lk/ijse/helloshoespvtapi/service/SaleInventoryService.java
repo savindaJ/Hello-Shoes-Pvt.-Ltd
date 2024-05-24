@@ -1,5 +1,6 @@
 package lk.ijse.helloshoespvtapi.service;
 
+import lk.ijse.helloshoespvtapi.dto.HomeDTO;
 import lk.ijse.helloshoespvtapi.dto.InventoryDTO;
 
 import java.util.Date;
@@ -10,5 +11,5 @@ import java.util.Date;
  * @since : 0.1.0
  **/
 public interface SaleInventoryService {
-    InventoryDTO getSaleInventory(Date date);
+    HomeDTO getSaleInventory(Date date);
 }

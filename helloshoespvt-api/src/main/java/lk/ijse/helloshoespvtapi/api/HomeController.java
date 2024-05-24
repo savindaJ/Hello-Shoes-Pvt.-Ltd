@@ -22,7 +22,7 @@ public class HomeController {
     private final SaleInventoryService saleInventoryService;
 
     @PostMapping
-    public InventoryDTO getHome(@RequestBody HomeDTO homeDTO) {
+    public HomeDTO getHome(@RequestBody HomeDTO homeDTO) {
         return saleInventoryService.getSaleInventory(homeDTO.getDate());
     }
 }

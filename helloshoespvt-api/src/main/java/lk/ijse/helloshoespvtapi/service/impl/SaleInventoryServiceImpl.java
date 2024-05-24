@@ -1,7 +1,9 @@
 package lk.ijse.helloshoespvtapi.service.impl;
 
+import lk.ijse.helloshoespvtapi.dto.HomeDTO;
 import lk.ijse.helloshoespvtapi.dto.InventoryDTO;
 import lk.ijse.helloshoespvtapi.entity.Inventory;
+import lk.ijse.helloshoespvtapi.repo.CustomerRepo;
 import lk.ijse.helloshoespvtapi.repo.InventoryRepo;
 import lk.ijse.helloshoespvtapi.repo.SaleInventoryRepo;
 import lk.ijse.helloshoespvtapi.repo.SaleRepo;
@@ -25,10 +27,11 @@ public class SaleInventoryServiceImpl implements SaleInventoryService {
     private final SaleInventoryRepo saleInventoryRepo;
     private final InventoryRepo inventoryRepo;
     private final SaleRepo saleRepo;
+    private final CustomerRepo customerRepo;
     private final ModelMapper mapper;
 
     @Override
-    public InventoryDTO getSaleInventory(java.util.Date date) {
+    public HomeDTO getSaleInventory(java.util.Date date) {
         if (date == null) {
             date = new Date(System.currentTimeMillis());
         }
@@ -41,6 +44,10 @@ public class SaleInventoryServiceImpl implements SaleInventoryService {
         int saleCount = Integer.parseInt(split[1]);
         Double sumOfTotalByDate = saleRepo.findSumOfTotalByDate(date == null ? new Date(System.currentTimeMillis()) : date);
         System.out.println("Sales " + sumOfTotalByDate);
-        return mapper.map(inventory, InventoryDTO.class);
+        InventoryDTO map = mapper.map(inventory, InventoryDTO.class);
+        long count = inventoryRepo.count();
+        Double sumOfTotal = saleRepo.findSumOfTotal();
+        long count1 = customerRepo.count();
+        return new HomeDTO(null,map,sumOfTotalByDate,count,sumOfTotal,count1);
     }
 }

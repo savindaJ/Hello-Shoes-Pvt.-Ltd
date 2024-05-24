@@ -150,7 +150,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <h6>Today's Money</h6>
-                                            <h6>Rs. 6700</h6>
+                                            <h6 id="today-money"></h6>
                                         </div>
                                         <div>
                                             <i class="bi bi-cart fs-2 bg-primary p-2 rounded-2 text-white"></i>
@@ -165,8 +165,8 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <h6>Sales</h6>
-                                            <h6>Rs. 780000</h6>
+                                            <h6>Count of Inventories</h6>
+                                            <h6 id="count-of-inventory">Rs. 780000</h6>
                                         </div>
                                         <div>
                                             <i class="bi bi-cart fs-2 bg-success p-2 rounded-2 text-white"></i>
@@ -181,8 +181,8 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <h6>Sales</h6>
-                                            <h6>Rs. 780000</h6>
+                                            <h6>Total of Sales</h6>
+                                            <h6 id="tot-of-sales">Rs. 780000</h6>
                                         </div>
                                         <div>
                                             <i class="bi bi-cart fs-2 bg-danger p-2 rounded-2 text-white"></i>
@@ -197,8 +197,8 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            <h6>Sales</h6>
-                                            <h6>Rs. 780000</h6>
+                                            <h6>Customer Count</h6>
+                                            <h6 id="customer-count">Rs. 780000</h6>
                                         </div>
                                         <div>
                                             <i class="bi bi-cart fs-2 bg-success p-2 rounded-2 text-white"></i>
@@ -211,88 +211,8 @@
                     </div>
                     <p class="text-dark mt-5">Date: <input type="text" id="datepicker"></p>
                     <div class="row mt-5 w-100 flex-nowrap p-2">
-                        <div class="col-md-6 overflow-y-scroll" style="height: 50vh">
-                            <div class="card bg-white text-dark shadow-lg">
-                                <div class="card-body">
-                                    <h6>Recent Orders</h6>
-                                    <hr>
-                                    <table class="table table-borderless">
-                                        <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Customer</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-success">Delivered</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-warning">Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-success">Delivered</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>John Doe</td>
-                                            <td>Rs. 6700</td>
-                                            <td><span class="badge bg-danger">Cancelled</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 p-2" style="height: 45vh">
+                        <div class=" p-2" style="height: 45vh">
                             <h4 class="text-dark bg-white rounded text-center">Sell Count : <span id="sold"></span> </h4>
                             <section class="row w-100 h-100">
                                 <section class="text-center h-75 col bg-white ms-2 rounded">
