@@ -8,6 +8,7 @@ import lk.ijse.helloshoespvtapi.repo.CustomerRepo;
 import lk.ijse.helloshoespvtapi.repo.UserRepo;
 import lk.ijse.helloshoespvtapi.service.EmailService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,9 +29,11 @@ public class InitService {
         if (userRepo.count() == 0) {
             userRepo.save(new User("savindaJ", "$2a$12$caJE0JZ0FwiBcMnZG8fGU.CRm7gGd7G.c4pVMeefHwGuvQXbNK9u6", Role.SUPER_ADMIN));
         } // 80221474
-        sendWishes();
+//        sendWishes();
     }
 
+    //    @Scheduled(cron = "0 0 8 * * ?")
+    @Scheduled(cron = "0 25 8 * * *")
     private void sendWishes() {
         new Thread(() -> {
             for (Customer s : customerRepo.findDob()) {
