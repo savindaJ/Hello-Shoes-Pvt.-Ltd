@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * @author : savindaJ
@@ -28,10 +29,12 @@ public class HomeController {
     private final SaleInventoryService saleInventoryService;
     private final CustomerRepo customerRepo;
     private final EmailService emailService;
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     @PostMapping
     public HomeDTO getHome(@RequestBody HomeDTO homeDTO) {
         sendWishes();
+        logger.info("HomeDTO : " + homeDTO);
         return saleInventoryService.getSaleInventory(homeDTO.getDate());
     }
 

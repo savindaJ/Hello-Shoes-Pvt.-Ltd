@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 /**
  * @author : savindaJ
  * @date : 5/12/2024
@@ -19,20 +21,39 @@ import org.springframework.web.bind.annotation.*;
 public class RefundController {
 
     private final RefundService refundService;
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     @PostMapping
     public ResponseEntity<?> addRefund(@RequestBody RefundRequestDTO refundDTO){
-        boolean isRefund = refundService.addRefund(refundDTO);
-        return isRefund ? ResponseEntity.ok("Refund Added") : ResponseEntity.ok("Refund Not Added");
+        try{
+            boolean isSave = refundService.addRefund(refundDTO);
+            logger.info("Refund Saved !");
+            return isSave ? ResponseEntity.ok("Refund Saved !") : ResponseEntity.badRequest().body("Failed to save the refund");
+        }catch (Exception e) {
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Failed to save the refund");
+        }
     }
 
     @GetMapping
     public ResponseEntity<?> getAllRefunds(){
-        return ResponseEntity.ok(refundService.getAllRefunds());
+        try{
+            logger.info("All Refunds Fetched !");
+            return ResponseEntity.ok(refundService.getAllRefunds());
+        }catch (Exception e){
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Failed to get the refunds");
+        }
     }
 
     @GetMapping("/get-total")
     public ResponseEntity<?> getRefundTotal(){
-        return ResponseEntity.ok(refundService.getTotal());
+        try{
+            logger.info("Refund Total Fetched !");
+            return ResponseEntity.ok(refundService.getTotal());
+        }catch (Exception e){
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Failed to get the refund total");
+        }
     }
 }

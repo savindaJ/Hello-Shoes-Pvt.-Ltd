@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author : savindaJ
@@ -20,6 +22,7 @@ import java.io.IOException;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final Logger logger = Logger.getLogger(EmployeeController.class.getName());
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -27,29 +30,69 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<?> saveEmployee(@RequestParam String employee,@RequestParam("image") MultipartFile file) throws IOException {
-        System.out.println(employee);
-        boolean isSave = employeeService.saveEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class),file);
-        return isSave ? ResponseEntity.ok("Employee Saved !") : ResponseEntity.badRequest().body("Failed to save the employee");
+        try {
+            boolean isSaved = employeeService.saveEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class),file);
+            if (isSaved) {
+                return ResponseEntity.ok("Employee Saved !");
+            } else {
+                return ResponseEntity.badRequest().body("Employee Save Failed !");
+            }
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Employee Save Failed !");
+        }
     }
 
     @GetMapping("/admin")
     public ResponseEntity<?> getAllEmployees(){
-        return ResponseEntity.ok(employeeService.getAllAdmins());
+        try {
+            List<EmployeeDTO> allAdmins = employeeService.getAllAdmins();
+            logger.info("Employees fetched !");
+            return ResponseEntity.ok(allAdmins);
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Failed to get Employees !");
+        }
     }
 
     @GetMapping("/cashier")
     public ResponseEntity<?> getAllCashiers(){
-        return ResponseEntity.ok(employeeService.getAllCashiers());
+        try {
+            List<EmployeeDTO> allCashiers = employeeService.getAllCashiers();
+            logger.info("Employees fetched !");
+            return ResponseEntity.ok(allCashiers);
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Failed to get Employees !");
+        }
     }
 
     @GetMapping("/{empId}")
     public ResponseEntity<?> getEmployee(@PathVariable("empId") String empId){
-        return ResponseEntity.ok(employeeService.getEmployee(empId));
+        try {
+            EmployeeDTO employee = employeeService.getEmployee(empId);
+            logger.info("Employee fetched !");
+            return ResponseEntity.ok(employee);
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Failed to get Employee !");
+        }
     }
 
     @PutMapping
     public ResponseEntity<?> updateEmployee(@RequestParam("employee") String employee,@RequestParam("image") MultipartFile file) throws IOException {
-        boolean isUpdate = employeeService.updateEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class),file);
-        return isUpdate ? ResponseEntity.ok("Employee Updated !") : ResponseEntity.badRequest().body("Failed to update the employee");
+        try {
+            boolean isUpdated = employeeService.updateEmployee(new ObjectMapper().readValue(employee, EmployeeDTO.class),file);
+            if (isUpdated) {
+                logger.info("Employee Updated !");
+                return ResponseEntity.ok("Employee Updated !");
+            } else {
+                logger.severe("Employee Update Failed !");
+                return ResponseEntity.badRequest().body("Employee Update Failed !");
+            }
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            return ResponseEntity.badRequest().body("Employee Update Failed !");
+        }
     }
 }

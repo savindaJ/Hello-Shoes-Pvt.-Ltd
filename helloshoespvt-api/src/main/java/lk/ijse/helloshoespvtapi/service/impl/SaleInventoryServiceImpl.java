@@ -43,7 +43,6 @@ public class SaleInventoryServiceImpl implements SaleInventoryService {
         Inventory inventory = inventoryRepo.findById(split[0]).get();
         int saleCount = Integer.parseInt(split[1]);
         Double sumOfTotalByDate = saleRepo.findSumOfTotalByDate(date == null ? new Date(System.currentTimeMillis()) : date);
-        System.out.println("Sales " + sumOfTotalByDate);
         InventoryDTO map = mapper.map(inventory, InventoryDTO.class);
         long count = inventoryRepo.count();
         Double sumOfTotal = saleRepo.findSumOfTotal();

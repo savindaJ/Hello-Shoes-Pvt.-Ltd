@@ -6,6 +6,7 @@ import lk.ijse.helloshoespvtapi.auth.AuthenticationRequest;
 import lk.ijse.helloshoespvtapi.auth.AuthenticationResponse;
 import lk.ijse.helloshoespvtapi.service.UserDetailService;
 import lk.ijse.helloshoespvtapi.util.JwtUtil;
+import org.hibernate.usertype.LoggableUserType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.logging.Logger;
 
 /**
  * @author : savindaJ
@@ -26,7 +29,7 @@ public class AuthController {
     private final AuthenticationProvider authenticationManager;
     private final JwtUtil jwtTokenUtil;
     private final UserDetailsService userDetailsService;
-
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
     private final UserDetailService userDetailService;
 
     public AuthController(AuthenticationProvider authenticationManager, JwtUtil jwtTokenUtil, UserDetailsService userDetailsService, UserDetailService userDetailService) {
@@ -55,8 +58,10 @@ public class AuthController {
             } else {
                 profilePic = userDto.getProfilePic();
             }
+            logger.info("User logged in : " + userDto.getUserName());
             return ResponseEntity.ok(new AuthenticationResponse(jwt, userDto.getUserName(), profilePic, userDto.getRole()));
         } catch (BadCredentialsException e) {
+            logger.warning("Incorrect username or password");
             throw new Exception("Incorrect username or password", e);
         }
     }
