@@ -74,7 +74,7 @@ public class SaleServiceImpl implements SaleService {
             }
             customer.setRecentPurchaseDate(new Date(System.currentTimeMillis()));
             sale.setCustomer(customerRepo.save(customer));
-            sendEmail(customer.getEmail(), "Thank you for purchasing with us. Your total points are " + customer.getTotalPoints());
+            sendEmail(customer.getEmail(), "Thank you for purchasing with us. Your total points are :" + customer.getTotalPoints() + "!" + ", in Your recent purchase you have earned " + saleDTO.getAddedPoints() + " points ," + "\n,And Your Total Purchase Amount is : " + saleDTO.getSubTotal() + " LKR" + "!" + "Thank you for shopping with us!");
         } else {
             sale.setCustomer(null);
         }
@@ -97,7 +97,7 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public List<RefundDTO> getCanRefundItems() {
         List<RefundDTO> refundDTOS = new ArrayList<>();
-        saleRepo.getCanRefundItems().forEach((refund)->{
+        saleRepo.getCanRefundItems().forEach((refund) -> {
             RefundDTO refundDTO = new RefundDTO();
             refundDTO.setSaleId(refund.getSaleId());
             refundDTO.setCashierName(refund.getCashierName());
