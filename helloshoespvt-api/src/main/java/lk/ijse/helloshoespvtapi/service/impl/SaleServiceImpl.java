@@ -74,7 +74,7 @@ public class SaleServiceImpl implements SaleService {
             }
             customer.setRecentPurchaseDate(new Date(System.currentTimeMillis()));
             sale.setCustomer(customerRepo.save(customer));
-            sendEmail(customer.getEmail(), "Thank you for purchasing with us. Your total points are :" + customer.getTotalPoints() + "!" + ", in Your recent purchase you have earned " + saleDTO.getAddedPoints() + " points ," + "\n,And Your Total Purchase Amount is : " + saleDTO.getSubTotal() + " LKR" + "!" + "Thank you for shopping with us!");
+            sendEmail(customer.getEmail(), "Thank you for purchasing with us. Your total points are :" + customer.getTotalPoints() + "!" + ", in Your recent purchase you have earned " + saleDTO.getAddedPoints() + " points " + "\n,And Your Total Purchase Amount is : " + saleDTO.getSubTotal() + " LKR " + "! " + " Thank you for shopping with us!\n By : Hello Shoe PVT LTD.\n"+"Contact Us : 0703973327 \n"+"Email : helloshoepvt@gmail.com");
         } else {
             sale.setCustomer(null);
         }
