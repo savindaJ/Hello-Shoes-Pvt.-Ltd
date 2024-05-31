@@ -46,7 +46,6 @@ This project utilizes Google Drive for storing images and files. All uploads are
 - Java Development Kit (JDK)
 - Maven
 - MySQL
-- Node.js and npm (for managing frontend dependencies)
 
 ### Installation
 
