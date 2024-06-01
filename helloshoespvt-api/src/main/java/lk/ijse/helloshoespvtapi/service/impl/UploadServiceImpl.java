@@ -30,8 +30,8 @@ public class UploadServiceImpl implements UploadService {
         file.transferTo(tempFile);
         com.google.api.services.drive.model.File fileMetaData = new com.google.api.services.drive.model.File();
         fileMetaData.setName(tempFile.getName());
-//        fileMetaData.setParents(Collections.singletonList("1bdT4xBT02HmERcIZAoy9yDAUyIr1Mekq"));
-        fileMetaData.setParents(Collections.singletonList("1Qa2q_OmIriMHYyXj-6UOdHKL4oaD7ejo"));
+        fileMetaData.setParents(Collections.singletonList("1bdT4xBT02HmERcIZAoy9yDAUyIr1Mekq"));
+//        fileMetaData.setParents(Collections.singletonList("1Qa2q_OmIriMHYyXj-6UOdHKL4oaD7ejo"));
         FileContent mediaContent = new FileContent("image/jpeg", tempFile);
         com.google.api.services.drive.model.File uploadedFile = drive.files().create(fileMetaData, mediaContent)
                 .setFields("id").execute();

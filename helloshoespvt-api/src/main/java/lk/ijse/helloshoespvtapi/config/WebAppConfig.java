@@ -42,7 +42,7 @@ public class WebAppConfig {
 
     private static String getPathToGoodleCredentials() {
         String currentDirectory = System.getProperty("user.dir");
-        Path filePath = Paths.get(currentDirectory, "helloshoespvt-api/upload.json");
+        Path filePath = Paths.get(currentDirectory, "helloshoespvt-api/upload-1.json");
         System.out.println("FILE PATH: " + filePath.toString());
         return filePath.toString();
     }
